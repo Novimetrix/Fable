@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/duis-mauris-augue-efficitur-posuere-dignissim-neque/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 15:23:43 GMT -->
+<!-- Mirrored from localhost:10016/duis-mauris-augue-efficitur-posuere-dignissim-neque/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 15:29:59 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -618,7 +618,19 @@
 </div>
 
 <script>
-;(async()=>{ if(window.nmFirebaseReady){await window.nmFirebaseReady;} else { for(let i=0;i<200 && !(window.firebase&&window.firebase.initializeApp); i++){ await new Promise(r=>setTimeout(r,25)); } }   const firebaseConfig={apiKey:"AIzaSyCxl84hZPy24GECDfkOwShRamIMcneSwU4",authDomain:"fable-893ed.firebaseapp.com",projectId:"fable-893ed",storageBucket:"fable-893ed.appspot.com",messagingSenderId:"662833409327",appId:"1:662833409327:web:fde30df44b90179d26c5da",measurementId:"G-JJPNQQH8P6"};
+// NM: robust Firestore getter for compat or app().firestore()
+function NM_getFirestore(){
+  try{
+    if (window.firebase && typeof firebase.firestore === 'function') return NM_getFirestore();
+    if (window.firebase && firebase.app && typeof firebase.app === 'function') {
+      var a = firebase.apps && firebase.apps.length ? firebase.app() : firebase.initializeApp(firebaseConfig);
+      if (a && typeof a.firestore === 'function') return a.firestore();
+    }
+  }catch(e){}
+  return null;
+}
+
+const firebaseConfig={apiKey:"AIzaSyCxl84hZPy24GECDfkOwShRamIMcneSwU4",authDomain:"fable-893ed.firebaseapp.com",projectId:"fable-893ed",storageBucket:"fable-893ed.appspot.com",messagingSenderId:"662833409327",appId:"1:662833409327:web:fde30df44b90179d26c5da",measurementId:"G-JJPNQQH8P6"};
 const app=firebase.initializeApp(firebaseConfig),db=firebase.firestore(app);
 
 const commentsEl=document.getElementById("comments"),
@@ -776,7 +788,7 @@ form.addEventListener("submit", async e=>{
   form.reset(); parentInput.value=""; parentNameInput.value="";
   replyIndicator.style.display="none";
 });
-})();</script>
+</script>
 
 <style>
 :root{
@@ -1018,5 +1030,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/duis-mauris-augue-efficitur-posuere-dignissim-neque/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 15:23:43 GMT -->
+<!-- Mirrored from localhost:10016/duis-mauris-augue-efficitur-posuere-dignissim-neque/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 15:29:59 GMT -->
 </html>
