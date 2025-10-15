@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 12:26:59 GMT -->
+<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 12:36:16 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -11,27 +11,11 @@
 
 	  <script>
   (function(){
-    // Remove any HTTrack‑rewritten tags like "/www.gstatic.com/firebasejs/..."
-    // Example bad src after export: https://yourdomain.com/www.gstatic.com/firebasejs/9.x.x/...
-    (function stripBadFirebaseTags(){
-      var scripts = document.getElementsByTagName('script');
-      for (var i = scripts.length - 1; i >= 0; i--) {
-        var s = scripts[i];
-        var src = s.getAttribute('src') || '';
-        if (!src) continue;
-        if (/\/www\.gstatic\.com\/firebasejs\//.test(src) && src.indexOf('https://www.gstatic.com/firebasejs/') !== 0) {
-          // This is a rewritten relative path, remove it before it executes.
-          s.parentNode && s.parentNode.removeChild(s);
-        }
-      }
-    })();
-
-    // If Firebase already present (from theme/injector), just expose thread helper and stop.
+    // If Firebase already present (from another script), just expose thread helper and stop.
     if (window.firebase || document.querySelector('script[src^="https://www.gstatic.com/firebasejs/"]')) {
       exposeThread();
       return;
     }
-
     var ORIGIN = ['https','://','www.','gstatic','.com','firebasejs/index.html','9.22.1','/'].join('');
     if (window.__nmFirebaseLoading) return;
     window.__nmFirebaseLoading = true;
@@ -1020,5 +1004,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 12:26:59 GMT -->
+<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 12:36:17 GMT -->
 </html>
