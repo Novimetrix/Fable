@@ -1,0 +1,60 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 15 Oct 2025 16:58:54 at http://localhost:10016/ +*.png +*.jpg +*.jpeg +*.webp +*.svg +*.css +*.js +*/wp-content/* +*/wp-includes/* -*/www.gstatic.com/* -*/firebasejs/* -*/wp-admin/* -*/wp-login.php* -*/xmlrpc.php* -*?preview=* -*?share=* -*?replytocom=* -*?s=* -*/feed/* -*/amp/* -*/trackback/* -*/wp-json/* -*?rest_route=*
+(winhttrack "-qir10%e0C2%Pnxs0u1%s%uN0%I0p3DaK0H0%kf2o0A %f#f" -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%l "en, *" http://localhost:10016/ -O1 "C:\Users\moham\Desktop\Fable-Export\Fable" +*.png +*.jpg +*.jpeg +*.webp +*.svg +*.css +*.js +*/wp-content/* +*/wp-includes/* -*/www.gstatic.com/* -*/firebasejs/* -*/wp-admin/* -*/wp-login.php* -*/xmlrpc.php* -*?preview=* -*?share=* -*?replytocom=* -*?s=* -*/feed/* -*/amp/* -*/trackback/* -*/wp-json/* -*?rest_route=* )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+16:59:05	Error: 	"Not Found" (404) at link localhost:10016/ln.href, location.origin (from localhost:10016/)
+16:59:05	Error: 	"Not Found" (404) at link localhost:10016/firebase-auth-compat.js (from localhost:10016/)
+16:59:16	Warning: 	Moved Permanently for localhost:10016/contact/
+16:59:16	Warning: 	File has moved from localhost:10016/contact/ to http://localhost:10016/contact-us/
+16:59:18	Warning: 	Warning: store text/css without scan: C:/Users/moham/Desktop/Fable-Export/Fable/gmpg.org/xfn/default.css
+16:59:19	Warning: 	Warning: store text/html without scan: C:/Users/moham/Desktop/Fable-Export/Fable/gmpg.org/xfn/.html
+16:59:20	Warning: 	Warning: store text/html without scan: C:/Users/moham/Desktop/Fable-Export/Fable/gmpg.org/xfn/intro.html
+16:59:20	Warning: 	Warning: store text/html without scan: C:/Users/moham/Desktop/Fable-Export/Fable/gmpg.org/xfn/faq.html
+16:59:20	Error: 	"Not Found" (404) at link localhost:10016/about/ln.href, location.origin (from localhost:10016/about/)
+16:59:21	Error: 	"Not Found" (404) at link localhost:10016/about/firebase-auth-compat.js (from localhost:10016/about/)
+16:59:21	Warning: 	Moved Permanently for localhost:10016/?p=768
+16:59:21	Warning: 	File has moved from localhost:10016/?p=768 to http://localhost:10016/about/
+16:59:23	Error: 	"Not Found" (404) at link localhost:10016/contact-us/ln.href, location.origin (from localhost:10016/contact-us/)
+16:59:24	Error: 	"Not Found" (404) at link localhost:10016/contact-us/firebase-auth-compat.js (from localhost:10016/contact-us/)
+16:59:24	Warning: 	Moved Permanently for localhost:10016/?p=765
+16:59:24	Warning: 	File has moved from localhost:10016/?p=765 to http://localhost:10016/contact-us/
+16:59:25	Error: 	"Not Found" (404) at link localhost:10016/one-hundred-years-of-solitude/ln.href, location.origin (from localhost:10016/one-hundred-years-of-solitude/)
+16:59:25	Error: 	"Not Found" (404) at link localhost:10016/one-hundred-years-of-solitude/firebase-auth-compat.js (from localhost:10016/one-hundred-years-of-solitude/)
+16:59:26	Warning: 	Moved Permanently for localhost:10016/?p=919
+16:59:26	Warning: 	File has moved from localhost:10016/?p=919 to http://localhost:10016/one-hundred-years-of-solitude/
+16:59:26	Warning: 	Retry after error -4 (No data (connection closed)) at link localhost:10016/wp-content/uploads/2021/06/video-7-150x150.jpg (from localhost:10016/one-hundred-years-of-solitude/)
+16:59:27	Error: 	"Not Found" (404) at link localhost:10016/the-last-life/ln.href, location.origin (from localhost:10016/the-last-life/)
+16:59:27	Error: 	"Not Found" (404) at link localhost:10016/the-last-life/firebase-auth-compat.js (from localhost:10016/the-last-life/)
+16:59:27	Warning: 	Moved Permanently for localhost:10016/?p=812
+16:59:27	Warning: 	File has moved from localhost:10016/?p=812 to http://localhost:10016/the-last-life/
+16:59:28	Error: 	"Not Found" (404) at link localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/ln.href, location.origin (from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/)
+16:59:28	Error: 	"Not Found" (404) at link localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/firebase-auth-compat.js (from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/)
+16:59:28	Warning: 	Moved Permanently for localhost:10016/?p=763
+16:59:28	Warning: 	File has moved from localhost:10016/?p=763 to http://localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/
+16:59:29	Error: 	"Not Found" (404) at link localhost:10016/pellentesque-eliteget-gravida-cum-ornare/ln.href, location.origin (from localhost:10016/pellentesque-eliteget-gravida-cum-ornare/)
+16:59:29	Error: 	"Not Found" (404) at link localhost:10016/pellentesque-eliteget-gravida-cum-ornare/firebase-auth-compat.js (from localhost:10016/pellentesque-eliteget-gravida-cum-ornare/)
+16:59:29	Warning: 	Moved Permanently for localhost:10016/?p=760
+16:59:29	Warning: 	File has moved from localhost:10016/?p=760 to http://localhost:10016/pellentesque-eliteget-gravida-cum-ornare/
+16:59:29	Error: 	"Not Found" (404) at link localhost:10016/quam-vulputate-dignissim-suspendisse-intellus/ln.href, location.origin (from localhost:10016/quam-vulputate-dignissim-suspendisse-intellus/)
+16:59:30	Error: 	"Not Found" (404) at link localhost:10016/quam-vulputate-dignissim-suspendisse-intellus/firebase-auth-compat.js (from localhost:10016/quam-vulputate-dignissim-suspendisse-intellus/)
+16:59:30	Warning: 	Moved Permanently for localhost:10016/?p=757
+16:59:30	Warning: 	File has moved from localhost:10016/?p=757 to http://localhost:10016/quam-vulputate-dignissim-suspendisse-intellus/
+16:59:30	Error: 	"Not Found" (404) at link localhost:10016/vestibulum-commodo-sapien-non-elit-vitae/ln.href, location.origin (from localhost:10016/vestibulum-commodo-sapien-non-elit-vitae/)
+16:59:30	Error: 	"Not Found" (404) at link localhost:10016/vestibulum-commodo-sapien-non-elit-vitae/firebase-auth-compat.js (from localhost:10016/vestibulum-commodo-sapien-non-elit-vitae/)
+16:59:30	Warning: 	Moved Permanently for localhost:10016/?p=218
+16:59:30	Warning: 	File has moved from localhost:10016/?p=218 to http://localhost:10016/vestibulum-commodo-sapien-non-elit-vitae/
+16:59:30	Error: 	"Not Found" (404) at link localhost:10016/proin-ex-ipsum-facilisis-tincidunt-vulputate/ln.href, location.origin (from localhost:10016/proin-ex-ipsum-facilisis-tincidunt-vulputate/)
+16:59:30	Error: 	"Not Found" (404) at link localhost:10016/proin-ex-ipsum-facilisis-tincidunt-vulputate/firebase-auth-compat.js (from localhost:10016/proin-ex-ipsum-facilisis-tincidunt-vulputate/)
+16:59:30	Warning: 	Moved Permanently for localhost:10016/?p=215
+16:59:30	Warning: 	File has moved from localhost:10016/?p=215 to http://localhost:10016/proin-ex-ipsum-facilisis-tincidunt-vulputate/
+16:59:30	Error: 	"Not Found" (404) at link localhost:10016/duis-mauris-augue-efficitur-posuere-dignissim-neque/ln.href, location.origin (from localhost:10016/duis-mauris-augue-efficitur-posuere-dignissim-neque/)
+16:59:30	Error: 	"Not Found" (404) at link localhost:10016/duis-mauris-augue-efficitur-posuere-dignissim-neque/firebase-auth-compat.js (from localhost:10016/duis-mauris-augue-efficitur-posuere-dignissim-neque/)
+16:59:30	Warning: 	Moved Permanently for localhost:10016/?p=1
+16:59:30	Warning: 	File has moved from localhost:10016/?p=1 to http://localhost:10016/duis-mauris-augue-efficitur-posuere-dignissim-neque/
+
+HTTrack Website Copier/3.49-2 mirror complete in 36 seconds : 106 links scanned, 72 files written (4453145 bytes overall), 22 files updated [672448 bytes received at 18679 bytes/sec], 2691183 bytes transferred using HTTP compression in 40 files, ratio 22%, 8.8 requests per connection
+(22 errors, 27 warnings, 0 messages)

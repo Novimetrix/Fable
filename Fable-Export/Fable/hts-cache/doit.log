@@ -1,0 +1,8 @@
+"-qir10%e0C2%Pnxs0u1%s%uN0%I0p3DaK0H0%kf2o0A %f#f" -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%l "en, *" http://localhost:10016/ -O1 "C:\Users\moham\Desktop\Fable-Export\Fable" +*.png +*.jpg +*.jpeg +*.webp +*.svg +*.css +*.js +*/wp-content/* +*/wp-includes/* -*/www.gstatic.com/* -*/firebasejs/* -*/wp-admin/* -*/wp-login.php* -*/xmlrpc.php* -*?preview=* -*?share=* -*?replytocom=* -*?s=* -*/feed/* -*/amp/* -*/trackback/* -*/wp-json/* -*?rest_route=*
+File generated automatically on Wed, 15 Oct 2025 16:58:54, do NOT edit
+
+To update a mirror, just launch httrack without any parameters
+The existing cache will be used (and modified)
+To have other options, retype all parameters and launch HTTrack
+To continue an interrupted mirror, just launch httrack without any parameters
+
