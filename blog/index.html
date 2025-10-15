@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 11:04:48 GMT -->
+<!-- Mirrored from localhost:10016/blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 11:37:03 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -12,6 +12,26 @@
 	<title>Blog &#8211; Fable Odyssey</title>
 <meta name='robots' content='max-image-preview:large' />
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+		<script id="fc-stable-threadid">
+	(function(){
+		// 1) Prefer WordPress post ID if present
+		var id = (document.body && document.body.dataset && document.body.dataset.postId) || null;
+		// 2) Else canonical URL path
+		if(!id){
+			var c = document.querySelector('link[rel="canonical"]');
+			if(c && c.href){
+				try{ id = new URL(c.html).pathname; }catch(e){ id = c.href.replace(/^https?:\/\/[^/]+/,''); }
+			}
+		}
+		// 3) Else fallback to current pathname
+		if(!id){ id = location.pathname; }
+
+		// Expose for your injector
+		window.__FC_THREAD_ID__ = String(id);
+		// Optional: tag the body for debugging
+		try{ document.body.setAttribute('data-fc-thread', String(id)); }catch(e){}
+	})();
+	</script>
 	<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="../feed/index.html" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="../comments/feed/index.html" />
 <link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global2ade.css?ver=13394' media='all' />
@@ -631,5 +651,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 11:05:11 GMT -->
+<!-- Mirrored from localhost:10016/blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2025 11:37:03 GMT -->
 </html>
