@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 06:07:56 GMT -->
+<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 08:15:16 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -15,7 +15,7 @@
 	<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="http://localhost:10016/comments/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Dingo Comments Feed" href="http://localhost:10016/dingo/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globalfc67.css?ver=90750' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globala234.css?ver=01238' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -51,7 +51,32 @@
 <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="http://localhost:10016/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A10016%2Fdingo%2F&amp;format=xml" />
 <noscript><link rel='stylesheet' href='../wp-content/themes/blocksy/static/bundle/no-scripts.min.css' type='text/css'></noscript>
 
-<style class="stk-block-styles">.stk-94732ce{height:200px !important;}</style><style id="comments-title-spacing-universal-100">
+<style class="stk-block-styles">.stk-94732ce{height:200px !important;}</style><script>
+/* FO-GATE live only — password: asia2002 */
+(function(){
+  var live = /^(www\.)?fableodyssey\.com$/i.test(location.hostname);
+  if (!live) return; // skip local/preview
+  if (/^\/(wp-admin|wp-login\.php)/.test(location.pathname)) return;
+  if (sessionStorage.getItem('fo-ok')==='1') return;
+
+  var pass='asia2002', key='fo-ok';
+  var d=document, h=d.createElement('div');
+  h.id='fo-gate';
+  h.style.cssText='position:fixed;inset:0;background:#0f0f0f;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:2147483647;font-family:Verdana,sans-serif';
+  h.innerHTML='<h2 style="margin:0 0 8px">Fable Odyssey — Private Preview</h2><p style="margin:0 0 10px;opacity:.9">Enter password to continue</p><input id="fo-pw" type="password" style="padding:10px 14px;border:0;border-radius:6px;font-size:15px;min-width:220px;text-align:center"><button id="fo-go" style="padding:10px 14px;margin-top:10px;border:0;border-radius:6px;background:#F15808;color:#fff;cursor:pointer;font-size:15px">Enter</button>';
+  
+  function ready(fn){ d.readyState==='loading'? d.addEventListener('DOMContentLoaded',fn,{once:true}) : fn(); }
+  function go(){ if((d.getElementById('fo-pw').value||'')===pass){ sessionStorage.setItem(key,'1'); h.remove(); } }
+  d.addEventListener('click',e=>{ if(e.target&&e.target.id==='fo-go') go(); });
+  d.addEventListener('keydown',e=>{ if(e.key==='Enter'&&d.getElementById('fo-pw')) go(); });
+  ready(()=>d.body.appendChild(h));
+
+  // optional: auto-unlock via ?fo=asia2002
+  var v=new URL(location.html).searchParams.get('fo');
+  if(v===pass){ sessionStorage.setItem(key,'1'); }
+})();
+</script>
+<style id="comments-title-spacing-universal-100">
 /* Firebase injectors (your MU plugins) */
 #commentSection.fc-wrap h2{margin-bottom:100px !important;}
 #commentSection.fc-wrap.fc-light h2{margin-bottom:100px !important;}
@@ -948,5 +973,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 06:07:56 GMT -->
+<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 08:15:19 GMT -->
 </html>
