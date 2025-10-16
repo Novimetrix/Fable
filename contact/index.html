@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 17:55:29 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 18:04:35 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -633,29 +633,60 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 <script src="../wp-content/themes/blocksy/static/bundle/main202b.js?ver=2.1.15" id="ct-scripts-js"></script>
 
-<!-- NM-MENU-FIX start (v1.3.2) -->
+<!-- NM-MENU-FIX start (v1.4.0 hard overlay) -->
 <style id="nm-mobile-menu-fix">
 /* Drawer visible when nav-open */
-body.nav-open #offcanvas,
-body.nav-open .ct-panel-overlay {
+body.nav-open #offcanvas {
   opacity: 1 !important;
   visibility: visible !important;
-  pointer-events: auto !important;
   transform: none !important;
 }
 
-/* Stacking order: drawer above overlay */
-#offcanvas { z-index: 99991 !important; position: fixed !important; }
-.ct-panel-overlay { z-index: 99990 !important; position: fixed !important; }
+/* Force drawer geometry so it captures touches */
+#offcanvas {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  width: min(86vw, 420px) !important; /* adjust if your menu is wider */
+  z-index: 99991 !important;
+  pointer-events: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+  background: inherit;
+}
 
-/* Ensure interactivity */
-#offcanvas, #offcanvas * { pointer-events: auto !important; }
-.ct-panel-overlay { pointer-events: auto !important; cursor: pointer; }
-
-/* Make overlay cover the screen on iOS/Android */
-.ct-panel-overlay {
-  top: 0; left: 0; width: 100vw; height: 100vh;
+/* Our own overlay that blocks taps behind the drawer */
+.nm-overlay {
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 99990 !important;
+  background: rgba(0,0,0,0); /* transparent; change if you want dim */
+  pointer-events: auto !important;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  touch-action: none;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* When menu open, disable clicks to underlying page */
+body.nav-open #ct-page, 
+body.nav-open #ct-site,
+body.nav-open .site,
+body.nav-open #page,
+body.nav-open .site-main,
+body.nav-open header, 
+body.nav-open main, 
+body.nav-open footer {
+  pointer-events: none !important;
+}
+/* But keep drawer and overlay interactive */
+body.nav-open #offcanvas, 
+body.nav-open #offcanvas *,
+body.nav-open .nm-overlay {
+  pointer-events: auto !important;
 }
 
 /* Prevent body scroll behind drawer */
@@ -663,122 +694,131 @@ body.nav-open { overflow: hidden; }
 </style>
 <script id="nm-mobile-menu-fix-js">
 (function(){
-  // Utility
-  function qs(sel, root){ return (root||document).querySelector(sel); }
-  function qsa(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); }
+  function qs(s, r){ return (r||document).querySelector(s); }
+  function qsa(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
 
-  // Elements
-  var panel   = document.getElementById('offcanvas') ||
-                qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
-  var overlay = qs('.ct-panel-overlay, .ct-modal-overlay, .ct-drawer-overlay');
-
-  // Triggers: explicit first
+  var panel   = document.getElementById('offcanvas') || qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
   var triggers = qsa('[data-toggle-panel="#offcanvas"], .ct-header-trigger.ct-toggle, button[aria-controls="offcanvas"]');
-  if (!triggers.length) {
-    var t = qs('[aria-controls="offcanvas"], [data-id="trigger"], [data-label="right"]');
-    if (t) triggers = [t];
+  if (!panel || !triggers.length) return;
+
+  // Ensure we have our own overlay
+  var overlay = qs('.nm-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'nm-overlay';
+    overlay.setAttribute('role','button');
+    overlay.setAttribute('aria-label','Close menu');
+    overlay.style.display = 'none';
+    document.body.appendChild(overlay);
   }
-  if (!panel || !triggers.length) { return; }
 
-  // A11y
-  if (!panel.id) panel.id = 'offcanvas';
-  triggers.forEach(function(t){ t.setAttribute('aria-controls', panel.id); t.setAttribute('aria-expanded','false'); });
-
-  // State helpers
   function isOpen(){ return document.body.classList.contains('nav-open'); }
+  function showOverlay(show){
+    overlay.style.display = show ? 'block' : 'none';
+  }
   function openNav(){
     document.body.classList.add('nav-open');
     panel.classList.add('open');
-    if (overlay) overlay.classList.add('open');
+    showOverlay(true);
     triggers.forEach(function(t){ t.setAttribute('aria-expanded','true'); });
   }
   function closeNav(){
     document.body.classList.remove('nav-open');
     panel.classList.remove('open');
-    if (overlay) overlay.classList.remove('open');
+    showOverlay(false);
     triggers.forEach(function(t){ t.setAttribute('aria-expanded','false'); });
   }
   function toggleNav(){ isOpen() ? closeNav() : openNav(); }
 
-  // --- Robust event binding for mobile ---
-  // 1) Triggers: click + pointerup + touchend
-  function bindToggle(el){
-    ['click','pointerup','touchend'].forEach(function(evt){
+  function bind(el){
+    ['click','touchend'].forEach(function(evt){
       el.addEventListener(evt, function(e){
-        // tolerate duplicate events by toggling only once per tick
-        if (e.type === 'touchend') { e.preventDefault(); }
+        if (evt === 'touchend') e.preventDefault();
         toggleNav();
-      }, {passive: (el.tagName === 'A')});
+      }, {passive:false});
     });
   }
-  triggers.forEach(bindToggle);
+  triggers.forEach(bind);
 
-  // 2) Overlay to close
-  if (overlay){
-    ['click','pointerup','touchend'].forEach(function(evt){
-      overlay.addEventListener(evt, function(e){
-        if (e.type === 'touchend') { e.preventDefault(); }
-        closeNav();
-      }, {passive:true});
-    });
-  }
+  // Close overlay and clicks inside drawer on links/buttons
+  ['click','touchend'].forEach(function(evt){
+    overlay.addEventListener(evt, function(e){
+      if (evt === 'touchend') e.preventDefault();
+      closeNav();
+    }, {passive:false});
 
-  // 3) Inside panel: close on links/buttons (delegated)
-  ['click','pointerup','touchend'].forEach(function(evt){
     panel.addEventListener(evt, function(e){
-      var actionable = e.target.closest('a, button, [role="button"], [data-close="panel"], .ct-close, .ct-panel-close, .ct-toggle--close');
-      if (actionable){
-        if (evt === 'touchend') { e.preventDefault(); }
-        // If it's a hash link, let navigation scroll after closing
-        var href = actionable.getAttribute('href') || '';
+      var target = e.target.closest('a, button, [role="button"], [data-close="panel"], .ct-close, .ct-panel-close, .ct-toggle--close');
+      if (target){
+        if (evt === 'touchend') e.preventDefault();
+        var href = target.getAttribute('href');
         closeNav();
-        // Allow real navigation to proceed on anchors/links
-        if (href && href.charAt(0) !== '#') {
-          window.location.href = href;
-        }
+        if (href && href.charAt(0) !== '#') { window.location.href = href; }
       }
     }, {passive:false});
   });
 
-  // 4) Esc key
+  // Esc key
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
-
-  // 5) Failsafe: if something else adds/removes classes, keep overlay/panel in sync
-  var mo = new MutationObserver(function(){
-    if (isOpen()) {
-      panel.classList.add('open');
-      if (overlay) overlay.classList.add('open');
-    }
-  });
-  mo.observe(document.body, { attributes:true, attributeFilter:['class'] });
 })();
 </script>
 
 <!-- NM-MENU-FIX end -->
 
-<!-- NM-MENU-FIX start (v1.3.2) -->
+<!-- NM-MENU-FIX start (v1.4.0 hard overlay) -->
 <style id="nm-mobile-menu-fix">
 /* Drawer visible when nav-open */
-body.nav-open #offcanvas,
-body.nav-open .ct-panel-overlay {
+body.nav-open #offcanvas {
   opacity: 1 !important;
   visibility: visible !important;
-  pointer-events: auto !important;
   transform: none !important;
 }
 
-/* Stacking order: drawer above overlay */
-#offcanvas { z-index: 99991 !important; position: fixed !important; }
-.ct-panel-overlay { z-index: 99990 !important; position: fixed !important; }
+/* Force drawer geometry so it captures touches */
+#offcanvas {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  width: min(86vw, 420px) !important; /* adjust if your menu is wider */
+  z-index: 99991 !important;
+  pointer-events: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+  background: inherit;
+}
 
-/* Ensure interactivity */
-#offcanvas, #offcanvas * { pointer-events: auto !important; }
-.ct-panel-overlay { pointer-events: auto !important; cursor: pointer; }
-
-/* Make overlay cover the screen on iOS/Android */
-.ct-panel-overlay {
-  top: 0; left: 0; width: 100vw; height: 100vh;
+/* Our own overlay that blocks taps behind the drawer */
+.nm-overlay {
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 99990 !important;
+  background: rgba(0,0,0,0); /* transparent; change if you want dim */
+  pointer-events: auto !important;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  touch-action: none;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* When menu open, disable clicks to underlying page */
+body.nav-open #ct-page, 
+body.nav-open #ct-site,
+body.nav-open .site,
+body.nav-open #page,
+body.nav-open .site-main,
+body.nav-open header, 
+body.nav-open main, 
+body.nav-open footer {
+  pointer-events: none !important;
+}
+/* But keep drawer and overlay interactive */
+body.nav-open #offcanvas, 
+body.nav-open #offcanvas *,
+body.nav-open .nm-overlay {
+  pointer-events: auto !important;
 }
 
 /* Prevent body scroll behind drawer */
@@ -786,94 +826,72 @@ body.nav-open { overflow: hidden; }
 </style>
 <script id="nm-mobile-menu-fix-js">
 (function(){
-  // Utility
-  function qs(sel, root){ return (root||document).querySelector(sel); }
-  function qsa(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); }
+  function qs(s, r){ return (r||document).querySelector(s); }
+  function qsa(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
 
-  // Elements
-  var panel   = document.getElementById('offcanvas') ||
-                qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
-  var overlay = qs('.ct-panel-overlay, .ct-modal-overlay, .ct-drawer-overlay');
-
-  // Triggers: explicit first
+  var panel   = document.getElementById('offcanvas') || qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
   var triggers = qsa('[data-toggle-panel="#offcanvas"], .ct-header-trigger.ct-toggle, button[aria-controls="offcanvas"]');
-  if (!triggers.length) {
-    var t = qs('[aria-controls="offcanvas"], [data-id="trigger"], [data-label="right"]');
-    if (t) triggers = [t];
+  if (!panel || !triggers.length) return;
+
+  // Ensure we have our own overlay
+  var overlay = qs('.nm-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'nm-overlay';
+    overlay.setAttribute('role','button');
+    overlay.setAttribute('aria-label','Close menu');
+    overlay.style.display = 'none';
+    document.body.appendChild(overlay);
   }
-  if (!panel || !triggers.length) { return; }
 
-  // A11y
-  if (!panel.id) panel.id = 'offcanvas';
-  triggers.forEach(function(t){ t.setAttribute('aria-controls', panel.id); t.setAttribute('aria-expanded','false'); });
-
-  // State helpers
   function isOpen(){ return document.body.classList.contains('nav-open'); }
+  function showOverlay(show){
+    overlay.style.display = show ? 'block' : 'none';
+  }
   function openNav(){
     document.body.classList.add('nav-open');
     panel.classList.add('open');
-    if (overlay) overlay.classList.add('open');
+    showOverlay(true);
     triggers.forEach(function(t){ t.setAttribute('aria-expanded','true'); });
   }
   function closeNav(){
     document.body.classList.remove('nav-open');
     panel.classList.remove('open');
-    if (overlay) overlay.classList.remove('open');
+    showOverlay(false);
     triggers.forEach(function(t){ t.setAttribute('aria-expanded','false'); });
   }
   function toggleNav(){ isOpen() ? closeNav() : openNav(); }
 
-  // --- Robust event binding for mobile ---
-  // 1) Triggers: click + pointerup + touchend
-  function bindToggle(el){
-    ['click','pointerup','touchend'].forEach(function(evt){
+  function bind(el){
+    ['click','touchend'].forEach(function(evt){
       el.addEventListener(evt, function(e){
-        // tolerate duplicate events by toggling only once per tick
-        if (e.type === 'touchend') { e.preventDefault(); }
+        if (evt === 'touchend') e.preventDefault();
         toggleNav();
-      }, {passive: (el.tagName === 'A')});
+      }, {passive:false});
     });
   }
-  triggers.forEach(bindToggle);
+  triggers.forEach(bind);
 
-  // 2) Overlay to close
-  if (overlay){
-    ['click','pointerup','touchend'].forEach(function(evt){
-      overlay.addEventListener(evt, function(e){
-        if (e.type === 'touchend') { e.preventDefault(); }
-        closeNav();
-      }, {passive:true});
-    });
-  }
+  // Close overlay and clicks inside drawer on links/buttons
+  ['click','touchend'].forEach(function(evt){
+    overlay.addEventListener(evt, function(e){
+      if (evt === 'touchend') e.preventDefault();
+      closeNav();
+    }, {passive:false});
 
-  // 3) Inside panel: close on links/buttons (delegated)
-  ['click','pointerup','touchend'].forEach(function(evt){
     panel.addEventListener(evt, function(e){
-      var actionable = e.target.closest('a, button, [role="button"], [data-close="panel"], .ct-close, .ct-panel-close, .ct-toggle--close');
-      if (actionable){
-        if (evt === 'touchend') { e.preventDefault(); }
-        // If it's a hash link, let navigation scroll after closing
-        var href = actionable.getAttribute('href') || '';
+      var target = e.target.closest('a, button, [role="button"], [data-close="panel"], .ct-close, .ct-panel-close, .ct-toggle--close');
+      if (target){
+        if (evt === 'touchend') e.preventDefault();
+        var href = target.getAttribute('href');
         closeNav();
-        // Allow real navigation to proceed on anchors/links
-        if (href && href.charAt(0) !== '#') {
-          window.location.href = href;
-        }
+        if (href && href.charAt(0) !== '#') { window.location.href = href; }
       }
     }, {passive:false});
   });
 
-  // 4) Esc key
+  // Esc key
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
-
-  // 5) Failsafe: if something else adds/removes classes, keep overlay/panel in sync
-  var mo = new MutationObserver(function(){
-    if (isOpen()) {
-      panel.classList.add('open');
-      if (overlay) overlay.classList.add('open');
-    }
-  });
-  mo.observe(document.body, { attributes:true, attributeFilter:['class'] });
 })();
 </script>
 
@@ -881,5 +899,5 @@ body.nav-open { overflow: hidden; }
 
 </body>
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 17:55:29 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 18:04:35 GMT -->
 </html>
