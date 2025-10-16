@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 08:15:25 GMT -->
+<!-- Mirrored from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 08:19:55 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -54,26 +54,34 @@
 <style class="stk-block-styles">.stk-de17865{height:200px !important;}</style><script>
 /* FO-GATE live only — password: asia2002 */
 (function(){
-  var live = /^(www\.)?fableodyssey\.com$/i.test(location.hostname);
-  if (!live) return; // skip local/preview
-  if (/^\/(wp-admin|wp-login\.php)/.test(location.pathname)) return;
-  if (sessionStorage.getItem('fo-ok')==='1') return;
+  var live=/^(www\.)?fableodyssey\.com$/i.test(location.hostname);
+  if(!live)return;
+  if(/^\/(wp-admin|wp-login\.php)/.test(location.pathname))return;
+  if(sessionStorage.getItem('fo-ok')==='1')return;
 
-  var pass='asia2002', key='fo-ok';
-  var d=document, h=d.createElement('div');
+  var pass='asia2002',key='fo-ok',d=document;
+  var h=d.createElement('div');
   h.id='fo-gate';
   h.style.cssText='position:fixed;inset:0;background:#0f0f0f;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:2147483647;font-family:Verdana,sans-serif';
   h.innerHTML='<h2 style="margin:0 0 8px">Fable Odyssey — Private Preview</h2><p style="margin:0 0 10px;opacity:.9">Enter password to continue</p><input id="fo-pw" type="password" style="padding:10px 14px;border:0;border-radius:6px;font-size:15px;min-width:220px;text-align:center"><button id="fo-go" style="padding:10px 14px;margin-top:10px;border:0;border-radius:6px;background:#F15808;color:#fff;cursor:pointer;font-size:15px">Enter</button>';
-  
-  function ready(fn){ d.readyState==='loading'? d.addEventListener('DOMContentLoaded',fn,{once:true}) : fn(); }
-  function go(){ if((d.getElementById('fo-pw').value||'')===pass){ sessionStorage.setItem(key,'1'); h.remove(); } }
-  d.addEventListener('click',e=>{ if(e.target&&e.target.id==='fo-go') go(); });
-  d.addEventListener('keydown',e=>{ if(e.key==='Enter'&&d.getElementById('fo-pw')) go(); });
-  ready(()=>d.body.appendChild(h));
 
-  // optional: auto-unlock via ?fo=asia2002
+  function go(){
+    var input=d.getElementById('fo-pw');
+    if(input && input.value===pass){sessionStorage.setItem(key,'1');h.remove();}
+  }
+
+  function attach(){
+    d.body.appendChild(h);
+    d.getElementById('fo-go').addEventListener('click',go);
+    d.getElementById('fo-pw').addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+  }
+
+  if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',attach,{once:true});
+  else attach();
+
+  // optional quick unlock via ?fo=asia2002
   var v=new URL(location.html).searchParams.get('fo');
-  if(v===pass){ sessionStorage.setItem(key,'1'); }
+  if(v===pass){sessionStorage.setItem(key,'1');}
 })();
 </script>
 <style id="comments-title-spacing-universal-100">
@@ -972,5 +980,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 08:15:26 GMT -->
+<!-- Mirrored from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 08:19:55 GMT -->
 </html>
