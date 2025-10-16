@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 18:04:36 GMT -->
+<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 18:22:12 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -539,7 +539,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 <script src="../../wp-content/themes/blocksy/static/bundle/main202b.js?ver=2.1.15" id="ct-scripts-js"></script>
 
-<!-- NM-MENU-FIX start (v1.4.0 hard overlay) -->
+<!-- NM-MENU-FIX start (v1.5.0 inert+css) -->
 <style id="nm-mobile-menu-fix">
 /* Drawer visible when nav-open */
 body.nav-open #offcanvas {
@@ -548,36 +548,34 @@ body.nav-open #offcanvas {
   transform: none !important;
 }
 
-/* Force drawer geometry so it captures touches */
+/* Force geometry & stacking */
 #offcanvas {
   position: fixed !important;
   top: 0 !important;
   right: 0 !important;
   height: 100vh !important;
   max-height: 100vh !important;
-  width: min(86vw, 420px) !important; /* adjust if your menu is wider */
+  width: min(86vw, 420px) !important;
   z-index: 99991 !important;
   pointer-events: auto !important;
   -webkit-overflow-scrolling: touch;
   overflow-y: auto;
-  background: inherit;
 }
 
-/* Our own overlay that blocks taps behind the drawer */
+/* Our overlay (CSS-driven visibility) */
 .nm-overlay {
   position: fixed !important;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  top: 0; left: 0; width: 100vw; height: 100vh;
   z-index: 99990 !important;
-  background: rgba(0,0,0,0); /* transparent; change if you want dim */
+  background: rgba(0,0,0,0);
   pointer-events: auto !important;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   touch-action: none;
-  opacity: 1;
-  visibility: visible;
+  display: none; /* default off */
 }
+body.nav-open .nm-overlay { display: block; } /* visible when open */
 
-/* When menu open, disable clicks to underlying page */
+/* Disable underlying page clicks when open */
 body.nav-open #ct-page, 
 body.nav-open #ct-site,
 body.nav-open .site,
@@ -588,14 +586,13 @@ body.nav-open main,
 body.nav-open footer {
   pointer-events: none !important;
 }
-/* But keep drawer and overlay interactive */
 body.nav-open #offcanvas, 
 body.nav-open #offcanvas *,
 body.nav-open .nm-overlay {
   pointer-events: auto !important;
 }
 
-/* Prevent body scroll behind drawer */
+/* Prevent body scroll */
 body.nav-open { overflow: hidden; }
 </style>
 <script id="nm-mobile-menu-fix-js">
@@ -603,36 +600,38 @@ body.nav-open { overflow: hidden; }
   function qs(s, r){ return (r||document).querySelector(s); }
   function qsa(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
 
-  var panel   = document.getElementById('offcanvas') || qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
+  var panel = document.getElementById('offcanvas') || qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
   var triggers = qsa('[data-toggle-panel="#offcanvas"], .ct-header-trigger.ct-toggle, button[aria-controls="offcanvas"]');
+
   if (!panel || !triggers.length) return;
 
-  // Ensure we have our own overlay
+  // Ensure overlay exists (CSS shows it when body.nav-open)
   var overlay = qs('.nm-overlay');
   if (!overlay) {
     overlay = document.createElement('div');
     overlay.className = 'nm-overlay';
     overlay.setAttribute('role','button');
     overlay.setAttribute('aria-label','Close menu');
-    overlay.style.display = 'none';
     document.body.appendChild(overlay);
   }
 
+  // Helpers
   function isOpen(){ return document.body.classList.contains('nav-open'); }
-  function showOverlay(show){
-    overlay.style.display = show ? 'block' : 'none';
-  }
   function openNav(){
+    // Remove inert/aria-hidden to allow interaction on static pages
+    panel.removeAttribute('inert');
+    panel.removeAttribute('aria-hidden');
     document.body.classList.add('nav-open');
     panel.classList.add('open');
-    showOverlay(true);
-    triggers.forEach(function(t){ t.setAttribute('aria-expanded','true'); });
+    triggers.forEach(function(t){ t.setAttribute('aria-expanded', 'true'); });
   }
   function closeNav(){
     document.body.classList.remove('nav-open');
     panel.classList.remove('open');
-    showOverlay(false);
-    triggers.forEach(function(t){ t.setAttribute('aria-expanded','false'); });
+    // Optional: restore inert; harmless if not used by theme
+    panel.setAttribute('inert', '');
+    panel.setAttribute('aria-hidden', 'true');
+    triggers.forEach(function(t){ t.setAttribute('aria-expanded', 'false'); });
   }
   function toggleNav(){ isOpen() ? closeNav() : openNav(); }
 
@@ -646,7 +645,6 @@ body.nav-open { overflow: hidden; }
   }
   triggers.forEach(bind);
 
-  // Close overlay and clicks inside drawer on links/buttons
   ['click','touchend'].forEach(function(evt){
     overlay.addEventListener(evt, function(e){
       if (evt === 'touchend') e.preventDefault();
@@ -664,14 +662,13 @@ body.nav-open { overflow: hidden; }
     }, {passive:false});
   });
 
-  // Esc key
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
 })();
 </script>
 
 <!-- NM-MENU-FIX end -->
 
-<!-- NM-MENU-FIX start (v1.4.0 hard overlay) -->
+<!-- NM-MENU-FIX start (v1.5.0 inert+css) -->
 <style id="nm-mobile-menu-fix">
 /* Drawer visible when nav-open */
 body.nav-open #offcanvas {
@@ -680,36 +677,34 @@ body.nav-open #offcanvas {
   transform: none !important;
 }
 
-/* Force drawer geometry so it captures touches */
+/* Force geometry & stacking */
 #offcanvas {
   position: fixed !important;
   top: 0 !important;
   right: 0 !important;
   height: 100vh !important;
   max-height: 100vh !important;
-  width: min(86vw, 420px) !important; /* adjust if your menu is wider */
+  width: min(86vw, 420px) !important;
   z-index: 99991 !important;
   pointer-events: auto !important;
   -webkit-overflow-scrolling: touch;
   overflow-y: auto;
-  background: inherit;
 }
 
-/* Our own overlay that blocks taps behind the drawer */
+/* Our overlay (CSS-driven visibility) */
 .nm-overlay {
   position: fixed !important;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  top: 0; left: 0; width: 100vw; height: 100vh;
   z-index: 99990 !important;
-  background: rgba(0,0,0,0); /* transparent; change if you want dim */
+  background: rgba(0,0,0,0);
   pointer-events: auto !important;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   touch-action: none;
-  opacity: 1;
-  visibility: visible;
+  display: none; /* default off */
 }
+body.nav-open .nm-overlay { display: block; } /* visible when open */
 
-/* When menu open, disable clicks to underlying page */
+/* Disable underlying page clicks when open */
 body.nav-open #ct-page, 
 body.nav-open #ct-site,
 body.nav-open .site,
@@ -720,14 +715,13 @@ body.nav-open main,
 body.nav-open footer {
   pointer-events: none !important;
 }
-/* But keep drawer and overlay interactive */
 body.nav-open #offcanvas, 
 body.nav-open #offcanvas *,
 body.nav-open .nm-overlay {
   pointer-events: auto !important;
 }
 
-/* Prevent body scroll behind drawer */
+/* Prevent body scroll */
 body.nav-open { overflow: hidden; }
 </style>
 <script id="nm-mobile-menu-fix-js">
@@ -735,36 +729,38 @@ body.nav-open { overflow: hidden; }
   function qs(s, r){ return (r||document).querySelector(s); }
   function qsa(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
 
-  var panel   = document.getElementById('offcanvas') || qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
+  var panel = document.getElementById('offcanvas') || qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
   var triggers = qsa('[data-toggle-panel="#offcanvas"], .ct-header-trigger.ct-toggle, button[aria-controls="offcanvas"]');
+
   if (!panel || !triggers.length) return;
 
-  // Ensure we have our own overlay
+  // Ensure overlay exists (CSS shows it when body.nav-open)
   var overlay = qs('.nm-overlay');
   if (!overlay) {
     overlay = document.createElement('div');
     overlay.className = 'nm-overlay';
     overlay.setAttribute('role','button');
     overlay.setAttribute('aria-label','Close menu');
-    overlay.style.display = 'none';
     document.body.appendChild(overlay);
   }
 
+  // Helpers
   function isOpen(){ return document.body.classList.contains('nav-open'); }
-  function showOverlay(show){
-    overlay.style.display = show ? 'block' : 'none';
-  }
   function openNav(){
+    // Remove inert/aria-hidden to allow interaction on static pages
+    panel.removeAttribute('inert');
+    panel.removeAttribute('aria-hidden');
     document.body.classList.add('nav-open');
     panel.classList.add('open');
-    showOverlay(true);
-    triggers.forEach(function(t){ t.setAttribute('aria-expanded','true'); });
+    triggers.forEach(function(t){ t.setAttribute('aria-expanded', 'true'); });
   }
   function closeNav(){
     document.body.classList.remove('nav-open');
     panel.classList.remove('open');
-    showOverlay(false);
-    triggers.forEach(function(t){ t.setAttribute('aria-expanded','false'); });
+    // Optional: restore inert; harmless if not used by theme
+    panel.setAttribute('inert', '');
+    panel.setAttribute('aria-hidden', 'true');
+    triggers.forEach(function(t){ t.setAttribute('aria-expanded', 'false'); });
   }
   function toggleNav(){ isOpen() ? closeNav() : openNav(); }
 
@@ -778,7 +774,6 @@ body.nav-open { overflow: hidden; }
   }
   triggers.forEach(bind);
 
-  // Close overlay and clicks inside drawer on links/buttons
   ['click','touchend'].forEach(function(evt){
     overlay.addEventListener(evt, function(e){
       if (evt === 'touchend') e.preventDefault();
@@ -796,7 +791,6 @@ body.nav-open { overflow: hidden; }
     }, {passive:false});
   });
 
-  // Esc key
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
 })();
 </script>
@@ -805,5 +799,5 @@ body.nav-open { overflow: hidden; }
 
 </body>
 
-<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 18:04:36 GMT -->
+<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 18:22:12 GMT -->
 </html>
