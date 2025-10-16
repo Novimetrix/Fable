@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 16:34:17 GMT -->
+<!-- Mirrored from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 17:40:04 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -15,7 +15,7 @@
 	<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="http://localhost:10016/comments/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Quisque Iddiam Velquam Elementum Pulvinar Comments Feed" href="http://localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globald829.css?ver=32066' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global3b92.css?ver=33305' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -51,44 +51,7 @@
 <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="http://localhost:10016/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A10016%2Fquisque-iddiam-velquam-elementum-pulvinar%2F&amp;format=xml" />
 <noscript><link rel='stylesheet' href='../wp-content/themes/blocksy/static/bundle/no-scripts.min.css' type='text/css'></noscript>
 
-<style class="stk-block-styles">.stk-de17865{height:200px !important;}</style><script>(function () {
-  function $(s, r){return (r||document).querySelector(s)}
-  // Find the hamburger trigger (Blocksy/Elementor variations)
-  var trigger = $('.ct-header-trigger, .ct-menu-trigger, .menu-toggle, .elementor-menu-toggle, [data-toggle="offcanvas"]') 
-             || $('button[aria-label*="menu" i]') || $('a[aria-label*="menu" i]');
-  if(!trigger) return;
-
-  // Find the mobile menu panel
-  var panel = $('#mobile-menu') || $('#offcanvas') || $('.ct-panel--mobile, .ct-mobile-menu, .elementor-nav-menu--dropdown');
-  if(!panel) return;
-  if(!panel.id){ panel.id = 'mobile-menu'; }
-
-  // Accessibility
-  trigger.setAttribute('aria-controls', panel.id);
-  trigger.setAttribute('aria-expanded', 'false');
-
-  // Toggle logic (HTTrack-safe)
-  function toggleMenu(open) {
-    var willOpen = (typeof open === 'boolean') ? open : !panel.classList.contains('open');
-    panel.classList.toggle('open', willOpen);
-    document.body.classList.toggle('nav-open', willOpen);
-    trigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
-  }
-
-  trigger.addEventListener('click', function (e) {
-    e.preventDefault();
-    toggleMenu();
-  });
-
-  // Close when clicking links or pressing Esc
-  panel.addEventListener('click', function(e){
-    if(e.target.matches('a, .menu-item a, [data-close="menu"]')) toggleMenu(false);
-  });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') toggleMenu(false);
-  });
-})();
-</script><style id="comments-title-spacing-universal-100">
+<style class="stk-block-styles">.stk-de17865{height:200px !important;}</style><style id="comments-title-spacing-universal-100">
 /* Firebase injectors (your MU plugins) */
 #commentSection.fc-wrap h2{margin-bottom:100px !important;}
 #commentSection.fc-wrap.fc-light h2{margin-bottom:100px !important;}
@@ -373,10 +336,6 @@
 .ct-special-features .stk-block-column:hover {
 	transform: scale3d(1.05, 1.05, 1);
 }
-/* Put in Customizer → Additional CSS */
-#mobile-menu{display:none}
-#mobile-menu.open{display:block}
-body.nav-open {overflow:hidden} /* optional: prevent page scroll when menu open */
 		</style>
 			</head>
 
@@ -1020,7 +979,119 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 <script src="../wp-content/themes/blocksy/static/bundle/main202b.js?ver=2.1.15" id="ct-scripts-js"></script>
 
+<!-- NM-MENU-FIX start (v1.3.0) -->
+<style id="nm-mobile-menu-fix">
+/* Drawer visible when nav-open */
+body.nav-open #offcanvas,
+body.nav-open .ct-panel-overlay {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+/* Drawer above overlay */
+#offcanvas { z-index: 99991 !important; position: fixed !important; }
+.ct-panel-overlay { z-index: 99990 !important; position: fixed !important; }
+/* Ensure interactivity */
+#offcanvas, #offcanvas * { pointer-events: auto !important; }
+body.nav-open { overflow: hidden; }
+</style>
+<script id="nm-mobile-menu-fix-js">
+document.addEventListener('DOMContentLoaded', function(){
+  var triggers = document.querySelectorAll('[data-toggle-panel="#offcanvas"], .ct-header-trigger.ct-toggle, button[aria-controls="offcanvas"]');
+  if (!triggers.length) {
+    var t = document.querySelector('[aria-controls="offcanvas"], [data-id="trigger"], [data-label="right"]');
+    if (t) triggers = [t];
+  }
+  var panel = document.getElementById('offcanvas') ||
+              document.querySelector('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
+  var overlay = document.querySelector('.ct-panel-overlay, .ct-modal-overlay, .ct-drawer-overlay');
+
+  if (!panel || !triggers.length) return;
+
+  function isOpen(){ return document.body.classList.contains('nav-open'); }
+  function openNav(){
+    document.body.classList.add('nav-open');
+    panel.classList.add('open');
+    if (overlay) overlay.classList.add('open');
+    triggers.forEach(function(t){ t.setAttribute('aria-expanded','true'); });
+  }
+  function closeNav(){
+    document.body.classList.remove('nav-open');
+    panel.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
+    triggers.forEach(function(t){ t.setAttribute('aria-expanded','false'); });
+  }
+  function toggle(){ isOpen() ? closeNav() : openNav(); }
+
+  triggers.forEach(function(t){ t.addEventListener('click', function(e){ e.preventDefault(); toggle(); }); });
+  if (overlay) overlay.addEventListener('click', function(){ closeNav(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
+  panel.addEventListener('click', function(e){
+    if (e.target.closest('a, button, [role="button"], [data-close="panel"]')) closeNav();
+  });
+});
+</script>
+
+<!-- NM-MENU-FIX end -->
+
+<!-- NM-MENU-FIX start (v1.3.0) -->
+<style id="nm-mobile-menu-fix">
+/* Drawer visible when nav-open */
+body.nav-open #offcanvas,
+body.nav-open .ct-panel-overlay {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+/* Drawer above overlay */
+#offcanvas { z-index: 99991 !important; position: fixed !important; }
+.ct-panel-overlay { z-index: 99990 !important; position: fixed !important; }
+/* Ensure interactivity */
+#offcanvas, #offcanvas * { pointer-events: auto !important; }
+body.nav-open { overflow: hidden; }
+</style>
+<script id="nm-mobile-menu-fix-js">
+document.addEventListener('DOMContentLoaded', function(){
+  var triggers = document.querySelectorAll('[data-toggle-panel="#offcanvas"], .ct-header-trigger.ct-toggle, button[aria-controls="offcanvas"]');
+  if (!triggers.length) {
+    var t = document.querySelector('[aria-controls="offcanvas"], [data-id="trigger"], [data-label="right"]');
+    if (t) triggers = [t];
+  }
+  var panel = document.getElementById('offcanvas') ||
+              document.querySelector('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
+  var overlay = document.querySelector('.ct-panel-overlay, .ct-modal-overlay, .ct-drawer-overlay');
+
+  if (!panel || !triggers.length) return;
+
+  function isOpen(){ return document.body.classList.contains('nav-open'); }
+  function openNav(){
+    document.body.classList.add('nav-open');
+    panel.classList.add('open');
+    if (overlay) overlay.classList.add('open');
+    triggers.forEach(function(t){ t.setAttribute('aria-expanded','true'); });
+  }
+  function closeNav(){
+    document.body.classList.remove('nav-open');
+    panel.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
+    triggers.forEach(function(t){ t.setAttribute('aria-expanded','false'); });
+  }
+  function toggle(){ isOpen() ? closeNav() : openNav(); }
+
+  triggers.forEach(function(t){ t.addEventListener('click', function(e){ e.preventDefault(); toggle(); }); });
+  if (overlay) overlay.addEventListener('click', function(){ closeNav(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
+  panel.addEventListener('click', function(e){
+    if (e.target.closest('a, button, [role="button"], [data-close="panel"]')) closeNav();
+  });
+});
+</script>
+
+<!-- NM-MENU-FIX end -->
+
 </body>
 
-<!-- Mirrored from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 16:34:17 GMT -->
+<!-- Mirrored from localhost:10016/quisque-iddiam-velquam-elementum-pulvinar/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 17:40:04 GMT -->
 </html>
