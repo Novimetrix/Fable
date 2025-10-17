@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 16:01:19 GMT -->
+<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 16:11:01 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -27,7 +27,188 @@
 <link rel="https://api.w.org/" href="/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 6.8.3" />
 <noscript><link rel='stylesheet' href='../wp-content/themes/blocksy/static/bundle/no-scripts.min.css' type='text/css'></noscript>
-		<style id="wp-custom-css">
+	<style id="fc-gutterlines-dom-custom">
+		#commentSection.fc-wrap{
+			--indent: 20px;
+			--lineW: 4px;
+			--gutter-left: 12px;
+			--gap: 10px;
+			--line-color: rgba(255, 255, 255, 0.35);
+			--max-depth: 12;
+		}
+		/* Optional dark mode override */
+		body.dark #commentSection.fc-wrap,
+		[data-theme="dark"] #commentSection.fc-wrap{
+			--line-color: rgba(187, 187, 187, 0.4);
+		}
+
+		#commentSection.fc-wrap .commentCard{
+			position: relative;
+			border-left: 0 !important;
+			box-shadow: none;
+		}
+		/* Hide any legacy single-line markers */
+		#commentSection.fc-wrap .commentCard::before,
+		#commentSection.fc-wrap .commentCard::after{
+			content: none !important;
+			display: none !important;
+		}
+
+		/* Apply the computed per-card pad-left to ALL direct children except the rails container */
+		#commentSection.fc-wrap .commentCard > *:not(.fc-rails){
+			padding-left: var(--pad-left, calc(var(--gutter-left) + var(--gap))) !important;
+			position: relative;
+			z-index: 2;
+		}
+
+		/* Rails container */
+		#commentSection.fc-wrap .commentCard > .fc-rails{
+			position: absolute;
+			top: 0; bottom: 0;
+			left: 0;
+			width: 0; /* set by JS */
+			pointer-events: none;
+			z-index: 1;
+			will-change: transform;
+		}
+		/* Rail bar */
+		#commentSection.fc-wrap .commentCard > .fc-rails > .fc-rail{
+			position: absolute;
+			top: 0; bottom: 0;
+			background: var(--line-color);
+		}
+	</style>
+
+	<script id="fc-gutterlines-dom-init">
+		(function(){
+			function init(){
+				var wrap = document.querySelector('#commentSection.fc-wrap');
+				if(!wrap) return false;
+
+				function px(varName, fallback){
+					var v = parseFloat(getComputedStyle(wrap).getPropertyValue(varName));
+					return isNaN(v) ? fallback : Math.round(v);
+				}
+				function snapAbs(cssPx){
+					var dpr = window.devicePixelRatio || 1;
+					return Math.round(cssPx * dpr) / dpr;
+				}
+
+				function buildRails(card){
+					var lvl = parseInt(card.getAttribute('data-level') || '0', 10);
+					if (isNaN(lvl) || lvl < 0) lvl = 0;
+					var maxDepth = parseInt(getComputedStyle(wrap).getPropertyValue('--max-depth')) || 12;
+					if (lvl > maxDepth) lvl = maxDepth;
+
+					var indent = px('--indent', 20);
+					var lineW  = Math.max(1, px('--lineW', 4));
+					var gutter = px('--gutter-left', 12);
+					var gap    = px('--gap', 10);
+
+					/ Equalized first-gap baseline: first rail starts at (indent - lineW)
+					var start  = Math.max(0, indent - lineW);
+
+					/ Ensure rails container
+					var rails = card.querySelector(':scope > .fc-rails');
+					if (!rails){
+						rails = document.createElement('div');
+						rails.className = 'fc-rails';
+						card.appendChild(rails);
+					}
+
+					/ Pixel-snap the group
+					var rect = card.getBoundingClientRect();
+					var groupLeft = rect.left + gutter;
+					var snappedGroup = snapAbs(groupLeft);
+					var delta = +(snappedGroup - groupLeft).toFixed(3);
+					rails.style.transform = 'translateX(' + delta + 'px)';
+
+					/ Width & bars
+					var width = Math.max(0, start + (lvl * indent));
+					rails.style.width = width + 'px';
+
+					var curr = rails.children.length;
+					for (var j=curr-1; j>=lvl; j--) rails.removeChild(rails.children[j]);
+					for (var i=curr; i<lvl; i++){
+						var bar = document.createElement('div');
+						bar.className = 'fc-rail';
+						rails.appendChild(bar);
+					}
+
+					/ Position bars & compute snapped right edge of the last rail
+					var snappedW = snapAbs(lineW);
+					var lastEdgeAbs = groupLeft; / default if lvl==0
+					for (var k=0; k<lvl; k++){
+						var bar = rails.children[k];
+						var absDesired = groupLeft + delta + start + (k * indent);
+						var absSnapped = snapAbs(absDesired);
+						var local = absSnapped - (groupLeft + delta);
+						bar.style.left = local.toFixed(3) + 'px';
+						bar.style.width = snappedW.toFixed(3) + 'px';
+
+						if (k === lvl - 1){
+							lastEdgeAbs = absSnapped + snappedW;
+						}
+					}
+
+					/ Per-card pad-left so the gap to text is uniform:
+					var padLeft = (lvl === 0) ? (gutter + gap) : ((lastEdgeAbs - rect.left) + gap);
+					card.style.setProperty('--pad-left', Math.round(padLeft) + 'px');
+
+					/ Keep --lines for other CSS if needed
+					card.style.setProperty('--lines', String(lvl));
+				}
+
+				/ Initial pass
+				var cards = wrap.querySelectorAll('.commentCard');
+				for (var i=0; i<cards.length; i++) buildRails(cards[i]);
+
+				/ Keep in sync
+				if ('ResizeObserver' in window){
+					var ro = new ResizeObserver(function(entries){
+						for (var j=0; j<entries.length; j++) buildRails(entries[j].target);
+					});
+					for (var k=0; k<cards.length; k++) ro.observe(cards[k]);
+				}
+				window.addEventListener('scroll', function(){
+					for (var i=0; i<cards.length; i++) buildRails(cards[i]);
+				}, { passive: true });
+				if ('MutationObserver' in window){
+					var mo = new MutationObserver(function(muts){
+						for (var m=0; m<muts.length; m++){
+							var nodes = muts[m].addedNodes;
+							for (var n=0; n<nodes.length; n++){
+								var node = nodes[n];
+								if (!(node instanceof Element)) continue;
+								if (node.matches && node.matches('.commentCard')){
+									buildRails(node);
+								} else if (node.querySelectorAll){
+									var inner = node.querySelectorAll('.commentCard');
+									for (var p=0; p<inner.length; p++) buildRails(inner[p]);
+								}
+							}
+						}
+					});
+					mo.observe(wrap, { childList: true, subtree: true });
+				}
+
+				/ Manual rebuild hook
+				window.__fcBuildRails = buildRails;
+				return true;
+			}
+
+			if (!init()){
+				var fired = false;
+				function tryInit(){ if (!fired) fired = init() || false; }
+				document.addEventListener('DOMContentLoaded', tryInit, { once: true });
+				window.addEventListener('load', tryInit, { once: true });
+				var attempts = 30, iv = setInterval(function(){
+					if (init() || --attempts <= 0) clearInterval(iv);
+				}, 100);
+			}
+		})();
+	</script>
+			<style id="wp-custom-css">
 			.page-title,
 .ct-advanced-heading {
 	position: relative;
@@ -70,7 +251,75 @@
 	transform: scale3d(1.05, 1.05, 1);
 }
 		</style>
-			<script src="/assets/js/no-srcset.js"></script>
+		  <style id="nm-overlay-guard-css">
+    /* Hard kill common dimming layers/backdrops */
+    #search-modal,
+    .ct-drawer-backdrop,
+    .ct-backdrop,
+    .ct-modal-backdrop { display:none !important; opacity:0 !important; pointer-events:none !important; }
+
+    /* If any element is exported with inert, re-enable interaction visually */
+    [inert] { pointer-events:auto !important; user-select:auto !important; }
+
+    /* Safety: ensure page isn’t dimmed via filters/opacity */
+    html, body { filter:none !important; opacity:1 !important; }
+  </style>
+  <script id="nm-overlay-guard-js">
+  (function() {
+    function clearOverlays() {
+      try {
+        / 1) Remove typical Blocksy “page locked” classes
+        document.documentElement.classList.remove('ct-scroll-lock','ct-offcanvas-open');
+        document.body.classList.remove('ct-scroll-lock','ct-offcanvas-open','modal-open');
+
+        / 2) Re-enable scrolling if something inlined overflow: hidden
+        [document.documentElement, document.body].forEach(function(el){
+          el.style.removeProperty('overflow');
+          el.style.removeProperty('filter');
+          el.style.removeProperty('opacity');
+        });
+
+        / 3) Remove overlays/backdrops that cause dimming
+        var killers = [
+          '#search-modal',
+          '.ct-drawer-backdrop',
+          '.ct-backdrop',
+          '.ct-modal-backdrop',
+          '.ct-drawer--open',
+          '.ct-modal--open'
+        ];
+        killers.forEach(function(sel){
+          document.querySelectorAll(sel).forEach(function(n){ n.remove(); });
+        });
+
+        / 4) Clear any inert flags that freeze the page beneath
+        document.querySelectorAll('[inert]').forEach(function(n){ n.removeAttribute('inert'); });
+
+      } catch(e) {}
+    }
+
+    / Run early and again after hydration/layout tweaks
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', clearOverlays);
+    } else {
+      clearOverlays();
+    }
+    / Run a bit later in case themes/scripts add backdrops late
+    setTimeout(clearOverlays, 120);
+    setTimeout(clearOverlays, 600);
+
+    / Watch for newly inserted backdrops and delete on sight
+    var mo = new MutationObserver(function(mutations){
+      var needs = false;
+      mutations.forEach(function(m){
+        if (m.addedNodes && m.addedNodes.length) needs = true;
+      });
+      if (needs) clearOverlays();
+    });
+    mo.observe(document.documentElement, { childList:true, subtree:true });
+  })();
+  </script>
+  	<script src="/assets/js/no-srcset.js"></script>
 </head>
 
 
@@ -343,5 +592,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 16:01:19 GMT -->
+<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 16:11:01 GMT -->
 </html>
