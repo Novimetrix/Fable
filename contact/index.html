@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 04:36:41 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 06:03:34 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -14,7 +14,7 @@
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="http://localhost:10016/comments/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global9e50.css?ver=75625' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global8004.css?ver=80897' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -417,11 +417,10 @@
     --nm2-active: #e65616;                   /* Active/current page color */
     --nm2-overlay: rgba(0,0,0,0);            /* Transparent overlay for tone match */
     --nm2-width-mobile: min(78vw,360px);     /* Drawer width on mobile */
-    --nm2-padding-left-mobile: 100px;         /* Left padding for mobile */
-    --nm2-padding-left-tablet: 500px;         /* Left padding for tablet */
+    --nm2-padding-left-mobile: 100px;        /* Left padding for mobile */
+    --nm2-padding-left-tablet: 500px;        /* Left padding for tablet */
 
-    /* Background image controls */
-    /* Use a RELATIVE path so it works in the static export: */
+    /* Background image controls (RELATIVE path for static export) */
     --nm2-bg-image: url("../wp-content/uploads/2021/06/menu-bg.jpg");
     /* If you prefer: --nm2-bg-image: url("/assets/menu-bg.jpg"); */
 
@@ -476,12 +475,6 @@
   /* Put content above the image layer */
   .nm2-panel > *{ position:relative; z-index:1; }
 
-  .nm2-panel, .nm2-panel *{
-    color:var(--nm2-text) !important; opacity:1 !important;
-    mix-blend-mode:normal !important; filter:none !important;
-    text-shadow:none !important; pointer-events:auto !important;
-  }
-
   .nm2-close{
     align-self:flex-end; cursor:pointer; line-height:1; padding:6px 8px;
     color:var(--nm2-text); border:none; background:none;
@@ -499,7 +492,7 @@
   }
   .nm2-menu a:active{ background:rgba(255,255,255,.08) !important; }
 
-  /* Active/current page */
+  /* Active/current page (only styles; attribute set by script) */
   .nm2-menu a[aria-current="page"]{
     color:var(--nm2-active) !important;
     background:rgba(230,86,22,0.12) !important;
@@ -548,21 +541,56 @@
 </div>
 
 <script>
-/* highlight active page link */
+/* NM2 add-on (one-shot): mark active link so it shows on first open */
 (function(){
-  function normPath(p){
-    try{
-      p = p.split('#')[0].split('?')[0];
-      p = p.replace(/index\.html?$/i,'').replace(/\.html?$/i,'').replace(/\/+$/,'');
-      return p || '/';
-    }catch(e){ return '/'; }
+  // Normalize a path: remove query/hash, drop /index.html, drop .html, remove trailing slash (except root)
+  function cleanPath(p){
+    if(!p) return '/';
+    p = p.split('#')[0].split('?')[0];
+    p = p.replace(/\/index\.html?$/i, '../index.html');   // /x/index.html -> /x/
+    p = p.replace(/\.html?$/i, '');           // /about.html -> /about
+    p = p.replace(/\/+$/, '');                // trailing slash
+    return p || '/';
   }
-  function norm(url){ var a=document.createElement('a'); a.href=url; return normPath(a.pathname||'/'); }
-  var here = norm(location.href);
-  document.querySelectorAll('.nm2-panel a[href]').forEach(function(a){
-    var link = norm(a.getAttribute('href'));
-    if(link===here || (here==='/' && (link===''||link==='../index.html'))){ a.setAttribute('aria-current','page'); }
-  });
+  function samePath(a,b){
+    return a===b || a+'/'===b || b+'/'===a ||
+           (a==='/'&&b==='') || (b==='/'&&a==='');
+  }
+  function pathOf(href){
+    var a=document.createElement('a');
+    a.href = href;
+    return cleanPath(a.pathname || '/');
+  }
+
+  function setActive(){
+    var here = cleanPath(location.pathname || '/');
+    var links = document.querySelectorAll('.nm2-menu a[href]');
+    links.forEach(function(a){
+      var link = pathOf(a.getAttribute('href'));
+      if (samePath(link, here)){ a.setAttribute('aria-current','page'); }
+    });
+  }
+
+  // Run once after the page paints
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', function(){ requestAnimationFrame(setActive); }, {once:true});
+  } else {
+    requestAnimationFrame(setActive);
+  }
+
+  // Safety: if first open happens before fonts/layout finish, run once on the FIRST open only.
+  var once = false;
+  var tgl = document.getElementById('nm2-toggle');
+  if(tgl){
+    tgl.addEventListener('change', function handler(){
+      if(this.checked && !once){
+        once = true;
+        setActive();
+        // remove this listener after one run
+        tgl.removeEventListener('change', handler);
+      }
+    });
+  }
 })();
 </script>
 	</div>
@@ -656,7 +684,7 @@
 
 	</main>
 
-	<footer id="footer" class="ct-footer" data-id="type-1" itemscope="" itemtype="https://schema.org/WPFooter"><div data-row="middle"><div class="ct-container"><div data-column="menu">
+	<footer id="footer" class="ct-footer" data-id="type-1" itemscope="" itemtype="https://schema.org/WPFooter"><div data-row="middle"><div class="ct-container" data-columns-divider="md"><div data-column="menu">
 <nav
 	id="footer-menu"
 	class="footer-menu-inline menu-container "
@@ -849,5 +877,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 </body>
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 04:36:41 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 06:03:34 GMT -->
 </html>
