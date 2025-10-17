@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:11:46 GMT -->
+<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:16:51 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -628,7 +628,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 <script src="../wp-content/themes/blocksy/static/bundle/main202b.js?ver=2.1.15" id="ct-scripts-js"></script>
 <script>
-/*! NM-MENU-FIX ONEFILE v1.8.3-lite (stability + close fixes) */
+/*! NM-MENU-FIX ONEFILE v1.8.4-lite (stability + reliable reopen) */
 (function () {
   const RETRY_MS = 80, MAX_TRIES = 150;
   let tries = 0;
@@ -669,9 +669,16 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
     return off.classList.contains('is-open') || off.classList.contains('open') || off.classList.contains('active');
   }
 
+  function syncGlobalOpenState(open){
+    const html = document.documentElement, body = document.body;
+    const OPEN_CLASSES = ['nm-nav-open','nav-open','offcanvas-open','ct-panel-open','has-panel-open','menu-open'];
+    OPEN_CLASSES.forEach(c => { html.classList.toggle(c, open); body.classList.toggle(c, open); });
+    body.style.overflow = open ? 'hidden' : '';
+  }
+
   function openPanel(off){
     stripAllInertOnce();
-    document.body.style.overflow = 'hidden';
+    syncGlobalOpenState(true);
     showOverlay(true);
     off.style.left = 'auto';
     off.style.right = '0';
@@ -680,12 +687,11 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   }
 
   function closePanel(off){
-    // remove common open classes
-    off.classList.remove('is-open','open','active');
-    // also hide via styles to recover if theme misses class removal
+    // remove common open classes on the element and globally
+    off.classList.remove('is-open','open','active','shown','show');
+    syncGlobalOpenState(false);
     showOverlay(false);
-    document.body.style.overflow = '';
-    // small async to let theme handlers run
+    // small async to let theme handlers run and re-enable toggles
     setTimeout(stripAllInertOnce, 0);
   }
 
@@ -706,7 +712,18 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
       if(parseInt(cs.minWidth||'0',10) < 40) st.minWidth = '44px';
       if(parseInt(cs.minHeight||'0',10) < 40) st.minHeight = '44px';
       if(parseInt(cs.paddingLeft||'0',10) < 8) st.padding = '10px';
-      on(toggler, 'click touchend', function(){ setTimeout(()=>{ if(isOpen(off)) openPanel(off); }, 0); }, {passive:true});
+
+      // Reliable reopen: after theme toggles, ensure an open state exists; if not, force it.
+      const triggerOpen = ()=>{
+        setTimeout(()=>{
+          if(!isOpen(off)){
+            off.classList.add('active','open','is-open');
+          }
+          openPanel(off);
+        }, 0);
+      };
+      on(toggler, 'click', triggerOpen, {passive:true});
+      on(toggler, 'touchend', triggerOpen, {passive:true});
     }
 
     // Close button handler (reliable)
@@ -730,13 +747,13 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
     // Watch for open/close class changes and sync overlay/body
     const obs = new MutationObserver(()=>{
-      if(isOpen(off)){ openPanel(off); } else { showOverlay(false); document.body.style.overflow=''; }
+      if(isOpen(off)){ openPanel(off); } else { syncGlobalOpenState(false); showOverlay(false); }
     });
     obs.observe(off, {attributes:true, attributeFilter:['class']});
 
     // Initial sync
     stripAllInertOnce();
-    if(isOpen(off)){ openPanel(off); } else { showOverlay(false); }
+    if(isOpen(off)){ openPanel(off); } else { syncGlobalOpenState(false); showOverlay(false); }
   }
 
   function findOffcanvas(){
@@ -756,7 +773,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   (function(){
     if (document.querySelector('style[data-nm-onefile]')) return;
     const s = document.createElement('style');
-    s.setAttribute('data-nm-onefile','v1.8.3-lite');
+    s.setAttribute('data-nm-onefile','v1.8.4-lite');
     s.textContent = ".nm-overlay{background:rgba(0,0,0,.28);} #offcanvas,.offcanvas,.ct-panel{pointer-events:auto!important;}";
     document.head.appendChild(s);
   })();
@@ -770,5 +787,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 </body>
 
-<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:11:46 GMT -->
+<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:16:51 GMT -->
 </html>
