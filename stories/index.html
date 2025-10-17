@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:04:12 GMT -->
+<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:11:47 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -541,7 +541,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 <script src="../wp-content/themes/blocksy/static/bundle/main202b.js?ver=2.1.15" id="ct-scripts-js"></script>
 <script>
-/*! NM-MENU-FIX ONEFILE v1.8.2-LITE (stability-first) */
+/*! NM-MENU-FIX ONEFILE v1.8.3-lite (stability + close fixes) */
 (function () {
   const RETRY_MS = 80, MAX_TRIES = 150;
   let tries = 0;
@@ -559,7 +559,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
     ov.style.position = 'fixed';
     ov.style.inset = '0';
     ov.style.display = 'none';
-    ov.style.zIndex = '9998';
+    ov.style.zIndex = '2147483645';
     ov.style.pointerEvents = 'none';
     ov.style.background = 'rgba(0,0,0,.28)';
     return ov;
@@ -578,70 +578,78 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
     document.body.removeAttribute('inert');
   }
 
-  function burstScrub(durationMs){
-    const start = Date.now();
-    function tick(){
-      stripAllInertOnce();
-      if(Date.now() - start < durationMs) requestAnimationFrame(tick);
-    }
-    tick();
-  }
-
   function isOpen(off){
     return off.classList.contains('is-open') || off.classList.contains('open') || off.classList.contains('active');
   }
 
-  function markOpen(off, open){
-    document.body.style.overflow = open ? 'hidden' : '';
-    showOverlay(open);
-    if(open){
-      // keep it responsive, just ensure it's on the right
-      off.style.left = 'auto';
-      off.style.right = '0';
-      off.style.zIndex = '9999';
-      off.style.pointerEvents = 'auto';
-      burstScrub(800); // brief inert scrub, not infinite
-    }
+  function openPanel(off){
+    stripAllInertOnce();
+    document.body.style.overflow = 'hidden';
+    showOverlay(true);
+    off.style.left = 'auto';
+    off.style.right = '0';
+    off.style.zIndex = '2147483646';
+    off.style.pointerEvents = 'auto';
+  }
+
+  function closePanel(off){
+    // remove common open classes
+    off.classList.remove('is-open','open','active');
+    // also hide via styles to recover if theme misses class removal
+    showOverlay(false);
+    document.body.style.overflow = '';
+    // small async to let theme handlers run
+    setTimeout(stripAllInertOnce, 0);
   }
 
   function wire(off){
-    // minimal safety
+    // minimal safety (right side bias without transforms)
     off.style.position = off.style.position || 'fixed';
     off.style.top = off.style.top || '0';
     off.style.right = '0';
     off.style.left = 'auto';
     off.style.pointerEvents = 'auto';
-    off.style.zIndex = off.style.zIndex || '9999';
+    off.style.zIndex = off.style.zIndex || '2147483646';
 
-    // overlay click closes
-    on(ensureOverlay(), 'click', function(e){
-      e.preventDefault(); e.stopPropagation();
-      off.classList.remove('is-open','open','active');
-      markOpen(off, false);
-    });
-
-    // observe open/close
-    const obs = new MutationObserver(()=>{
-      const open = isOpen(off);
-      markOpen(off, open);
-    });
-    obs.observe(off, {attributes:true, attributeFilter:['class']});
-
-    // boost tap target a little (safe)
+    // Improve tap target slightly
     const toggler = document.querySelector('.ct-header-trigger, .menu-toggle, .hamburger, [data-toggle="offcanvas"]');
     if(toggler){
       const cs = getComputedStyle(toggler);
       const st = toggler.style;
       if(parseInt(cs.minWidth||'0',10) < 40) st.minWidth = '44px';
       if(parseInt(cs.minHeight||'0',10) < 40) st.minHeight = '44px';
-      if(parseInt(cs.padding||'0',10) < 8) st.padding = '10px';
-      on(toggler, 'click', function(){ setTimeout(stripAllInertOnce, 0); }, {passive:true});
-      on(toggler, 'touchend', function(){ setTimeout(stripAllInertOnce, 0); }, {passive:true});
+      if(parseInt(cs.paddingLeft||'0',10) < 8) st.padding = '10px';
+      on(toggler, 'click touchend', function(){ setTimeout(()=>{ if(isOpen(off)) openPanel(off); }, 0); }, {passive:true});
     }
 
-    // initial state
+    // Close button handler (reliable)
+    const closeBtn = off.querySelector('[data-close], .close, .ct-toggle-close, .close-button, [aria-label="Close"]');
+    on(closeBtn, 'click touchend', function(e){
+      e.preventDefault(); e.stopPropagation();
+      closePanel(off);
+    }, {passive:false});
+
+    // Overlay click closes
+    const ov = ensureOverlay();
+    on(ov, 'click touchend', function(e){
+      e.preventDefault(); e.stopPropagation();
+      closePanel(off);
+    }, {passive:false});
+
+    // ESC key closes
+    on(document, 'keydown', function(e){
+      if(e.key === 'Escape' && isOpen(off)){ e.preventDefault(); closePanel(off); }
+    });
+
+    // Watch for open/close class changes and sync overlay/body
+    const obs = new MutationObserver(()=>{
+      if(isOpen(off)){ openPanel(off); } else { showOverlay(false); document.body.style.overflow=''; }
+    });
+    obs.observe(off, {attributes:true, attributeFilter:['class']});
+
+    // Initial sync
     stripAllInertOnce();
-    markOpen(off, isOpen(off));
+    if(isOpen(off)){ openPanel(off); } else { showOverlay(false); }
   }
 
   function findOffcanvas(){
@@ -654,14 +662,14 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
       if(++tries < MAX_TRIES) return setTimeout(boot, RETRY_MS);
       return;
     }
-    try { wire(off); } catch(e){ /* fail-safe: do nothing rather than freeze */ }
+    try { wire(off); } catch(_) {}
   }
 
   // lightweight CSS
   (function(){
     if (document.querySelector('style[data-nm-onefile]')) return;
     const s = document.createElement('style');
-    s.setAttribute('data-nm-onefile','v1.8.2-lite');
+    s.setAttribute('data-nm-onefile','v1.8.3-lite');
     s.textContent = ".nm-overlay{background:rgba(0,0,0,.28);} #offcanvas,.offcanvas,.ct-panel{pointer-events:auto!important;}";
     document.head.appendChild(s);
   })();
@@ -675,5 +683,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 </body>
 
-<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:04:12 GMT -->
+<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:11:47 GMT -->
 </html>
