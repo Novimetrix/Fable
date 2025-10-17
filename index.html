@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 06:08:30 GMT -->
+<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 06:25:40 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -14,7 +14,7 @@
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="http://localhost:10016/comments/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='wp-content/uploads/blocksy/css/global84b8.css?ver=81289' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='wp-content/uploads/blocksy/css/global7d4f.css?ver=81677' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -411,20 +411,24 @@
 <style>
   /* === ⚙️ ADJUSTABLE FIELDS === */
   :root{
-    --nm2-bg:#1f1f1f;                        /* Drawer base color (theme dark) */
-    --nm2-text:#ffffff;                      /* Link & icon color */
-    --nm2-active:#e65616;                    /* Active/current page color */
-    --nm2-overlay:rgba(0,0,0,0);             /* Transparent overlay for tone match */
-    --nm2-width-mobile:min(78vw,360px);      /* Drawer width on mobile */
-    --nm2-padding-left-mobile:100px;         /* Left padding for mobile */
-    --nm2-padding-left-tablet:500px;         /* Left padding for tablet */
+    /* Colors & spacing */
+    --nm2-bg: #1f1f1f;                       /* Drawer base color (theme dark) */
+    --nm2-text: #ffffff;                     /* Link & icon color */
+    --nm2-active: #e65616;                   /* Active/current page color */
+    --nm2-overlay: rgba(0,0,0,0);            /* Transparent overlay for tone match */
+    --nm2-width-mobile: min(78vw,360px);     /* Drawer width on mobile */
+    --nm2-padding-left-mobile: 100px;         /* Left padding for mobile */
+    --nm2-padding-left-tablet: 500px;         /* Left padding for tablet */
 
-    /* Background image controls (RELATIVE path for static export) */
-    --nm2-bg-image:url("wp-content/uploads/2021/06/menu-bg.jpg");
-    --nm2-bg-image-enabled:1;                /* 1 = on, 0 = off */
-    --nm2-bg-image-opacity:0.35;             /* 0.00 – 1.00 */
-    --nm2-bg-image-size:cover;               /* cover | contain */
-    --nm2-bg-image-position:center center;   /* e.g., center top */
+    /* Background image controls */
+    /* Use a RELATIVE path so it works in the static export: */
+    --nm2-bg-image: url("wp-content/uploads/2021/06/menu-bg.jpg");
+    /* If you prefer: --nm2-bg-image: url("/assets/menu-bg.jpg"); */
+
+    --nm2-bg-image-enabled: 1;               /* 1 = on, 0 = off */
+    --nm2-bg-image-opacity: 0.35;            /* 0.00 – 1.00 (brightness/strength) */
+    --nm2-bg-image-size: cover;              /* cover | contain */
+    --nm2-bg-image-position: center center;  /* e.g., center top */
   }
   /* =========================== */
 
@@ -472,6 +476,12 @@
   /* Put content above the image layer */
   .nm2-panel > *{ position:relative; z-index:1; }
 
+  .nm2-panel, .nm2-panel *{
+    color:var(--nm2-text) !important; opacity:1 !important;
+    mix-blend-mode:normal !important; filter:none !important;
+    text-shadow:none !important; pointer-events:auto !important;
+  }
+
   .nm2-close{
     align-self:flex-end; cursor:pointer; line-height:1; padding:6px 8px;
     color:var(--nm2-text); border:none; background:none;
@@ -489,9 +499,8 @@
   }
   .nm2-menu a:active{ background:rgba(255,255,255,.08) !important; }
 
-  /* Active/current page (styles only; script sets attributes/classes) */
-  .nm2-menu a[aria-current="page"],
-  .nm2-menu a.is-active{
+  /* Active/current page */
+  .nm2-menu a[aria-current="page"]{
     color:var(--nm2-active) !important;
     background:rgba(230,86,22,0.12) !important;
   }
@@ -539,85 +548,21 @@
 </div>
 
 <script>
-/* NM2 one-shot highlighter (robust, no layout change) */
+/* highlight active page link */
 (function(){
-  // Normalize paths: strip query/hash, /index.html, .html, trailing slash (except root)
-  function clean(p){
-    if(!p) return '/';
-    p = p.split('#')[0].split('?')[0];
-    p = p.replace(/\/index\.html?$/i,'index.html');   // /x/index.html -> /x/
-    p = p.replace(/\.html?$/i,'');           // /about.html -> /about
-    p = p.replace(/\/+$/,'');                // remove trailing slash
-    return p || '/';
+  function normPath(p){
+    try{
+      p = p.split('#')[0].split('?')[0];
+      p = p.replace(/index\.html?$/i,'').replace(/\.html?$/i,'').replace(/\/+$/,'');
+      return p || '/';
+    }catch(e){ return '/'; }
   }
-  function same(a,b){
-    return a===b || a+'/'===b || b+'/'===a ||
-           (a==='/'&&b==='') || (b==='/'&&a==='');
-  }
-  function hrefPath(href){
-    var a=document.createElement('a'); a.href=href;
-    // If href is just "/" or empty, make sure it stays root
-    return clean(a.pathname || '/');
-  }
-
-  function applyHighlight(){
-    var here = clean(location.pathname || '/');
-    var links = document.querySelectorAll('.nm2-menu a[href]');
-    var found = false;
-    links.forEach(function(a){
-      var link = hrefPath(a.getAttribute('href'));
-      if(same(link, here)){
-        // Primary: attribute + class (for your CSS)
-        a.setAttribute('aria-current','page');
-        a.classList.add('is-active');
-        // Safety: inline styles in case theme tries to override
-        a.style.setProperty('color', getComputedStyle(document.documentElement)
-          .getPropertyValue('--nm2-active').trim() || '#e65616', 'important');
-        a.style.setProperty('background', 'rgba(230,86,22,0.12)', 'important');
-        found = true;
-      }
-    });
-    return found;
-  }
-
-  // Wait until menu exists (Elementor/Blocksy may inject late)
-  function whenMenuReady(cb, timeoutMs){
-    var start = performance.now();
-    (function check(){
-      if(document.querySelector('.nm2-menu a')){
-        cb();
-      }else if(performance.now() - start < (timeoutMs||2000)){
-        requestAnimationFrame(check);
-      }else{
-        // Final attempt anyway
-        cb();
-      }
-    })();
-  }
-
-  function runOnce(){
-    var ok = applyHighlight();
-    // Fallback: if not matched yet, also run the first time the drawer is opened
-    var tgl = document.getElementById('nm2-toggle');
-    if(tgl){
-      var once=false;
-      tgl.addEventListener('change', function handler(){
-        if(this.checked && !once){
-          once=true;
-          applyHighlight();
-          tgl.removeEventListener('change', handler);
-        }
-      });
-    }
-  }
-
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', function(){
-      whenMenuReady(runOnce, 2500);
-    }, {once:true});
-  }else{
-    whenMenuReady(runOnce, 2500);
-  }
+  function norm(url){ var a=document.createElement('a'); a.href=url; return normPath(a.pathname||'/'); }
+  var here = norm(location.href);
+  document.querySelectorAll('.nm2-panel a[href]').forEach(function(a){
+    var link = norm(a.getAttribute('href'));
+    if(link===here || (here==='/' && (link===''||link==='index.html'))){ a.setAttribute('aria-current','page'); }
+  });
 })();
 </script>
 	</div>
@@ -704,7 +649,7 @@
 <div class="wp-block-stackable-heading stk-block-heading stk-block-heading--v2 stk-block stk-6437c60 ct-advanced-heading" data-title="Stories" id="stories" data-block-id="6437c60"><h2 class="stk-block-heading__text has-text-align-center-mobile">Stories</h2></div>
 
 
-<div class="ct-posts-shortcode" data-prefix="blog"><div class="entries" data-archive="default" data-layout="grid" data-cards="boxed" data-hover="zoom-in"><article class="entry-card card-content post-919 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><a class="ct-media-container boundless-image has-hover-effect" href="marconi/index.html" aria-label="Marconi"><img decoding="async" width="422" height="422" src="wp-content/uploads/2021/06/video-1.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="http://localhost:10016/wp-content/uploads/2021/06/video-1.jpg 422w, http://localhost:10016/wp-content/uploads/2021/06/video-1-300x300.jpg 300w, http://localhost:10016/wp-content/uploads/2021/06/video-1-150x150.jpg 150w" sizes="auto, (max-width: 422px) 100vw, 422px" itemprop="image" style="aspect-ratio: 1/1;" /></a><ul class="entry-meta" data-type="simple:slash" data-id="WO_5vt" ><li class="meta-categories" data-type="simple"><a href="category/stories/index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="marconi/index.html" rel="bookmark">Marconi</a></h2></article><article class="entry-card card-content post-812 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><a class="ct-media-container boundless-image has-hover-effect" href="dingo/index.html" aria-label="Dingo"><img decoding="async" width="768" height="768" src="wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-768x768.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-768x768.jpg 768w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-300x300.jpg 300w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-1024x1024.jpg 1024w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-150x150.jpg 150w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2.jpg 1200w" sizes="auto, (max-width: 768px) 100vw, 768px" itemprop="image" style="aspect-ratio: 1/1;" /></a><ul class="entry-meta" data-type="simple:slash" data-id="WO_5vt" ><li class="meta-categories" data-type="simple"><a href="category/stories/index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="dingo/index.html" rel="bookmark">Dingo</a></h2></article><article class="entry-card card-content post-763 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><a class="ct-media-container boundless-image has-hover-effect" href="quisque-iddiam-velquam-elementum-pulvinar/index.html" aria-label="Quisque Iddiam Velquam Elementum Pulvinar"><img decoding="async" width="768" height="637" src="wp-content/uploads/2021/06/blog-img-6-768x637.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="http://localhost:10016/wp-content/uploads/2021/06/blog-img-6-768x637.jpg 768w, http://localhost:10016/wp-content/uploads/2021/06/blog-img-6-300x249.jpg 300w, http://localhost:10016/wp-content/uploads/2021/06/blog-img-6.jpg 820w" sizes="auto, (max-width: 768px) 100vw, 768px" itemprop="image" style="aspect-ratio: 1/1;" /></a><ul class="entry-meta" data-type="simple:slash" data-id="WO_5vt" ><li class="meta-categories" data-type="simple"><a href="category/stories/index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="quisque-iddiam-velquam-elementum-pulvinar/index.html" rel="bookmark">Quisque Iddiam Velquam Elementum Pulvinar</a></h2></article></div></div>
+<div class="ct-posts-shortcode" data-prefix="blog"><div class="entries" data-archive="default" data-layout="grid" data-cards="boxed" data-hover="zoom-in"><article class="entry-card card-content post-919 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><a class="ct-media-container boundless-image has-hover-effect" href="marconi/index.html" aria-label="Marconi"><img decoding="async" width="422" height="422" src="wp-content/uploads/2021/06/video-1.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="http://localhost:10016/wp-content/uploads/2021/06/video-1.jpg 422w, http://localhost:10016/wp-content/uploads/2021/06/video-1-300x300.jpg 300w, http://localhost:10016/wp-content/uploads/2021/06/video-1-150x150.jpg 150w" sizes="auto, (max-width: 422px) 100vw, 422px" itemprop="image" style="aspect-ratio: 1/1;" /></a><ul class="entry-meta" data-type="simple:slash" data-id="WO_5vt" ><li class="meta-categories" data-type="simple"><a href="category/stories/index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="marconi/index.html" rel="bookmark">Marconi</a></h2></article><article class="entry-card card-content post-812 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><a class="ct-media-container boundless-image has-hover-effect" href="dingo/index.html" aria-label="Dingo"><img decoding="async" width="768" height="768" src="wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-768x768.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-768x768.jpg 768w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-300x300.jpg 300w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-1024x1024.jpg 1024w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-150x150.jpg 150w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2.jpg 1200w" sizes="auto, (max-width: 768px) 100vw, 768px" itemprop="image" style="aspect-ratio: 1/1;" /></a><ul class="entry-meta" data-type="simple:slash" data-id="WO_5vt" ><li class="meta-categories" data-type="simple"><a href="category/stories/index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="dingo/index.html" rel="bookmark">Dingo</a></h2></article><article class="entry-card card-content post-763 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><a class="ct-media-container boundless-image has-hover-effect" href="quisque/index.html" aria-label="Quisque"><img decoding="async" width="768" height="637" src="wp-content/uploads/2021/06/blog-img-6-768x637.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="http://localhost:10016/wp-content/uploads/2021/06/blog-img-6-768x637.jpg 768w, http://localhost:10016/wp-content/uploads/2021/06/blog-img-6-300x249.jpg 300w, http://localhost:10016/wp-content/uploads/2021/06/blog-img-6.jpg 820w" sizes="auto, (max-width: 768px) 100vw, 768px" itemprop="image" style="aspect-ratio: 1/1;" /></a><ul class="entry-meta" data-type="simple:slash" data-id="WO_5vt" ><li class="meta-categories" data-type="simple"><a href="category/stories/index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="quisque/index.html" rel="bookmark">Quisque</a></h2></article></div></div>
 
 
 
@@ -916,5 +861,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 </body>
 
-<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 06:08:30 GMT -->
+<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 06:25:40 GMT -->
 </html>
