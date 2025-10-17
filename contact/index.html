@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 02:59:25 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:04:13 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -633,136 +633,106 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 <script src="../wp-content/themes/blocksy/static/bundle/main202b.js?ver=2.1.15" id="ct-scripts-js"></script>
 <script>
-/*! NM-MENU-FIX ONEFILE v1.8.1 (force-right, easy-open, iOS shield) */
+/*! NM-MENU-FIX ONEFILE v1.8.2-LITE (stability-first) */
 (function () {
   const RETRY_MS = 80, MAX_TRIES = 150;
-  let tries = 0, stripperTimer = null;
+  let tries = 0;
 
   function $(sel){ return document.querySelector(sel); }
-  function on(el, evts, fn, opts){ evts.split(' ').forEach(e=> el && el.addEventListener(e, fn, opts||false)); }
-
-  function ensureNode(sel, className, styles){
-    let n = document.querySelector(sel);
-    if(!n){
-      n = document.createElement('div');
-      if(className) n.className = className;
-      document.body.appendChild(n);
-    }
-    if(styles) Object.assign(n.style, styles);
-    return n;
-  }
+  function on(el, evts, fn, opts){ if(!el) return; evts.split(' ').forEach(e=> el.addEventListener(e, fn, opts||false)); }
 
   function ensureOverlay(){
-    return ensureNode('.nm-overlay','nm-overlay',{
-      position:'fixed', inset:'0', display:'none',
-      zIndex:'2147483645', pointerEvents:'none', background:'rgba(0,0,0,.28)'
-    });
-  }
-  function ensureShield(){
-    return ensureNode('.nm-shield','nm-shield',{
-      position:'fixed', inset:'0', display:'none',
-      zIndex:'2147483644', pointerEvents:'none', background:'transparent'
-    });
-  }
-  function showOverlay(show){
-    const ov = ensureOverlay(), sh = ensureShield();
-    ov.style.display = show ? 'block' : 'none';
-    ov.style.pointerEvents = show ? 'auto' : 'none';
-    sh.style.display = show ? 'block' : 'none';
-    sh.style.pointerEvents = show ? 'auto' : 'none';
+    let ov = document.querySelector('.nm-overlay');
+    if(!ov){
+      ov = document.createElement('div');
+      ov.className = 'nm-overlay';
+      document.body.appendChild(ov);
+    }
+    ov.style.position = 'fixed';
+    ov.style.inset = '0';
+    ov.style.display = 'none';
+    ov.style.zIndex = '9998';
+    ov.style.pointerEvents = 'none';
+    ov.style.background = 'rgba(0,0,0,.28)';
+    return ov;
   }
 
-  function stripAllInert(){
+  function showOverlay(show){
+    const ov = ensureOverlay();
+    ov.style.display = show ? 'block' : 'none';
+    ov.style.pointerEvents = show ? 'auto' : 'none';
+  }
+
+  function stripAllInertOnce(){
     document.querySelectorAll('[inert]').forEach(n=> n.removeAttribute('inert'));
     document.querySelectorAll('[aria-hidden="true"]').forEach(n=> n.setAttribute('aria-hidden','false'));
     document.documentElement.removeAttribute('inert');
     document.body.removeAttribute('inert');
   }
-  function startStripper(){ if(!stripperTimer) stripperTimer = setInterval(stripAllInert, 60); }
-  function stopStripper(){ if(stripperTimer){ clearInterval(stripperTimer); stripperTimer = null; } }
+
+  function burstScrub(durationMs){
+    const start = Date.now();
+    function tick(){
+      stripAllInertOnce();
+      if(Date.now() - start < durationMs) requestAnimationFrame(tick);
+    }
+    tick();
+  }
 
   function isOpen(off){
     return off.classList.contains('is-open') || off.classList.contains('open') || off.classList.contains('active');
   }
 
-  function lockHeaderClicks(lock){
-    const heads = document.querySelectorAll('header, #masthead, .site-header');
-    heads.forEach(h=> { h.style.pointerEvents = lock ? 'none' : ''; });
-  }
-
   function markOpen(off, open){
-    document.documentElement.classList.toggle('nm-nav-open', open);
-    document.body.classList.toggle('nm-nav-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
-    lockHeaderClicks(open);
+    showOverlay(open);
     if(open){
-      off.style.zIndex = '2147483646';
-      showOverlay(true);
-      startStripper();
-      // ensure visible on right
+      // keep it responsive, just ensure it's on the right
       off.style.left = 'auto';
       off.style.right = '0';
-      off.style.transform = 'translateX(0)';
-    } else {
-      showOverlay(false);
-      stopStripper();
-      // move offscreen to right (keeps it non-interactive)
-      off.style.left = 'auto';
-      off.style.right = '0';
-      off.style.transform = 'translateX(100%)';
+      off.style.zIndex = '9999';
+      off.style.pointerEvents = 'auto';
+      burstScrub(800); // brief inert scrub, not infinite
     }
   }
 
-  function swallowBackgroundTouches(off){
-    const guard = (e)=>{
-      if(isOpen(off) && !off.contains(e.target)){
-        e.stopPropagation();
-        e.preventDefault();
-        return false;
-      }
-    };
-    ['touchstart','touchend','pointerdown','pointerup','click'].forEach(evt=>{
-      document.addEventListener(evt, guard, {capture:true, passive:false});
-    });
-  }
-
   function wire(off){
-    // Force-right baseline
+    // minimal safety
     off.style.position = off.style.position || 'fixed';
     off.style.top = off.style.top || '0';
-    off.style.left = 'auto';
     off.style.right = '0';
-    off.style.bottom = off.style.bottom || '0';
-    off.style.width = off.style.width || '80vw';
-    off.style.maxWidth = off.style.maxWidth || '420px';
+    off.style.left = 'auto';
     off.style.pointerEvents = 'auto';
-    off.style.zIndex = off.style.zIndex || '2147483646';
+    off.style.zIndex = off.style.zIndex || '9999';
 
-    off.querySelectorAll('a,button,[role="button"]').forEach(el=>{
-      on(el, 'pointerup touchend click', (e)=>{ e.stopPropagation(); }, {passive:false});
-    });
-
-    const closeBtn = off.querySelector('[data-close], .close, .ct-toggle-close, .close-button, [aria-label="Close"]');
-    on(closeBtn, 'pointerup touchend click', (e)=>{
-      if(e){ e.preventDefault(); e.stopPropagation(); }
-      off.classList.remove('is-open','open','active');
-      markOpen(off, false);
-    }, {passive:false});
-
-    on(ensureOverlay(), 'pointerup touchend click', (e)=>{
+    // overlay click closes
+    on(ensureOverlay(), 'click', function(e){
       e.preventDefault(); e.stopPropagation();
       off.classList.remove('is-open','open','active');
       markOpen(off, false);
-    }, {passive:false});
+    });
 
-    const classObs = new MutationObserver(()=> { markOpen(off, isOpen(off)); });
-    classObs.observe(off, {attributes:true, attributeFilter:['class']});
+    // observe open/close
+    const obs = new MutationObserver(()=>{
+      const open = isOpen(off);
+      markOpen(off, open);
+    });
+    obs.observe(off, {attributes:true, attributeFilter:['class']});
 
-    const obs = new MutationObserver(stripAllInert);
-    obs.observe(document.documentElement, {subtree:true, attributes:true, attributeFilter:['inert','aria-hidden','class','style']});
+    // boost tap target a little (safe)
+    const toggler = document.querySelector('.ct-header-trigger, .menu-toggle, .hamburger, [data-toggle="offcanvas"]');
+    if(toggler){
+      const cs = getComputedStyle(toggler);
+      const st = toggler.style;
+      if(parseInt(cs.minWidth||'0',10) < 40) st.minWidth = '44px';
+      if(parseInt(cs.minHeight||'0',10) < 40) st.minHeight = '44px';
+      if(parseInt(cs.padding||'0',10) < 8) st.padding = '10px';
+      on(toggler, 'click', function(){ setTimeout(stripAllInertOnce, 0); }, {passive:true});
+      on(toggler, 'touchend', function(){ setTimeout(stripAllInertOnce, 0); }, {passive:true});
+    }
 
-    swallowBackgroundTouches(off);
-    // initialize closed state to right side
+    // initial state
+    stripAllInertOnce();
     markOpen(off, isOpen(off));
   }
 
@@ -776,61 +746,20 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
       if(++tries < MAX_TRIES) return setTimeout(boot, RETRY_MS);
       return;
     }
-    stripAllInert();
-    wire(off);
-
-    const toggler = document.querySelector('.ct-header-trigger, .menu-toggle, .hamburger, [data-toggle="offcanvas"]');
-    // Boost tap target & ensure open-on-first-tap
-    if (toggler){
-      const ts = toggler.style;
-      if (parseInt(getComputedStyle(toggler).minWidth||'0',10) < 44) ts.minWidth = '44px';
-      if (parseInt(getComputedStyle(toggler).minHeight||'0',10) < 44) ts.minHeight = '44px';
-      if (!ts.padding || parseInt(getComputedStyle(toggler).padding||'0',10) < 8) ts.padding = '10px';
-
-      on(toggler, 'pointerup touchend click', (e)=>{
-        // If theme didn’t open it, we will
-        setTimeout(()=>{
-          if(!isOpen(off)){
-            off.classList.add('active','open','is-open');
-          }
-          markOpen(off, true);
-        }, 0);
-      }, {passive:false});
-    }
-
-    let i=0, max=60;
-    const warmup = setInterval(()=>{ stripAllInert(); if(++i>=max) clearInterval(warmup); }, 60);
+    try { wire(off); } catch(e){ /* fail-safe: do nothing rather than freeze */ }
   }
 
-  (function injectCSS(){
+  // lightweight CSS
+  (function(){
     if (document.querySelector('style[data-nm-onefile]')) return;
-    const css = `
-      /* ONEFILE 1.8.1: overlay + touch locks + header click lock + force-right */
-      .nm-overlay{background:rgba(0,0,0,.28);}
-      html.nm-nav-open, body.nm-nav-open{touch-action:none; overscroll-behavior:none;}
-      #offcanvas, .offcanvas, .ct-panel{pointer-events:auto !important;}
-      /* lock header clicks while open */
-      html.nm-nav-open header,
-      html.nm-nav-open #masthead,
-      html.nm-nav-open .site-header { pointer-events: none !important; }
-      html.nm-nav-open #offcanvas,
-      html.nm-nav-open .ct-panel,
-      html.nm-nav-open .offcanvas { pointer-events: auto !important; }
-      /* ensure right-side slide */
-      #offcanvas, .ct-panel{ left:auto !important; right:0 !important; }
-      html:not(.nm-nav-open) #offcanvas,
-      html:not(.nm-nav-open) .ct-panel{ transform: translateX(100%) !important; }
-      html.nm-nav-open #offcanvas,
-      html.nm-nav-open .ct-panel{ transform: translateX(0) !important; }
-    `;
     const s = document.createElement('style');
-    s.setAttribute('data-nm-onefile','v1.8.1');
-    s.textContent = css;
+    s.setAttribute('data-nm-onefile','v1.8.2-lite');
+    s.textContent = ".nm-overlay{background:rgba(0,0,0,.28);} #offcanvas,.offcanvas,.ct-panel{pointer-events:auto!important;}";
     document.head.appendChild(s);
   })();
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
+    document.addEventListener('DOMContentLoaded', boot, {once:true});
   } else {
     boot();
   }
@@ -838,5 +767,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 </body>
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 02:59:25 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 03:04:13 GMT -->
 </html>
