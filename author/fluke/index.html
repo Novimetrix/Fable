@@ -252,7 +252,17 @@
 	transform: scale3d(1.05, 1.05, 1);
 }
 		</style>
-			<script src="/assets/js/no-srcset.js"></script>
+			<script>
+(function(){
+  try{
+    // remove srcset/sizes at runtime (defense in depth)
+    var imgs = document.querySelectorAll('img[srcset],source[srcset]');
+    imgs.forEach(function(el){ el.removeAttribute('srcset'); el.removeAttribute('sizes'); });
+    // guard flag
+    window.__noSrcsetActive = true;
+  }catch(e){}
+})();
+</script>
 </head>
 
 
