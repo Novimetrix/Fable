@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/one-hundred-years-of-solitude/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 02:48:19 GMT -->
+<!-- Mirrored from localhost:10016/one-hundred-years-of-solitude/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 02:59:27 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -957,7 +957,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 <script src="../wp-content/themes/blocksy/static/bundle/main202b.js?ver=2.1.15" id="ct-scripts-js"></script>
 <script>
-/*! NM-MENU-FIX ONEFILE v1.8.0 (static-safe, iOS shield, header click lock) */
+/*! NM-MENU-FIX ONEFILE v1.8.1 (force-right, easy-open, iOS shield) */
 (function () {
   const RETRY_MS = 80, MAX_TRIES = 150;
   let tries = 0, stripperTimer = null;
@@ -1023,9 +1023,17 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
       off.style.zIndex = '2147483646';
       showOverlay(true);
       startStripper();
+      // ensure visible on right
+      off.style.left = 'auto';
+      off.style.right = '0';
+      off.style.transform = 'translateX(0)';
     } else {
       showOverlay(false);
       stopStripper();
+      // move offscreen to right (keeps it non-interactive)
+      off.style.left = 'auto';
+      off.style.right = '0';
+      off.style.transform = 'translateX(100%)';
     }
   }
 
@@ -1043,9 +1051,11 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   }
 
   function wire(off){
+    // Force-right baseline
     off.style.position = off.style.position || 'fixed';
     off.style.top = off.style.top || '0';
-    off.style.right = off.style.right || '0';
+    off.style.left = 'auto';
+    off.style.right = '0';
     off.style.bottom = off.style.bottom || '0';
     off.style.width = off.style.width || '80vw';
     off.style.maxWidth = off.style.maxWidth || '420px';
@@ -1058,8 +1068,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
     const closeBtn = off.querySelector('[data-close], .close, .ct-toggle-close, .close-button, [aria-label="Close"]');
     on(closeBtn, 'pointerup touchend click', (e)=>{
-      e && e.preventDefault && e.preventDefault();
-      e && e.stopPropagation && e.stopPropagation();
+      if(e){ e.preventDefault(); e.stopPropagation(); }
       off.classList.remove('is-open','open','active');
       markOpen(off, false);
     }, {passive:false});
@@ -1077,6 +1086,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
     obs.observe(document.documentElement, {subtree:true, attributes:true, attributeFilter:['inert','aria-hidden','class','style']});
 
     swallowBackgroundTouches(off);
+    // initialize closed state to right side
     markOpen(off, isOpen(off));
   }
 
@@ -1094,9 +1104,23 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
     wire(off);
 
     const toggler = document.querySelector('.ct-header-trigger, .menu-toggle, .hamburger, [data-toggle="offcanvas"]');
-    on(toggler, 'pointerup touchend click', ()=>{
-      setTimeout(()=>{ stripAllInert(); markOpen(off, isOpen(off)); }, 0);
-    }, {passive:false});
+    // Boost tap target & ensure open-on-first-tap
+    if (toggler){
+      const ts = toggler.style;
+      if (parseInt(getComputedStyle(toggler).minWidth||'0',10) < 44) ts.minWidth = '44px';
+      if (parseInt(getComputedStyle(toggler).minHeight||'0',10) < 44) ts.minHeight = '44px';
+      if (!ts.padding || parseInt(getComputedStyle(toggler).padding||'0',10) < 8) ts.padding = '10px';
+
+      on(toggler, 'pointerup touchend click', (e)=>{
+        // If theme didn’t open it, we will
+        setTimeout(()=>{
+          if(!isOpen(off)){
+            off.classList.add('active','open','is-open');
+          }
+          markOpen(off, true);
+        }, 0);
+      }, {passive:false});
+    }
 
     let i=0, max=60;
     const warmup = setInterval(()=>{ stripAllInert(); if(++i>=max) clearInterval(warmup); }, 60);
@@ -1105,20 +1129,26 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   (function injectCSS(){
     if (document.querySelector('style[data-nm-onefile]')) return;
     const css = `
-      /* ONEFILE: overlay + touch locks + header click lock */
+      /* ONEFILE 1.8.1: overlay + touch locks + header click lock + force-right */
       .nm-overlay{background:rgba(0,0,0,.28);}
       html.nm-nav-open, body.nm-nav-open{touch-action:none; overscroll-behavior:none;}
       #offcanvas, .offcanvas, .ct-panel{pointer-events:auto !important;}
-      /* hard header lock while open (prevents tap-through on logos/links) */
+      /* lock header clicks while open */
       html.nm-nav-open header,
       html.nm-nav-open #masthead,
       html.nm-nav-open .site-header { pointer-events: none !important; }
       html.nm-nav-open #offcanvas,
       html.nm-nav-open .ct-panel,
       html.nm-nav-open .offcanvas { pointer-events: auto !important; }
+      /* ensure right-side slide */
+      #offcanvas, .ct-panel{ left:auto !important; right:0 !important; }
+      html:not(.nm-nav-open) #offcanvas,
+      html:not(.nm-nav-open) .ct-panel{ transform: translateX(100%) !important; }
+      html.nm-nav-open #offcanvas,
+      html.nm-nav-open .ct-panel{ transform: translateX(0) !important; }
     `;
     const s = document.createElement('style');
-    s.setAttribute('data-nm-onefile','v1.8.0');
+    s.setAttribute('data-nm-onefile','v1.8.1');
     s.textContent = css;
     document.head.appendChild(s);
   })();
@@ -1132,5 +1162,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 </body>
 
-<!-- Mirrored from localhost:10016/one-hundred-years-of-solitude/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 02:48:19 GMT -->
+<!-- Mirrored from localhost:10016/one-hundred-years-of-solitude/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 02:59:27 GMT -->
 </html>
