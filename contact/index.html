@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 18:22:16 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 02:18:07 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -14,7 +14,7 @@
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="http://localhost:10016/comments/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global3b92.css?ver=33305' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globalcc7f.css?ver=67217' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -338,7 +338,7 @@
 		
 		
 
-		<input type="hidden" value="be5719513f" class="ct-live-results-nonce">	</div>
+		<input type="hidden" value="73609e0391" class="ct-live-results-nonce">	</div>
 
 			<div class="screen-reader-text" aria-live="polite" role="status">
 			No results		</div>
@@ -633,265 +633,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 </script>
 <script src="../wp-content/themes/blocksy/static/bundle/main202b.js?ver=2.1.15" id="ct-scripts-js"></script>
 
-<!-- NM-MENU-FIX start (v1.5.0 inert+css) -->
-<style id="nm-mobile-menu-fix">
-/* Drawer visible when nav-open */
-body.nav-open #offcanvas {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-}
-
-/* Force geometry & stacking */
-#offcanvas {
-  position: fixed !important;
-  top: 0 !important;
-  right: 0 !important;
-  height: 100vh !important;
-  max-height: 100vh !important;
-  width: min(86vw, 420px) !important;
-  z-index: 99991 !important;
-  pointer-events: auto !important;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
-}
-
-/* Our overlay (CSS-driven visibility) */
-.nm-overlay {
-  position: fixed !important;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: 99990 !important;
-  background: rgba(0,0,0,0);
-  pointer-events: auto !important;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  touch-action: none;
-  display: none; /* default off */
-}
-body.nav-open .nm-overlay { display: block; } /* visible when open */
-
-/* Disable underlying page clicks when open */
-body.nav-open #ct-page, 
-body.nav-open #ct-site,
-body.nav-open .site,
-body.nav-open #page,
-body.nav-open .site-main,
-body.nav-open header, 
-body.nav-open main, 
-body.nav-open footer {
-  pointer-events: none !important;
-}
-body.nav-open #offcanvas, 
-body.nav-open #offcanvas *,
-body.nav-open .nm-overlay {
-  pointer-events: auto !important;
-}
-
-/* Prevent body scroll */
-body.nav-open { overflow: hidden; }
-</style>
-<script id="nm-mobile-menu-fix-js">
-(function(){
-  function qs(s, r){ return (r||document).querySelector(s); }
-  function qsa(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
-
-  var panel = document.getElementById('offcanvas') || qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
-  var triggers = qsa('[data-toggle-panel="#offcanvas"], .ct-header-trigger.ct-toggle, button[aria-controls="offcanvas"]');
-
-  if (!panel || !triggers.length) return;
-
-  // Ensure overlay exists (CSS shows it when body.nav-open)
-  var overlay = qs('.nm-overlay');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.className = 'nm-overlay';
-    overlay.setAttribute('role','button');
-    overlay.setAttribute('aria-label','Close menu');
-    document.body.appendChild(overlay);
-  }
-
-  // Helpers
-  function isOpen(){ return document.body.classList.contains('nav-open'); }
-  function openNav(){
-    // Remove inert/aria-hidden to allow interaction on static pages
-    panel.removeAttribute('inert');
-    panel.removeAttribute('aria-hidden');
-    document.body.classList.add('nav-open');
-    panel.classList.add('open');
-    triggers.forEach(function(t){ t.setAttribute('aria-expanded', 'true'); });
-  }
-  function closeNav(){
-    document.body.classList.remove('nav-open');
-    panel.classList.remove('open');
-    // Optional: restore inert; harmless if not used by theme
-    panel.setAttribute('inert', '');
-    panel.setAttribute('aria-hidden', 'true');
-    triggers.forEach(function(t){ t.setAttribute('aria-expanded', 'false'); });
-  }
-  function toggleNav(){ isOpen() ? closeNav() : openNav(); }
-
-  function bind(el){
-    ['click','touchend'].forEach(function(evt){
-      el.addEventListener(evt, function(e){
-        if (evt === 'touchend') e.preventDefault();
-        toggleNav();
-      }, {passive:false});
-    });
-  }
-  triggers.forEach(bind);
-
-  ['click','touchend'].forEach(function(evt){
-    overlay.addEventListener(evt, function(e){
-      if (evt === 'touchend') e.preventDefault();
-      closeNav();
-    }, {passive:false});
-
-    panel.addEventListener(evt, function(e){
-      var target = e.target.closest('a, button, [role="button"], [data-close="panel"], .ct-close, .ct-panel-close, .ct-toggle--close');
-      if (target){
-        if (evt === 'touchend') e.preventDefault();
-        var href = target.getAttribute('href');
-        closeNav();
-        if (href && href.charAt(0) !== '#') { window.location.href = href; }
-      }
-    }, {passive:false});
-  });
-
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
-})();
-</script>
-
-<!-- NM-MENU-FIX end -->
-
-<!-- NM-MENU-FIX start (v1.5.0 inert+css) -->
-<style id="nm-mobile-menu-fix">
-/* Drawer visible when nav-open */
-body.nav-open #offcanvas {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-}
-
-/* Force geometry & stacking */
-#offcanvas {
-  position: fixed !important;
-  top: 0 !important;
-  right: 0 !important;
-  height: 100vh !important;
-  max-height: 100vh !important;
-  width: min(86vw, 420px) !important;
-  z-index: 99991 !important;
-  pointer-events: auto !important;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
-}
-
-/* Our overlay (CSS-driven visibility) */
-.nm-overlay {
-  position: fixed !important;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: 99990 !important;
-  background: rgba(0,0,0,0);
-  pointer-events: auto !important;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  touch-action: none;
-  display: none; /* default off */
-}
-body.nav-open .nm-overlay { display: block; } /* visible when open */
-
-/* Disable underlying page clicks when open */
-body.nav-open #ct-page, 
-body.nav-open #ct-site,
-body.nav-open .site,
-body.nav-open #page,
-body.nav-open .site-main,
-body.nav-open header, 
-body.nav-open main, 
-body.nav-open footer {
-  pointer-events: none !important;
-}
-body.nav-open #offcanvas, 
-body.nav-open #offcanvas *,
-body.nav-open .nm-overlay {
-  pointer-events: auto !important;
-}
-
-/* Prevent body scroll */
-body.nav-open { overflow: hidden; }
-</style>
-<script id="nm-mobile-menu-fix-js">
-(function(){
-  function qs(s, r){ return (r||document).querySelector(s); }
-  function qsa(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
-
-  var panel = document.getElementById('offcanvas') || qs('.ct-offcanvas, .ct-panel--mobile, .ct-drawer, .ct-mobile-menu');
-  var triggers = qsa('[data-toggle-panel="#offcanvas"], .ct-header-trigger.ct-toggle, button[aria-controls="offcanvas"]');
-
-  if (!panel || !triggers.length) return;
-
-  // Ensure overlay exists (CSS shows it when body.nav-open)
-  var overlay = qs('.nm-overlay');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.className = 'nm-overlay';
-    overlay.setAttribute('role','button');
-    overlay.setAttribute('aria-label','Close menu');
-    document.body.appendChild(overlay);
-  }
-
-  // Helpers
-  function isOpen(){ return document.body.classList.contains('nav-open'); }
-  function openNav(){
-    // Remove inert/aria-hidden to allow interaction on static pages
-    panel.removeAttribute('inert');
-    panel.removeAttribute('aria-hidden');
-    document.body.classList.add('nav-open');
-    panel.classList.add('open');
-    triggers.forEach(function(t){ t.setAttribute('aria-expanded', 'true'); });
-  }
-  function closeNav(){
-    document.body.classList.remove('nav-open');
-    panel.classList.remove('open');
-    // Optional: restore inert; harmless if not used by theme
-    panel.setAttribute('inert', '');
-    panel.setAttribute('aria-hidden', 'true');
-    triggers.forEach(function(t){ t.setAttribute('aria-expanded', 'false'); });
-  }
-  function toggleNav(){ isOpen() ? closeNav() : openNav(); }
-
-  function bind(el){
-    ['click','touchend'].forEach(function(evt){
-      el.addEventListener(evt, function(e){
-        if (evt === 'touchend') e.preventDefault();
-        toggleNav();
-      }, {passive:false});
-    });
-  }
-  triggers.forEach(bind);
-
-  ['click','touchend'].forEach(function(evt){
-    overlay.addEventListener(evt, function(e){
-      if (evt === 'touchend') e.preventDefault();
-      closeNav();
-    }, {passive:false});
-
-    panel.addEventListener(evt, function(e){
-      var target = e.target.closest('a, button, [role="button"], [data-close="panel"], .ct-close, .ct-panel-close, .ct-toggle--close');
-      if (target){
-        if (evt === 'touchend') e.preventDefault();
-        var href = target.getAttribute('href');
-        closeNav();
-        if (href && href.charAt(0) !== '#') { window.location.href = href; }
-      }
-    }, {passive:false});
-  });
-
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
-})();
-</script>
-
-<!-- NM-MENU-FIX end -->
-
 </body>
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 18:22:16 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 02:18:07 GMT -->
 </html>
