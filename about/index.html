@@ -145,10 +145,10 @@
 					var gutter = px('--gutter-left', 12);
 					var gap    = px('--gap', 10);
 
-					/ Equalized first-gap baseline: first rail starts at (indent - lineW)
+					// Equalized first-gap baseline: first rail starts at (indent - lineW)
 					var start  = Math.max(0, indent - lineW);
 
-					/ Ensure rails container
+					// Ensure rails container
 					var rails = card.querySelector(':scope > .fc-rails');
 					if (!rails){
 						rails = document.createElement('div');
@@ -156,14 +156,14 @@
 						card.appendChild(rails);
 					}
 
-					/ Pixel-snap the group
+					// Pixel-snap the group
 					var rect = card.getBoundingClientRect();
 					var groupLeft = rect.left + gutter;
 					var snappedGroup = snapAbs(groupLeft);
 					var delta = +(snappedGroup - groupLeft).toFixed(3);
 					rails.style.transform = 'translateX(' + delta + 'px)';
 
-					/ Width & bars
+					// Width & bars
 					var width = Math.max(0, start + (lvl * indent));
 					rails.style.width = width + 'px';
 
@@ -175,9 +175,9 @@
 						rails.appendChild(bar);
 					}
 
-					/ Position bars & compute snapped right edge of the last rail
+					// Position bars & compute snapped right edge of the last rail
 					var snappedW = snapAbs(lineW);
-					var lastEdgeAbs = groupLeft; / default if lvl==0
+					var lastEdgeAbs = groupLeft; // default if lvl==0
 					for (var k=0; k<lvl; k++){
 						var bar = rails.children[k];
 						var absDesired = groupLeft + delta + start + (k * indent);
@@ -191,19 +191,19 @@
 						}
 					}
 
-					/ Per-card pad-left so the gap to text is uniform:
+					// Per-card pad-left so the gap to text is uniform:
 					var padLeft = (lvl === 0) ? (gutter + gap) : ((lastEdgeAbs - rect.left) + gap);
 					card.style.setProperty('--pad-left', Math.round(padLeft) + 'px');
 
-					/ Keep --lines for other CSS if needed
+					// Keep --lines for other CSS if needed
 					card.style.setProperty('--lines', String(lvl));
 				}
 
-				/ Initial pass
+				// Initial pass
 				var cards = wrap.querySelectorAll('.commentCard');
 				for (var i=0; i<cards.length; i++) buildRails(cards[i]);
 
-				/ Keep in sync
+				// Keep in sync
 				if ('ResizeObserver' in window){
 					var ro = new ResizeObserver(function(entries){
 						for (var j=0; j<entries.length; j++) buildRails(entries[j].target);
@@ -232,7 +232,7 @@
 					mo.observe(wrap, { childList: true, subtree: true });
 				}
 
-				/ Manual rebuild hook
+				// Manual rebuild hook
 				window.__fcBuildRails = buildRails;
 				return true;
 			}
@@ -291,8 +291,7 @@
 	transform: scale3d(1.05, 1.05, 1);
 }
 		</style>
-			<script src="/assets/js/no-srcset.js"></script>
-</head>
+			</head>
 
 
 <body class="wp-singular page-template-default page page-id-768 wp-custom-logo wp-embed-responsive wp-theme-blocksy wp-child-theme-blocksy-child stk--is-blocksy-theme stk-has-block-style-inheritance" data-link="type-2" data-prefix="single_page" data-header="type-1:sticky" data-footer="type-1:reveal" itemscope="itemscope" itemtype="https://schema.org/WebPage">
@@ -745,16 +744,16 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   }
 
   function closePanel(off){
-    / remove common open classes on the element and globally
+    // remove common open classes on the element and globally
     off.classList.remove('is-open','open','active','shown','show');
     syncGlobalOpenState(false);
     showOverlay(false);
-    / small async to let theme handlers run and re-enable toggles
+    // small async to let theme handlers run and re-enable toggles
     setTimeout(stripAllInertOnce, 0);
   }
 
   function wire(off){
-    / minimal safety (right side bias without transforms)
+    // minimal safety (right side bias without transforms)
     off.style.position = off.style.position || 'fixed';
     off.style.top = off.style.top || '0';
     off.style.right = '0';
@@ -762,7 +761,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
     off.style.pointerEvents = 'auto';
     off.style.zIndex = off.style.zIndex || '2147483646';
 
-    / Improve tap target slightly
+    // Improve tap target slightly
     const toggler = document.querySelector('.ct-header-trigger, .menu-toggle, .hamburger, [data-toggle="offcanvas"]');
     if(toggler){
       const cs = getComputedStyle(toggler);
@@ -771,7 +770,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
       if(parseInt(cs.minHeight||'0',10) < 40) st.minHeight = '44px';
       if(parseInt(cs.paddingLeft||'0',10) < 8) st.padding = '10px';
 
-      / Reliable reopen: after theme toggles, ensure an open state exists; if not, force it.
+      // Reliable reopen: after theme toggles, ensure an open state exists; if not, force it.
       const triggerOpen = ()=>{
         setTimeout(()=>{
           if(!isOpen(off)){
@@ -784,32 +783,32 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
       on(toggler, 'touchend', triggerOpen, {passive:true});
     }
 
-    / Close button handler (reliable)
+    // Close button handler (reliable)
     const closeBtn = off.querySelector('[data-close], .close, .ct-toggle-close, .close-button, [aria-label="Close"]');
     on(closeBtn, 'click touchend', function(e){
       e.preventDefault(); e.stopPropagation();
       closePanel(off);
     }, {passive:false});
 
-    / Overlay click closes
+    // Overlay click closes
     const ov = ensureOverlay();
     on(ov, 'click touchend', function(e){
       e.preventDefault(); e.stopPropagation();
       closePanel(off);
     }, {passive:false});
 
-    / ESC key closes
+    // ESC key closes
     on(document, 'keydown', function(e){
       if(e.key === 'Escape' && isOpen(off)){ e.preventDefault(); closePanel(off); }
     });
 
-    / Watch for open/close class changes and sync overlay/body
+    // Watch for open/close class changes and sync overlay/body
     const obs = new MutationObserver(()=>{
       if(isOpen(off)){ openPanel(off); } else { syncGlobalOpenState(false); showOverlay(false); }
     });
     obs.observe(off, {attributes:true, attributeFilter:['class']});
 
-    / Initial sync
+    // Initial sync
     stripAllInertOnce();
     if(isOpen(off)){ openPanel(off); } else { syncGlobalOpenState(false); showOverlay(false); }
   }
@@ -827,7 +826,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
     try { wire(off); } catch(_) {}
   }
 
-  / lightweight CSS
+  // lightweight CSS
   (function(){
     if (document.querySelector('style[data-nm-onefile]')) return;
     const s = document.createElement('style');
