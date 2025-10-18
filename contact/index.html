@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 02:23:35 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 02:32:52 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -12,143 +12,7 @@
 	<title>Contact &#8211; Fable Odyssey</title>
 <meta name='robots' content='max-image-preview:large' />
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
-	  <style id="nm-overlay-guard-css-v2">
-    /* 1) Neutralize common Blocksy/UI backdrops & overlays */
-    #search-modal,
-    #search-modal *,
-    .ct-drawer-backdrop,
-    .ct-modal-backdrop,
-    .ct-backdrop,
-    .site-overlay,
-    .drawer__overlay,
-    .offcanvas-overlay,
-    [class*="backdrop"],
-    [class*="overlay"] {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-    }
-
-    /* 2) Kill pseudo-element based dimming that exporters may capture */
-    html::before, html::after,
-    body::before, body::after,
-    .site::before, .site::after,
-    [id*="search"]::before, [id*="search"]::after,
-    [class*="drawer"]::before, [class*="drawer"]::after,
-    [class*="modal"]::before, [class*="modal"]::after {
-      content: none !important;
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-      background: transparent !important;
-      backdrop-filter: none !important;
-    }
-
-    /* 3) Ensure page isn’t visually dimmed */
-    html, body, #page, .site, #content, main, .ct-main {
-      filter: none !important;
-      opacity: 1 !important;
-      -webkit-filter: none !important;
-    }
-
-    /* 4) Re-enable scrolling if classes or inline styles locked it */
-    html, body {
-      overflow: auto !important;
-      position: static !important;
-    }
-
-    /* 5) If anything exported with [inert], neutralize it */
-    [inert] { pointer-events: auto !important; user-select: auto !important; }
-  </style>
-
-  <script id="nm-overlay-guard-js-v2">
-  (function() {
-    function clearOverlays() {
-      try {
-        var docEl = document.documentElement;
-        var body = document.body;
-
-        // Remove “page locked” classes if exporter caught them
-        ['ct-scroll-lock','ct-offcanvas-open','modal-open','overflow-hidden','ct-drawer-open']
-          .forEach(function(c){ docEl.classList.remove(c); body.classList.remove(c); });
-
-        // Remove inline overflow/filter/opacity locks
-        [docEl, body].forEach(function(el){
-          try {
-            el.style.removeProperty('overflow');
-            el.style.removeProperty('position');
-            el.style.removeProperty('filter');
-            el.style.removeProperty('opacity');
-          } catch(e) {}
-        });
-
-        // Remove known overlay/backdrop nodes
-        var killers = [
-          '#search-modal',
-          '.ct-drawer-backdrop',
-          '.ct-modal-backdrop',
-          '.ct-backdrop',
-          '.site-overlay',
-          '.drawer__overlay',
-          '.offcanvas-overlay'
-        ];
-        killers.forEach(function(sel){
-          document.querySelectorAll(sel).forEach(function(n){ n.remove(); });
-        });
-
-        // Generic sweep for any element that looks like a full-screen dimmer
-        document.querySelectorAll('*').forEach(function(n){
-          try {
-            var cs = getComputedStyle(n);
-            var isFullscreen =
-              (cs.position === 'fixed' || cs.position === 'absolute') &&
-              parseInt(cs.zIndex || '0', 10) >= 1000 &&
-              ( (parseInt(cs.width) >= window.innerWidth - 2 && parseInt(cs.height) >= window.innerHeight - 2) ||
-                (cs.top === '0px' && cs.left === '0px' && (cs.right === '0px' || cs.width === '100vw') )
-              );
-
-            var looksDim =
-              (cs.backgroundColor && /rgba\(\s*\d+,\s*\d+,\s*\d+,\s*(0\.[2-9]|1)\s*\)/i.test(cs.backgroundColor)) ||
-              (cs.backdropFilter && cs.backdropFilter !== 'none') ||
-              (cs.filter && cs.filter !== 'none');
-
-            if (isFullscreen && looksDim) {
-              n.parentNode && n.parentNode.removeChild(n);
-            }
-          } catch(e){}
-        });
-
-        // Clear inert
-        document.querySelectorAll('[inert]').forEach(function(n){ n.removeAttribute('inert'); });
-      } catch(e) {}
-    }
-
-    // Run ASAP
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', clearOverlays, { once: true });
-    } else {
-      clearOverlays();
-    }
-
-    // Multiple passes to catch late-inserted nodes
-    [60, 180, 600, 1200].forEach(function(ms){ setTimeout(clearOverlays, ms); });
-
-    // MutationObserver to kill overlays injected post-load
-    try {
-      var mo = new MutationObserver(function(mutations){
-        var needs = false;
-        for (var i=0; i<mutations.length; i++) {
-          if (mutations[i].addedNodes && mutations[i].addedNodes.length) { needs = true; break; }
-        }
-        if (needs) clearOverlays();
-      });
-      mo.observe(document.documentElement, { childList:true, subtree:true });
-    } catch(e){}
-  })();
-  </script>
-  <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
+	<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="http://localhost:10016/comments/feed/" />
 <link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global0f53.css?ver=54188' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
@@ -432,15 +296,7 @@
 
 <body class="wp-singular page-template-default page page-id-765 wp-custom-logo wp-embed-responsive wp-theme-blocksy wp-child-theme-blocksy-child stk--is-blocksy-theme stk-has-block-style-inheritance" data-link="type-2" data-prefix="single_page" data-header="type-1:sticky" data-footer="type-1:reveal" itemscope="itemscope" itemtype="https://schema.org/WebPage">
 
-  <script id="nm-overlay-guard-bodykick-v2">
-    (function(){ try {
-      document.documentElement.classList.remove('ct-scroll-lock','ct-offcanvas-open');
-      document.body.classList.remove('ct-scroll-lock','ct-offcanvas-open','modal-open');
-      document.documentElement.style.overflow = 'auto';
-      document.body.style.overflow = 'auto';
-    } catch(e){} })();
-  </script>
-  <a class="skip-link screen-reader-text" href="#main">Skip to content</a><div class="ct-drawer-canvas" data-location="start">
+<a class="skip-link screen-reader-text" href="#main">Skip to content</a><div class="ct-drawer-canvas" data-location="start">
 		<div id="search-modal" class="ct-panel" data-behaviour="modal" role="dialog" aria-label="Search modal" inert>
 			<div class="ct-panel-actions">
 				<button class="ct-toggle-close" data-type="type-1" aria-label="Close search modal">
@@ -836,5 +692,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 02:23:35 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 02:32:52 GMT -->
 </html>
