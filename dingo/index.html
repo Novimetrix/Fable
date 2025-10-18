@@ -492,7 +492,19 @@
 <div	class="site-branding"
 	data-id="logo"		itemscope="itemscope" itemtype="https://schema.org/Organization">
 
-			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" decoding="async" fetchpriority="high" srcset="/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp 1024w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-300x300.webp 300w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-150x150.webp 150w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-768x768.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></a>	
+			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" >
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    </a>	
 	</div>
 
 </div></div><div data-column="middle"><div data-items="">
@@ -512,7 +524,19 @@
 <div	class="site-branding"
 	data-id="logo"		>
 
-			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" decoding="async" srcset="/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp 1024w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-300x300.webp 300w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-150x150.webp 150w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-768x768.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></a>	
+			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" >
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    </a>	
 	</div>
 
 </div></div><div data-column="end" data-placements="1"><div data-items="primary">
@@ -705,7 +729,19 @@
 			</svg></span><span class="last-item" aria-current="page" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="3"><span itemprop="name">Dingo</span><meta itemprop="url" content="/dingo/"/></span>			</nav>
 
 		<h1 class="page-title" itemprop="headline">Dingo</h1><ul class="entry-meta" data-type="simple:slash" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a href="../author/fluke/index.html" tabindex="-1" class="ct-media-container-static"><img decoding="async" src="https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=50&amp;d=mm&amp;r=g" width="25" height="25" style="height:25px" alt="fluke"></a><a class="ct-meta-element-author" href="../author/fluke/index.html" title="Posts by fluke" rel="author" itemprop="url"><span itemprop="name">fluke</span></a></li></ul>		</header>
-	</div><figure class="ct-featured-image "><div class="ct-media-container"><img width="1045" height="1880" src="../wp-content/uploads/2021/06/menu-bg.jpg" class="attachment-full size-full wp-post-image" alt="" loading="lazy" decoding="async" srcset="/wp-content/uploads/2021/06/menu-bg.jpg 1045w, /wp-content/uploads/2021/06/menu-bg-167x300.jpg 167w, /wp-content/uploads/2021/06/menu-bg-569x1024.jpg 569w, /wp-content/uploads/2021/06/menu-bg-768x1382.jpg 768w, /wp-content/uploads/2021/06/menu-bg-854x1536.jpg 854w" sizes="auto, (max-width: 1045px) 100vw, 1045px" itemprop="image" style="aspect-ratio: 16/9;" /></div></figure>
+	</div><figure class="ct-featured-image "><div class="ct-media-container">
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    </div></figure>
 		
 		
 		<div class="entry-content is-layout-flow">
@@ -988,16 +1024,64 @@ form.addEventListener("submit", async e=>{
 	
 		<aside class="ct-hidden-sm ct-hidden-md" data-type="type-3" id="sidebar" itemtype="https://schema.org/WPSideBar" itemscope="itemscope"><div class="ct-sidebar" data-sticky="sidebar"><div class="ct-widget is-layout-flow widget_media_gallery" id="media_gallery-1"><h3 class="widget-title">Recent Works</h3><div id='gallery-1' class='gallery galleryid-812 gallery-columns-3 gallery-size-thumbnail'><figure class='gallery-item'>
 			<div class='gallery-icon landscape'>
-				<img width="150" height="150" src="../wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" srcset="/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-150x150.jpg 150w, /wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-300x300.jpg 300w, /wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-1024x1024.jpg 1024w, /wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-768x768.jpg 768w, /wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2.jpg 1200w" sizes="(max-width: 150px) 100vw, 150px" />
+				
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    
 			</div></figure><figure class='gallery-item'>
 			<div class='gallery-icon landscape'>
-				<img width="150" height="150" src="../wp-content/uploads/2025/10/hero3763-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" />
+				
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    
 			</div></figure><figure class='gallery-item'>
 			<div class='gallery-icon landscape'>
-				<img width="150" height="150" src="../wp-content/uploads/2021/06/video-1-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" loading="lazy" srcset="/wp-content/uploads/2021/06/video-1-150x150.jpg 150w, /wp-content/uploads/2021/06/video-1-300x300.jpg 300w, /wp-content/uploads/2021/06/video-1.jpg 422w" sizes="auto, (max-width: 150px) 100vw, 150px" />
+				
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    
 			</div></figure><figure class='gallery-item'>
 			<div class='gallery-icon landscape'>
-				<img width="150" height="150" src="../wp-content/uploads/2021/06/blog-img-6-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" loading="lazy" />
+				
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    
 			</div></figure>
 		</div>
 </div><div class="ct-widget is-layout-flow widget_block" id="block-1">
@@ -1009,7 +1093,19 @@ form.addEventListener("submit", async e=>{
 <div data-id="02394856" class="wp-block-blocksy-query"><div class="ct-query-template-default is-layout-flow"><article class="wp-block-post is-layout-flow post-763 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-133cf375 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Quisque" href="../quisque/index.html"><img loading="lazy" decoding="async" width="150" height="150" src="../wp-content/uploads/2021/06/blog-img-6-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" /></a></div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Quisque" href="../quisque/index.html">
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    </a></div>
 
 
 
@@ -1021,7 +1117,19 @@ form.addEventListener("submit", async e=>{
 </article><article class="wp-block-post is-layout-flow post-812 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-133cf375 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Dingo" href="index.html"><img loading="lazy" decoding="async" width="150" height="150" src="../wp-content/uploads/2021/06/menu-bg-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" /></a></div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Dingo" href="index.html">
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    </a></div>
 
 
 
@@ -1033,7 +1141,19 @@ form.addEventListener("submit", async e=>{
 </article><article class="wp-block-post is-layout-flow post-919 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-133cf375 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Marconi" href="../marconi/index.html"><img loading="lazy" decoding="async" width="150" height="150" src="../wp-content/uploads/2021/06/video-1-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" srcset="/wp-content/uploads/2021/06/video-1-150x150.jpg 150w, /wp-content/uploads/2021/06/video-1-300x300.jpg 300w, /wp-content/uploads/2021/06/video-1.jpg 422w" sizes="auto, (max-width: 150px) 100vw, 150px" /></a></div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Marconi" href="../marconi/index.html">
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    </a></div>
 
 
 

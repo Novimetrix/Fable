@@ -75,6 +75,25 @@ Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
     }
 
     # 3) Remove previously injected no-srcset runtime guard (if present)
+
+    # 3b) Ensure <img src> is root-relative (fix broken relative paths like 'wp-content/...')
+    $pat_rel_src = @'
+<img([^>]*?)\ssrc=["'](?!https?:|/|data:|#)([^"']+)["']([^>]*?)>
+'@
+    $html = $html -replace $pat_rel_src, {
+        $before = $args[0].Groups[1].Value
+        $url    = $args[0].Groups[2].Value
+        $after  = $args[0].Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            # Normalize leading ./ or ../ to a single root slash; safest for static export
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        "<img$before src=""$url""$after>"
+    }
+
     $html = $html -replace '<script[^>]*no-srcset\.js[^>]*></script>', ''
 
     if ($html -ne $orig) {
