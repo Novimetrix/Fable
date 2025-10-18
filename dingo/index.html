@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 04:57:16 GMT -->
+<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 05:02:59 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -151,7 +151,7 @@
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="http://localhost:10016/comments/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Dingo Comments Feed" href="http://localhost:10016/dingo/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global8598.css?ver=63395' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globalc857.css?ver=63690' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -472,6 +472,40 @@
 .ct-special-features .stk-block-column:hover {
 	transform: scale3d(1.05, 1.05, 1);
 }
+/* === NM — Global Dimming/Backdrop Kill (Static-safe) === */
+
+/* Known Blocksy/backdrop overlays */
+.ct-drawer-backdrop,
+.ct-modal-backdrop,
+.ct-backdrop,
+.ct-preloader,
+.ct-offcanvas,
+.ct-offcanvas-container,
+.ct-drawer--open,
+.ct-modal--open { display:none !important; opacity:0 !important; visibility:hidden !important; pointer-events:none !important; }
+
+/* Any class that *sounds* like an overlay/backdrop */
+[class*="backdrop"],
+[class*="overlay"],
+[class*="offcanvas"],
+[class*="drawer"],
+[class*="modal"] {
+  display:none !important; opacity:0 !important; visibility:hidden !important; pointer-events:none !important;
+}
+
+/* Pseudo-element darkeners */
+html::before, html::after,
+body::before, body::after,
+header::before, header::after,
+.site::before, .site::after {
+  content:none !important; display:none !important; opacity:0 !important; visibility:hidden !important; pointer-events:none !important; background:transparent !important; backdrop-filter:none !important;
+}
+
+/* Ensure no global dim / scroll lock */
+html, body { filter:none !important; -webkit-filter:none !important; opacity:1 !important; overflow:auto !important; position:static !important; }
+
+/* Exported with inert? Re-enable interaction */
+[inert] { pointer-events:auto !important; user-select:auto !important; }
 		</style>
 			</head>
 
@@ -1085,15 +1119,7 @@ form.addEventListener("submit", async e=>{
 <script type="speculationrules">
 {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/blocksy-child\/*","\/wp-content\/themes\/blocksy\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
-<div class="ct-drawer-canvas" data-location="end"><div class="ct-drawer-inner">
-	<a href="#main-container" class="ct-back-to-top ct-hidden-sm"
-		data-shape="circle"
-		data-alignment="right"
-		title="Go to top" aria-label="Go to top" hidden>
-
-		<svg class="ct-icon" width="15" height="15" viewBox="0 0 20 20"><path d="M10,0L9.4,0.6L0.8,9.1l1.2,1.2l7.1-7.1V20h1.7V3.3l7.1,7.1l1.2-1.2l-8.5-8.5L10,0z"/></svg>	</a>
-
-	</div></div><style id='core-block-supports-inline-css'>
+<style id='core-block-supports-inline-css'>
 .wp-elements-9b151e15d5a77cfdbf39b630d839dfce .wp-block-cover__background{background-color:#000000;opacity:0.5;}.wp-elements-5eb1ec1ae98a364d8b053a6fb7da87fa .wp-block-cover__background{background-color:#000000;opacity:0.5;}.wp-elements-04497b40f9fe26b40c88cf00ff301528 .wp-block-cover__background{background-color:#000000;opacity:0.5;}.wp-container-core-columns-is-layout-133cf375{flex-wrap:nowrap;gap:2em 20px;}
 </style>
 <script id="ct-scripts-js-extra">
@@ -1104,5 +1130,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 04:57:17 GMT -->
+<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 05:02:59 GMT -->
 </html>
