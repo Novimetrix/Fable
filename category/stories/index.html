@@ -70,11 +70,11 @@
         var docEl = document.documentElement;
         var body = document.body;
 
-        / Remove â€œpage lockedâ€ classes if exporter caught them
+        // Remove â€œpage lockedâ€ classes if exporter caught them
         ['ct-scroll-lock','ct-offcanvas-open','modal-open','overflow-hidden','ct-drawer-open']
           .forEach(function(c){ docEl.classList.remove(c); body.classList.remove(c); });
 
-        / Remove inline overflow/filter/opacity locks
+        // Remove inline overflow/filter/opacity locks
         [docEl, body].forEach(function(el){
           try {
             el.style.removeProperty('overflow');
@@ -84,7 +84,7 @@
           } catch(e) {}
         });
 
-        / Remove known overlay/backdrop nodes
+        // Remove known overlay/backdrop nodes
         var killers = [
           '#search-modal',
           '.ct-drawer-backdrop',
@@ -98,7 +98,7 @@
           document.querySelectorAll(sel).forEach(function(n){ n.remove(); });
         });
 
-        / Generic sweep for any element that looks like a full-screen dimmer
+        // Generic sweep for any element that looks like a full-screen dimmer
         document.querySelectorAll('*').forEach(function(n){
           try {
             var cs = getComputedStyle(n);
@@ -120,22 +120,22 @@
           } catch(e){}
         });
 
-        / Clear inert
+        // Clear inert
         document.querySelectorAll('[inert]').forEach(function(n){ n.removeAttribute('inert'); });
       } catch(e) {}
     }
 
-    / Run ASAP
+    // Run ASAP
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', clearOverlays, { once: true });
     } else {
       clearOverlays();
     }
 
-    / Multiple passes to catch late-inserted nodes
+    // Multiple passes to catch late-inserted nodes
     [60, 180, 600, 1200].forEach(function(ms){ setTimeout(clearOverlays, ms); });
 
-    / MutationObserver to kill overlays injected post-load
+    // MutationObserver to kill overlays injected post-load
     try {
       var mo = new MutationObserver(function(mutations){
         var needs = false;
@@ -242,10 +242,10 @@
 					var gutter = px('--gutter-left', 12);
 					var gap    = px('--gap', 10);
 
-					/ Equalized first-gap baseline: first rail starts at (indent - lineW)
+					// Equalized first-gap baseline: first rail starts at (indent - lineW)
 					var start  = Math.max(0, indent - lineW);
 
-					/ Ensure rails container
+					// Ensure rails container
 					var rails = card.querySelector(':scope > .fc-rails');
 					if (!rails){
 						rails = document.createElement('div');
@@ -253,14 +253,14 @@
 						card.appendChild(rails);
 					}
 
-					/ Pixel-snap the group
+					// Pixel-snap the group
 					var rect = card.getBoundingClientRect();
 					var groupLeft = rect.left + gutter;
 					var snappedGroup = snapAbs(groupLeft);
 					var delta = +(snappedGroup - groupLeft).toFixed(3);
 					rails.style.transform = 'translateX(' + delta + 'px)';
 
-					/ Width & bars
+					// Width & bars
 					var width = Math.max(0, start + (lvl * indent));
 					rails.style.width = width + 'px';
 
@@ -272,9 +272,9 @@
 						rails.appendChild(bar);
 					}
 
-					/ Position bars & compute snapped right edge of the last rail
+					// Position bars & compute snapped right edge of the last rail
 					var snappedW = snapAbs(lineW);
-					var lastEdgeAbs = groupLeft; / default if lvl==0
+					var lastEdgeAbs = groupLeft; // default if lvl==0
 					for (var k=0; k<lvl; k++){
 						var bar = rails.children[k];
 						var absDesired = groupLeft + delta + start + (k * indent);
@@ -288,19 +288,19 @@
 						}
 					}
 
-					/ Per-card pad-left so the gap to text is uniform:
+					// Per-card pad-left so the gap to text is uniform:
 					var padLeft = (lvl === 0) ? (gutter + gap) : ((lastEdgeAbs - rect.left) + gap);
 					card.style.setProperty('--pad-left', Math.round(padLeft) + 'px');
 
-					/ Keep --lines for other CSS if needed
+					// Keep --lines for other CSS if needed
 					card.style.setProperty('--lines', String(lvl));
 				}
 
-				/ Initial pass
+				// Initial pass
 				var cards = wrap.querySelectorAll('.commentCard');
 				for (var i=0; i<cards.length; i++) buildRails(cards[i]);
 
-				/ Keep in sync
+				// Keep in sync
 				if ('ResizeObserver' in window){
 					var ro = new ResizeObserver(function(entries){
 						for (var j=0; j<entries.length; j++) buildRails(entries[j].target);
@@ -329,7 +329,7 @@
 					mo.observe(wrap, { childList: true, subtree: true });
 				}
 
-				/ Manual rebuild hook
+				// Manual rebuild hook
 				window.__fcBuildRails = buildRails;
 				return true;
 			}
@@ -388,8 +388,7 @@
 	transform: scale3d(1.05, 1.05, 1);
 }
 		</style>
-			<script src="/assets/js/no-srcset.js"></script>
-</head>
+			</head>
 
 
 <body class="archive category category-stories category-9 wp-custom-logo wp-embed-responsive wp-theme-blocksy wp-child-theme-blocksy-child stk--is-blocksy-theme stk-has-block-style-inheritance" data-link="type-2" data-prefix="categories" data-header="type-1:sticky" data-footer="type-1:reveal">
@@ -408,7 +407,7 @@
 <div	class="site-branding"
 	data-id="logo"		itemscope="itemscope" itemtype="https://schema.org/Organization">
 
-			<a href="../../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" fetchpriority="high" /></a>	
+			<a href="../../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" fetchpriority="high" srcset="/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp 1024w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-300x300.webp 300w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-150x150.webp 150w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-768x768.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></a>	
 	</div>
 
 </div></div><div data-column="middle"><div data-items="">
@@ -428,7 +427,7 @@
 <div	class="site-branding"
 	data-id="logo"		>
 
-			<a href="../../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" /></a>	
+			<a href="../../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" srcset="/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp 1024w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-300x300.webp 300w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-150x150.webp 150w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-768x768.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></a>	
 	</div>
 
 </div></div><div data-column="end" data-placements="1"><div data-items="primary">
@@ -606,9 +605,9 @@
 <div class="hero-section is-width-constrained" data-type="type-1">
 			<header class="entry-header">
 			<h1 class="page-title" itemprop="headline"><span class="ct-title-label">Category</span> Stories</h1>		</header>
-	</div><div class="entries" data-archive="default" data-layout="grid" data-cards="boxed"><article class="entry-card card-content post-919 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><ul class="entry-meta" data-type="simple:slash" data-id="meta_1" ><li class="meta-categories" data-type="simple"><a href="index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="../../marconi/index.html" rel="bookmark">Marconi</a></h2><a class="ct-media-container boundless-image" href="../../marconi/index.html" aria-label="Marconi"><img width="422" height="422" src="../../wp-content/uploads/2021/06/video-1.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" itemprop="image" style="aspect-ratio: 4/3;" /></a><div class="entry-excerpt"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id volutpat lacus laoreet non. Eu ultrices vitae auctor eu augue ut lectus. In ante metus dictum at tempor commodo ullamcorperâ€¦</p>
-</div><ul class="entry-meta" data-type="simple:slash" data-id="meta_2" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a class="ct-meta-element-author" href="../../author/fluke/index.html" title="Posts by fluke" rel="author" itemprop="url"><span itemprop="name">fluke</span></a></li><li class="meta-date" itemprop="datePublished"><time class="ct-meta-element-date" datetime="2025-10-15T06:00:20+00:00">October 15, 2025</time></li></ul></article><article class="entry-card card-content post-812 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><ul class="entry-meta" data-type="simple:slash" data-id="meta_1" ><li class="meta-categories" data-type="simple"><a href="index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="../../dingo/index.html" rel="bookmark">Dingo</a></h2><a class="ct-media-container boundless-image" href="../../dingo/index.html" aria-label="Dingo"><img width="768" height="1382" src="../../wp-content/uploads/2021/06/menu-bg-768x1382.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" itemprop="image" style="aspect-ratio: 4/3;" /></a><div class="entry-excerpt"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id volutpat lacus laoreet non. Eu ultrices vitae auctor eu augue ut lectus. In ante metus dictum at tempor commodo ullamcorperâ€¦</p>
-</div><ul class="entry-meta" data-type="simple:slash" data-id="meta_2" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a class="ct-meta-element-author" href="../../author/fluke/index.html" title="Posts by fluke" rel="author" itemprop="url"><span itemprop="name">fluke</span></a></li><li class="meta-date" itemprop="datePublished"><time class="ct-meta-element-date" datetime="2025-10-14T09:41:30+00:00">October 14, 2025</time></li></ul></article><article class="entry-card card-content post-763 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><ul class="entry-meta" data-type="simple:slash" data-id="meta_1" ><li class="meta-categories" data-type="simple"><a href="index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="../../quisque/index.html" rel="bookmark">Quisque</a></h2><a class="ct-media-container boundless-image" href="../../quisque/index.html" aria-label="Quisque"><img width="768" height="637" src="../../wp-content/uploads/2021/06/blog-img-6-768x637.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" itemprop="image" style="aspect-ratio: 4/3;" /></a><div class="entry-excerpt"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id volutpat lacus laoreet non. Eu ultrices vitae auctor eu augue ut lectus. In ante metus dictum at tempor commodo ullamcorperâ€¦</p>
+	</div><div class="entries" data-archive="default" data-layout="grid" data-cards="boxed"><article class="entry-card card-content post-919 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><ul class="entry-meta" data-type="simple:slash" data-id="meta_1" ><li class="meta-categories" data-type="simple"><a href="index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="../../marconi/index.html" rel="bookmark">Marconi</a></h2><a class="ct-media-container boundless-image" href="../../marconi/index.html" aria-label="Marconi"><img width="422" height="422" src="../../wp-content/uploads/2021/06/video-1.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" srcset="/wp-content/uploads/2021/06/video-1.jpg 422w, /wp-content/uploads/2021/06/video-1-300x300.jpg 300w, /wp-content/uploads/2021/06/video-1-150x150.jpg 150w" sizes="auto, (max-width: 422px) 100vw, 422px" itemprop="image" style="aspect-ratio: 4/3;" /></a><div class="entry-excerpt"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id volutpat lacus laoreet non. Eu ultrices vitae auctor eu augue ut lectus. In ante metus dictum at tempor commodo ullamcorperâ€¦</p>
+</div><ul class="entry-meta" data-type="simple:slash" data-id="meta_2" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a class="ct-meta-element-author" href="../../author/fluke/index.html" title="Posts by fluke" rel="author" itemprop="url"><span itemprop="name">fluke</span></a></li><li class="meta-date" itemprop="datePublished"><time class="ct-meta-element-date" datetime="2025-10-15T06:00:20+00:00">October 15, 2025</time></li></ul></article><article class="entry-card card-content post-812 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><ul class="entry-meta" data-type="simple:slash" data-id="meta_1" ><li class="meta-categories" data-type="simple"><a href="index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="../../dingo/index.html" rel="bookmark">Dingo</a></h2><a class="ct-media-container boundless-image" href="../../dingo/index.html" aria-label="Dingo"><img width="768" height="1382" src="../../wp-content/uploads/2021/06/menu-bg-768x1382.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" srcset="/wp-content/uploads/2021/06/menu-bg-768x1382.jpg 768w, /wp-content/uploads/2021/06/menu-bg-167x300.jpg 167w, /wp-content/uploads/2021/06/menu-bg-569x1024.jpg 569w, /wp-content/uploads/2021/06/menu-bg-854x1536.jpg 854w, /wp-content/uploads/2021/06/menu-bg.jpg 1045w" sizes="auto, (max-width: 768px) 100vw, 768px" itemprop="image" style="aspect-ratio: 4/3;" /></a><div class="entry-excerpt"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id volutpat lacus laoreet non. Eu ultrices vitae auctor eu augue ut lectus. In ante metus dictum at tempor commodo ullamcorperâ€¦</p>
+</div><ul class="entry-meta" data-type="simple:slash" data-id="meta_2" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a class="ct-meta-element-author" href="../../author/fluke/index.html" title="Posts by fluke" rel="author" itemprop="url"><span itemprop="name">fluke</span></a></li><li class="meta-date" itemprop="datePublished"><time class="ct-meta-element-date" datetime="2025-10-14T09:41:30+00:00">October 14, 2025</time></li></ul></article><article class="entry-card card-content post-763 post type-post status-publish format-standard has-post-thumbnail hentry category-stories" data-reveal="bottom:no"><ul class="entry-meta" data-type="simple:slash" data-id="meta_1" ><li class="meta-categories" data-type="simple"><a href="index.html" rel="tag" class="ct-term-9">Stories</a></li></ul><h2 class="entry-title"><a href="../../quisque/index.html" rel="bookmark">Quisque</a></h2><a class="ct-media-container boundless-image" href="../../quisque/index.html" aria-label="Quisque"><img width="768" height="637" src="../../wp-content/uploads/2021/06/blog-img-6-768x637.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" srcset="/wp-content/uploads/2021/06/blog-img-6-768x637.jpg 768w, /wp-content/uploads/2021/06/blog-img-6-300x249.jpg 300w, /wp-content/uploads/2021/06/blog-img-6.jpg 820w" sizes="auto, (max-width: 768px) 100vw, 768px" itemprop="image" style="aspect-ratio: 4/3;" /></a><div class="entry-excerpt"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id volutpat lacus laoreet non. Eu ultrices vitae auctor eu augue ut lectus. In ante metus dictum at tempor commodo ullamcorperâ€¦</p>
 </div><ul class="entry-meta" data-type="simple:slash" data-id="meta_2" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a class="ct-meta-element-author" href="../../author/fluke/index.html" title="Posts by fluke" rel="author" itemprop="url"><span itemprop="name">fluke</span></a></li><li class="meta-date" itemprop="datePublished"><time class="ct-meta-element-date" datetime="2021-06-15T13:23:44+00:00">June 15, 2021</time></li><li class="meta-comments"><a href="../../quisque/index.html#comments">1 Comment</a></li></ul></article></div>	</section>
 
 	</div>
