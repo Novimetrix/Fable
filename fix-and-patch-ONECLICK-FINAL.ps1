@@ -1,21 +1,29 @@
-
-# === ONECLICK SAFE MODE (v3) ===
-# Goal: Keep Lighthouse score high while guaranteeing <img> has a valid src.
-# Changes from v2:
-#  - DO NOT remove loading="lazy" or decoding="async" (keeps offscreen images deferred)
-#  - When creating src from srcset, pick the SMALLEST candidate (best for mobile/LCP)
+# === ONECLICK FINAL (Unified v3) ===
+# Purpose: Guarantee every <img> has a valid src on first paint for static exports,
+# while preserving performance (lazy-loading, responsive srcset).
+# What it does:
+#   - Scrubs localhost/127.0.0.1 (and URL-encoded forms) to root-relative.
+#   - Converts lazy variants → real attrs:
+#       data-src, data-lazy-src, data-original, data-echo  → src
+#       data-srcset, data-lazy-srcset                      → srcset
+#   - If an <img> has only srcset, adds a src using the SMALLEST candidate.
+#   - Removes any previously injected no-srcset runtime guard.
+#   - Leaves loading="lazy" and decoding="async" intact (better LCP).
 param()
 
-Write-Host "Running ONECLICK SAFE MODE (v3)..."
+Write-Host "Running ONECLICK FINAL..."
 
 # Process all HTML files
 Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
     $path = $_.FullName
-    $html = Get-Content $path -Raw
+    $orig = Get-Content $path -Raw
+    $html = $orig
 
-    # 0) Scrub localhost/127.0.0.1 to root-relative (safe)
+    # 0) Scrub localhost/127.0.0.1 (plain & URL-encoded) to root-relative
     $html = $html -replace 'https?://localhost(?::\d+)?', ''
     $html = $html -replace 'https?://127\.0\.0\.1(?::\d+)?', ''
+    $html = $html -replace 'http%3A%2F%2Flocalhost(?::\d+)?', ''
+    $html = $html -replace 'http%3A%2F%2F127%2E0%2E0%2E1(?::\d+)?', ''
 
     # 1) data-* → real attributes (wide net, safe)
     $pat_src  = @'
@@ -40,7 +48,7 @@ Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
 '@
     $html = $html -replace $pat_missing_src, {
         $set = $args[0].Groups[2].Value
-        # Split srcset into parts and choose the smallest descriptor (w or x). Fallback to first URL.
+        # Choose smallest candidate by descriptor (w/x). Fallback to first URL.
         $bestUrl = $null
         $bestVal = [double]::PositiveInfinity
         foreach($part in ($set -split ',')) {
@@ -53,7 +61,7 @@ Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
                 if($desc -match '^(\d+(?:\.\d+)?)w$') {
                     $val = [double]$matches[1]
                 } elseif($desc -match '^(\d+(?:\.\d+)?)x$') {
-                    $val = [double]$matches[1] * 1000  # treat 1x ~ 1000w to rank below any 'w' if both exist
+                    $val = [double]$matches[1] * 1000  # rough scale
                 } else {
                     $val = 1e9
                 }
@@ -69,8 +77,6 @@ Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
     # 3) Remove previously injected no-srcset runtime guard (if present)
     $html = $html -replace '<script[^>]*no-srcset\.js[^>]*></script>', ''
 
-    # Save
-    $orig = Get-Content $path -Raw
     if ($html -ne $orig) {
         Set-Content $path $html -Encoding UTF8
         Write-Host ("Changed: {0}" -f $path)
@@ -82,7 +88,7 @@ $left_lazy = (Get-ChildItem -Recurse -File -Include *.html | % { (Get-Content $_
 $missing_src = (Get-ChildItem -Recurse -File -Include *.html | % { (Get-Content $_.FullName -Raw) } | Select-String -Pattern '<img(?![^>]*\ssrc=)[^>]*>' -AllMatches | Measure-Object).Count
 
 Write-Host ""
-Write-Host "SAFE v3 Summary:"
+Write-Host "ONECLICK FINAL Summary:"
 Write-Host ("  remaining lazy attrs (should be 0 or very low): {0}" -f $left_lazy)
 Write-Host ("  <img> without src (should be 0): {0}" -f $missing_src)
 Write-Host ""
