@@ -181,8 +181,8 @@
 <meta name="generator" content="WordPress 6.8.3" />
 <link rel="canonical" href="index.html" />
 <link rel='shortlink' href='../index6215.html?p=765' />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=%3A10016%2Fcontact%2F" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%3A10016%2Fcontact%2F&amp;format=xml" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A10016%2Fcontact%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A10016%2Fcontact%2F&amp;format=xml" />
 <noscript><link rel='stylesheet' href='../wp-content/themes/blocksy/static/bundle/no-scripts.min.css' type='text/css'></noscript>
 
 <style class="stk-block-styles">.stk-6090630{height:50px !important;}.stk-a5bc981{margin-bottom:0px !important;}.stk-a5bc981-column{--stk-column-gap:35px !important;row-gap:35px !important;}.stk-92b5a22-container,.stk-5dedb98-container{margin-top:0px !important;margin-right:0px !important;margin-bottom:0px !important;margin-left:0px !important;}.stk-92b5a22,.stk-5dedb98{background-color:var(--theme-palette-color-8, #ffffff) !important;border-radius:8px !important;overflow:hidden !important;padding-top:80px !important;padding-right:70px !important;padding-bottom:80px !important;padding-left:70px !important;}.stk-92b5a22:before,.stk-5dedb98:before{background-color:var(--theme-palette-color-8, #ffffff) !important;}.stk-d34828e,.stk-a02b7b8{margin-bottom:30px !important;}:is(.stk-d34828e, .stk-a02b7b8) .stk--svg-wrapper .stk--inner-svg svg:last-child{height:45px !important;width:45px !important;}:is(.stk-d34828e, .stk-a02b7b8) .stk--svg-wrapper .stk--inner-svg svg:last-child,:is(.stk-d34828e, .stk-a02b7b8) .stk--svg-wrapper .stk--inner-svg svg:last-child :is(g, path, rect, polygon, ellipse){fill:var(--theme-palette-color-4, #ffffff) !important;}.stk-9334345,.stk-583731d{margin-bottom:16px !important;}:is(.stk-9334345, .stk-583731d) .stk-block-heading__text{font-weight:800 !important;}.stk-6a8268d{height:150px !important;}.stk-92b5a22:hover,.stk-92b5a22:hover:before,.stk-5dedb98:hover,.stk-5dedb98:hover:before{background-color:var(--theme-palette-color-1, #e65616) !important;}@media screen and (max-width:999px){.stk-a5bc981-column{--stk-column-gap:25px !important;}.stk-92b5a22,.stk-5dedb98{padding-top:40px !important;padding-right:25px !important;padding-bottom:40px !important;padding-left:25px !important;}:is(.stk-d34828e, .stk-a02b7b8) .stk--svg-wrapper .stk--inner-svg svg:last-child{height:30px !important;width:30px !important;}.stk-6a8268d{height:100px !important;}}@media screen and (max-width:689px){.stk-6a8268d{height:50px !important;}}</style><style id="comments-title-spacing-universal-100">
@@ -446,19 +446,7 @@
 <div	class="site-branding"
 	data-id="logo"		itemscope="itemscope" itemtype="https://schema.org/Organization">
 
-			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" >
-        $before = $args[0].Groups[1].Value
-        $url    = $args[0].Groups[2].Value
-        $after  = $args[0].Groups[3].Value
-        if($url -match '^(?:\./|\.\./)+') {
-            # Normalize leading ./ or ../ to a single root slash; safest for static export
-            $url = $url -replace '^(?:\./|\.\./)+', ''
-        }
-        if($url -notmatch '^(?:https?:|/|data:|#)') {
-            $url = '/' + $url
-        }
-        "<img$before src=""$url""$after>"
-    </a>	
+			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" decoding="async" fetchpriority="high" srcset="/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp 1024w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-300x300.webp 300w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-150x150.webp 150w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-768x768.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></a>	
 	</div>
 
 </div></div><div data-column="middle"><div data-items="">
@@ -478,19 +466,7 @@
 <div	class="site-branding"
 	data-id="logo"		>
 
-			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" >
-        $before = $args[0].Groups[1].Value
-        $url    = $args[0].Groups[2].Value
-        $after  = $args[0].Groups[3].Value
-        if($url -match '^(?:\./|\.\./)+') {
-            # Normalize leading ./ or ../ to a single root slash; safest for static export
-            $url = $url -replace '^(?:\./|\.\./)+', ''
-        }
-        if($url -notmatch '^(?:https?:|/|data:|#)') {
-            $url = '/' + $url
-        }
-        "<img$before src=""$url""$after>"
-    </a>	
+			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" decoding="async" srcset="/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp 1024w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-300x300.webp 300w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-150x150.webp 150w, /wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-768x768.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></a>	
 	</div>
 
 </div></div><div data-column="end" data-placements="1"><div data-items="primary">
