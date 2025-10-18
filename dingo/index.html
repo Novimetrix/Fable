@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 02:39:04 GMT -->
+<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 04:09:13 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -12,10 +12,146 @@
 	<title>Dingo &#8211; Fable Odyssey</title>
 <meta name='robots' content='max-image-preview:large' />
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
-	<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="http://localhost:10016/comments/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Dingo Comments Feed" href="http://localhost:10016/dingo/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global0f53.css?ver=54188' media='all' />
+	  <style id="nm-overlay-guard-css-v2">
+    /* 1) Neutralize common Blocksy/UI backdrops & overlays */
+    #search-modal,
+    #search-modal *,
+    .ct-drawer-backdrop,
+    .ct-modal-backdrop,
+    .ct-backdrop,
+    .site-overlay,
+    .drawer__overlay,
+    .offcanvas-overlay,
+    [class*="backdrop"],
+    [class*="overlay"] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    /* 2) Kill pseudo-element based dimming that exporters may capture */
+    html::before, html::after,
+    body::before, body::after,
+    .site::before, .site::after,
+    [id*="search"]::before, [id*="search"]::after,
+    [class*="drawer"]::before, [class*="drawer"]::after,
+    [class*="modal"]::before, [class*="modal"]::after {
+      content: none !important;
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+    }
+
+    /* 3) Ensure page isn’t visually dimmed */
+    html, body, #page, .site, #content, main, .ct-main {
+      filter: none !important;
+      opacity: 1 !important;
+      -webkit-filter: none !important;
+    }
+
+    /* 4) Re-enable scrolling if classes or inline styles locked it */
+    html, body {
+      overflow: auto !important;
+      position: static !important;
+    }
+
+    /* 5) If anything exported with [inert], neutralize it */
+    [inert] { pointer-events: auto !important; user-select: auto !important; }
+  </style>
+
+  <script id="nm-overlay-guard-js-v2">
+  (function() {
+    function clearOverlays() {
+      try {
+        var docEl = document.documentElement;
+        var body = document.body;
+
+        / Remove “page locked” classes if exporter caught them
+        ['ct-scroll-lock','ct-offcanvas-open','modal-open','overflow-hidden','ct-drawer-open']
+          .forEach(function(c){ docEl.classList.remove(c); body.classList.remove(c); });
+
+        / Remove inline overflow/filter/opacity locks
+        [docEl, body].forEach(function(el){
+          try {
+            el.style.removeProperty('overflow');
+            el.style.removeProperty('position');
+            el.style.removeProperty('filter');
+            el.style.removeProperty('opacity');
+          } catch(e) {}
+        });
+
+        / Remove known overlay/backdrop nodes
+        var killers = [
+          '#search-modal',
+          '.ct-drawer-backdrop',
+          '.ct-modal-backdrop',
+          '.ct-backdrop',
+          '.site-overlay',
+          '.drawer__overlay',
+          '.offcanvas-overlay'
+        ];
+        killers.forEach(function(sel){
+          document.querySelectorAll(sel).forEach(function(n){ n.remove(); });
+        });
+
+        / Generic sweep for any element that looks like a full-screen dimmer
+        document.querySelectorAll('*').forEach(function(n){
+          try {
+            var cs = getComputedStyle(n);
+            var isFullscreen =
+              (cs.position === 'fixed' || cs.position === 'absolute') &&
+              parseInt(cs.zIndex || '0', 10) >= 1000 &&
+              ( (parseInt(cs.width) >= window.innerWidth - 2 && parseInt(cs.height) >= window.innerHeight - 2) ||
+                (cs.top === '0px' && cs.left === '0px' && (cs.right === '0px' || cs.width === '100vw') )
+              );
+
+            var looksDim =
+              (cs.backgroundColor && /rgba\(\s*\d+,\s*\d+,\s*\d+,\s*(0\.[2-9]|1)\s*\)/i.test(cs.backgroundColor)) ||
+              (cs.backdropFilter && cs.backdropFilter !== 'none') ||
+              (cs.filter && cs.filter !== 'none');
+
+            if (isFullscreen && looksDim) {
+              n.parentNode && n.parentNode.removeChild(n);
+            }
+          } catch(e){}
+        });
+
+        / Clear inert
+        document.querySelectorAll('[inert]').forEach(function(n){ n.removeAttribute('inert'); });
+      } catch(e) {}
+    }
+
+    / Run ASAP
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', clearOverlays, { once: true });
+    } else {
+      clearOverlays();
+    }
+
+    / Multiple passes to catch late-inserted nodes
+    [60, 180, 600, 1200].forEach(function(ms){ setTimeout(clearOverlays, ms); });
+
+    / MutationObserver to kill overlays injected post-load
+    try {
+      var mo = new MutationObserver(function(mutations){
+        var needs = false;
+        for (var i=0; i<mutations.length; i++) {
+          if (mutations[i].addedNodes && mutations[i].addedNodes.length) { needs = true; break; }
+        }
+        if (needs) clearOverlays();
+      });
+      mo.observe(document.documentElement, { childList:true, subtree:true });
+    } catch(e){}
+  })();
+  </script>
+  <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Dingo Comments Feed" href="/dingo/feed/" />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global863f.css?ver=57957' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -39,16 +175,16 @@
 :root :where(.wp-block-pullquote){font-size: clamp(0.984em, 0.984rem + ((1vw - 0.2em) * 0.645), 1.5em);line-height: 1.6;}
 </style>
 <link rel='stylesheet' id='parent-style-css' href='../wp-content/themes/blocksy/style32d4.css?ver=6.8.3' media='all' />
-<link rel='stylesheet' id='ct-main-styles-css' href='../wp-content/themes/blocksy/static/bundle/main.min4e10.css?ver=2.1.16' media='all' />
-<link rel='stylesheet' id='ct-page-title-styles-css' href='../wp-content/themes/blocksy/static/bundle/page-title.min4e10.css?ver=2.1.16' media='all' />
-<link rel='stylesheet' id='ct-sidebar-styles-css' href='../wp-content/themes/blocksy/static/bundle/sidebar.min4e10.css?ver=2.1.16' media='all' />
-<link rel='stylesheet' id='ct-stackable-styles-css' href='../wp-content/themes/blocksy/static/bundle/stackable.min4e10.css?ver=2.1.16' media='all' />
-<link rel="https://api.w.org/" href="http://localhost:10016/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="http://localhost:10016/wp-json/wp/v2/posts/812" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost:10016/xmlrpc.php?rsd" />
+<link rel='stylesheet' id='ct-main-styles-css' href='../wp-content/themes/blocksy/static/bundle/main.min6472.css?ver=2.1.17' media='all' />
+<link rel='stylesheet' id='ct-page-title-styles-css' href='../wp-content/themes/blocksy/static/bundle/page-title.min6472.css?ver=2.1.17' media='all' />
+<link rel='stylesheet' id='ct-sidebar-styles-css' href='../wp-content/themes/blocksy/static/bundle/sidebar.min6472.css?ver=2.1.17' media='all' />
+<link rel='stylesheet' id='ct-stackable-styles-css' href='../wp-content/themes/blocksy/static/bundle/stackable.min6472.css?ver=2.1.17' media='all' />
+<link rel="https://api.w.org/" href="/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/posts/812" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 6.8.3" />
 <link rel="canonical" href="index.html" />
 <link rel='shortlink' href='../index4e02.html?p=812' />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="http://localhost:10016/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A10016%2Fdingo%2F" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="http://localhost:10016/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A10016%2Fdingo%2F&amp;format=xml" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=/dingo%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=/dingo%2F&amp;format=xml" />
 <noscript><link rel='stylesheet' href='../wp-content/themes/blocksy/static/bundle/no-scripts.min.css' type='text/css'></noscript>
 
 <style class="stk-block-styles">.stk-94732ce{height:200px !important;}</style><style id="comments-title-spacing-universal-100">
@@ -191,10 +327,10 @@
 					var gutter = px('--gutter-left', 12);
 					var gap    = px('--gap', 10);
 
-					// Equalized first-gap baseline: first rail starts at (indent - lineW)
+					/ Equalized first-gap baseline: first rail starts at (indent - lineW)
 					var start  = Math.max(0, indent - lineW);
 
-					// Ensure rails container
+					/ Ensure rails container
 					var rails = card.querySelector(':scope > .fc-rails');
 					if (!rails){
 						rails = document.createElement('div');
@@ -202,14 +338,14 @@
 						card.appendChild(rails);
 					}
 
-					// Pixel-snap the group
+					/ Pixel-snap the group
 					var rect = card.getBoundingClientRect();
 					var groupLeft = rect.left + gutter;
 					var snappedGroup = snapAbs(groupLeft);
 					var delta = +(snappedGroup - groupLeft).toFixed(3);
 					rails.style.transform = 'translateX(' + delta + 'px)';
 
-					// Width & bars
+					/ Width & bars
 					var width = Math.max(0, start + (lvl * indent));
 					rails.style.width = width + 'px';
 
@@ -221,9 +357,9 @@
 						rails.appendChild(bar);
 					}
 
-					// Position bars & compute snapped right edge of the last rail
+					/ Position bars & compute snapped right edge of the last rail
 					var snappedW = snapAbs(lineW);
-					var lastEdgeAbs = groupLeft; // default if lvl==0
+					var lastEdgeAbs = groupLeft; / default if lvl==0
 					for (var k=0; k<lvl; k++){
 						var bar = rails.children[k];
 						var absDesired = groupLeft + delta + start + (k * indent);
@@ -237,19 +373,19 @@
 						}
 					}
 
-					// Per-card pad-left so the gap to text is uniform:
+					/ Per-card pad-left so the gap to text is uniform:
 					var padLeft = (lvl === 0) ? (gutter + gap) : ((lastEdgeAbs - rect.left) + gap);
 					card.style.setProperty('--pad-left', Math.round(padLeft) + 'px');
 
-					// Keep --lines for other CSS if needed
+					/ Keep --lines for other CSS if needed
 					card.style.setProperty('--lines', String(lvl));
 				}
 
-				// Initial pass
+				/ Initial pass
 				var cards = wrap.querySelectorAll('.commentCard');
 				for (var i=0; i<cards.length; i++) buildRails(cards[i]);
 
-				// Keep in sync
+				/ Keep in sync
 				if ('ResizeObserver' in window){
 					var ro = new ResizeObserver(function(entries){
 						for (var j=0; j<entries.length; j++) buildRails(entries[j].target);
@@ -278,7 +414,7 @@
 					mo.observe(wrap, { childList: true, subtree: true });
 				}
 
-				// Manual rebuild hook
+				/ Manual rebuild hook
 				window.__fcBuildRails = buildRails;
 				return true;
 			}
@@ -337,12 +473,21 @@
 	transform: scale3d(1.05, 1.05, 1);
 }
 		</style>
-			</head>
+			<script src="/assets/js/no-srcset.js"></script>
+</head>
 
 
 <body class="wp-singular post-template-default single single-post postid-812 single-format-standard wp-custom-logo wp-embed-responsive wp-theme-blocksy wp-child-theme-blocksy-child stk--is-blocksy-theme stk-has-block-style-inheritance" data-link="type-2" data-prefix="single_blog_post" data-header="type-1:sticky" data-footer="type-1:reveal" itemscope="itemscope" itemtype="https://schema.org/Blog">
 
-<a class="skip-link screen-reader-text" href="#main">Skip to content</a><div class="ct-drawer-canvas" data-location="start">
+  <script id="nm-overlay-guard-bodykick-v2">
+    (function(){ try {
+      document.documentElement.classList.remove('ct-scroll-lock','ct-offcanvas-open');
+      document.body.classList.remove('ct-scroll-lock','ct-offcanvas-open','modal-open');
+      document.documentElement.style.overflow = 'auto';
+      document.body.style.overflow = 'auto';
+    } catch(e){} })();
+  </script>
+  <a class="skip-link screen-reader-text" href="#main">Skip to content</a><div class="ct-drawer-canvas" data-location="start">
 		<div id="search-modal" class="ct-panel" data-behaviour="modal" role="dialog" aria-label="Search modal" inert>
 			<div class="ct-panel-actions">
 				<button class="ct-toggle-close" data-type="type-1" aria-label="Close search modal">
@@ -352,7 +497,7 @@
 			<div class="ct-panel-content">
 				
 
-<form role="search" method="get" class="ct-search-form"  action="http://localhost:10016/" aria-haspopup="listbox" data-live-results="thumbs">
+<form role="search" method="get" class="ct-search-form"  action="/" aria-haspopup="listbox" data-live-results="thumbs">
 
 	<input type="search" class="modal-field" placeholder="Search" value="" name="s" autocomplete="off" title="Search for..." aria-label="Search for...">
 
@@ -401,7 +546,7 @@
 <div	class="site-branding"
 	data-id="logo"		itemscope="itemscope" itemtype="https://schema.org/Organization">
 
-			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" decoding="async" fetchpriority="high" srcset="http://localhost:10016/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp 1024w, http://localhost:10016/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-300x300.webp 300w, http://localhost:10016/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-150x150.webp 150w, http://localhost:10016/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-768x768.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></a>	
+			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" decoding="async" fetchpriority="high" /></a>	
 	</div>
 
 </div></div><div data-column="middle"><div data-items="">
@@ -428,14 +573,26 @@
 
 	<span class="ct-label ct-hidden-sm ct-hidden-md ct-hidden-lg" aria-hidden="true">Search</span>
 
-	<svg class="ct-icon" aria-hidden="true" width="15" height="15" viewBox="0 0 15 15"><path d="M14.8,13.7L12,11c0.9-1.2,1.5-2.6,1.5-4.2c0-3.7-3-6.8-6.8-6.8S0,3,0,6.8s3,6.8,6.8,6.8c1.6,0,3.1-0.6,4.2-1.5l2.8,2.8c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2C15.1,14.5,15.1,14,14.8,13.7z M1.5,6.8c0-2.9,2.4-5.2,5.2-5.2S12,3.9,12,6.8S9.6,12,6.8,12S1.5,9.6,1.5,6.8z"/></svg></button>
-</div></div></div></div></div></div></div><div data-device="mobile"><div class="ct-sticky-container"><div data-sticky="shrink"><div data-row="middle" data-column-set="2"><div class="ct-container-fluid"><div data-column="start" data-placements="1"><div data-items="primary">
+	<svg class="ct-icon ct-hidden-sm ct-hidden-md" aria-hidden="true" width="15" height="15" viewBox="0 0 15 15"><path d="M14.8,13.7L12,11c0.9-1.2,1.5-2.6,1.5-4.2c0-3.7-3-6.8-6.8-6.8S0,3,0,6.8s3,6.8,6.8,6.8c1.6,0,3.1-0.6,4.2-1.5l2.8,2.8c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2C15.1,14.5,15.1,14,14.8,13.7z M1.5,6.8c0-2.9,2.4-5.2,5.2-5.2S12,3.9,12,6.8S9.6,12,6.8,12S1.5,9.6,1.5,6.8z"/></svg></button>
+</div></div></div></div></div></div></div><div data-device="mobile"><div class="ct-sticky-container"><div data-sticky="shrink"><div data-row="middle" data-column-set="3"><div class="ct-container-fluid"><div data-column="start" data-placements="1"><div data-items="primary">
 <div	class="site-branding"
 	data-id="logo"		>
 
-			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" decoding="async" srcset="http://localhost:10016/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp 1024w, http://localhost:10016/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-300x300.webp 300w, http://localhost:10016/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-150x150.webp 150w, http://localhost:10016/wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM-768x768.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></a>	
+			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="1024" height="1024" src="../wp-content/uploads/2025/10/ChatGPT-Image-Oct-16-2025-08_07_53-PM.webp" class="default-logo" alt="Fable Odyssey" decoding="async" /></a>	
 	</div>
 
+</div></div><div data-column="middle"><div data-items="">
+<button
+	class="ct-header-search ct-toggle "
+	data-toggle-panel="#search-modal"
+	aria-controls="search-modal"
+	aria-label="Search"
+	data-label="left"
+	data-id="search">
+
+	<span class="ct-label ct-hidden-sm ct-hidden-md ct-hidden-lg" aria-hidden="true">Search</span>
+
+	<svg class="ct-icon ct-hidden-sm ct-hidden-md" aria-hidden="true" width="15" height="15" viewBox="0 0 15 15"><path d="M14.8,13.7L12,11c0.9-1.2,1.5-2.6,1.5-4.2c0-3.7-3-6.8-6.8-6.8S0,3,0,6.8s3,6.8,6.8,6.8c1.6,0,3.1-0.6,4.2-1.5l2.8,2.8c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2C15.1,14.5,15.1,14,14.8,13.7z M1.5,6.8c0-2.9,2.4-5.2,5.2-5.2S12,3.9,12,6.8S9.6,12,6.8,12S1.5,9.6,1.5,6.8z"/></svg></button>
 </div></div><div data-column="end" data-placements="1"><div data-items="primary">
 <div
 	class="ct-header-text "
@@ -601,18 +758,6 @@
 </script>
 	</div>
 </div>
-
-<button
-	class="ct-header-search ct-toggle "
-	data-toggle-panel="#search-modal"
-	aria-controls="search-modal"
-	aria-label="Search"
-	data-label="left"
-	data-id="search">
-
-	<span class="ct-label ct-hidden-sm ct-hidden-md ct-hidden-lg" aria-hidden="true">Search</span>
-
-	<svg class="ct-icon" aria-hidden="true" width="15" height="15" viewBox="0 0 15 15"><path d="M14.8,13.7L12,11c0.9-1.2,1.5-2.6,1.5-4.2c0-3.7-3-6.8-6.8-6.8S0,3,0,6.8s3,6.8,6.8,6.8c1.6,0,3.1-0.6,4.2-1.5l2.8,2.8c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2C15.1,14.5,15.1,14,14.8,13.7z M1.5,6.8c0-2.9,2.4-5.2,5.2-5.2S12,3.9,12,6.8S9.6,12,6.8,12S1.5,9.6,1.5,6.8z"/></svg></button>
 </div></div></div></div></div></div></div></header>
 	<main id="main" class="site-main hfeed" itemscope="itemscope" itemtype="https://schema.org/CreativeWork">
 
@@ -631,14 +776,14 @@
 <div class="hero-section is-width-constrained" data-type="type-1">
 			<header class="entry-header">
 			
-			<nav class="ct-breadcrumbs" data-source="default"  itemscope="" itemtype="https://schema.org/BreadcrumbList"><span class="first-item" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="1"><a href="../index.html" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="url" content="http://localhost:10016/"/><svg class="ct-separator" fill="currentColor" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
+			<nav class="ct-breadcrumbs" data-source="default"  itemscope="" itemtype="https://schema.org/BreadcrumbList"><span class="first-item" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="1"><a href="../index.html" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="url" content="/"/><svg class="ct-separator" fill="currentColor" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
 				<path d="M2,6.9L4.8,4L2,1.1L2.6,0l4,4l-4,4L2,6.9z"/>
-			</svg></span><span class="item-0"itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="2"><a href="../category/stories/index.html" itemprop="item"><span itemprop="name">Stories</span></a><meta itemprop="url" content="http://localhost:10016/category/stories/"/><svg class="ct-separator" fill="currentColor" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
+			</svg></span><span class="item-0"itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="2"><a href="../category/stories/index.html" itemprop="item"><span itemprop="name">Stories</span></a><meta itemprop="url" content="/category/stories/"/><svg class="ct-separator" fill="currentColor" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
 				<path d="M2,6.9L4.8,4L2,1.1L2.6,0l4,4l-4,4L2,6.9z"/>
-			</svg></span><span class="last-item" aria-current="page" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="3"><span itemprop="name">Dingo</span><meta itemprop="url" content="http://localhost:10016/dingo/"/></span>			</nav>
+			</svg></span><span class="last-item" aria-current="page" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="3"><span itemprop="name">Dingo</span><meta itemprop="url" content="/dingo/"/></span>			</nav>
 
 		<h1 class="page-title" itemprop="headline">Dingo</h1><ul class="entry-meta" data-type="simple:slash" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a href="../author/fluke/index.html" tabindex="-1" class="ct-media-container-static"><img decoding="async" src="https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=50&amp;d=mm&amp;r=g" width="25" height="25" style="height:25px" alt="fluke"></a><a class="ct-meta-element-author" href="../author/fluke/index.html" title="Posts by fluke" rel="author" itemprop="url"><span itemprop="name">fluke</span></a></li></ul>		</header>
-	</div><figure class="ct-featured-image "><div class="ct-media-container"><img width="1045" height="1880" src="../wp-content/uploads/2021/06/menu-bg.jpg" class="attachment-full size-full wp-post-image" alt="" loading="lazy" decoding="async" srcset="http://localhost:10016/wp-content/uploads/2021/06/menu-bg.jpg 1045w, http://localhost:10016/wp-content/uploads/2021/06/menu-bg-167x300.jpg 167w, http://localhost:10016/wp-content/uploads/2021/06/menu-bg-569x1024.jpg 569w, http://localhost:10016/wp-content/uploads/2021/06/menu-bg-768x1382.jpg 768w, http://localhost:10016/wp-content/uploads/2021/06/menu-bg-854x1536.jpg 854w" sizes="auto, (max-width: 1045px) 100vw, 1045px" itemprop="image" style="aspect-ratio: 16/9;" /></div></figure>
+	</div><figure class="ct-featured-image "><div class="ct-media-container"><img width="1045" height="1880" src="../wp-content/uploads/2021/06/menu-bg.jpg" class="attachment-full size-full wp-post-image" alt="" loading="lazy" decoding="async" itemprop="image" style="aspect-ratio: 16/9;" /></div></figure>
 		
 		
 		<div class="entry-content is-layout-flow">
@@ -921,13 +1066,13 @@ form.addEventListener("submit", async e=>{
 	
 		<aside class="ct-hidden-sm ct-hidden-md" data-type="type-3" id="sidebar" itemtype="https://schema.org/WPSideBar" itemscope="itemscope"><div class="ct-sidebar" data-sticky="sidebar"><div class="ct-widget is-layout-flow widget_media_gallery" id="media_gallery-1"><h3 class="widget-title">Recent Works</h3><div id='gallery-1' class='gallery galleryid-812 gallery-columns-3 gallery-size-thumbnail'><figure class='gallery-item'>
 			<div class='gallery-icon landscape'>
-				<img width="150" height="150" src="../wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" srcset="http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-150x150.jpg 150w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-300x300.jpg 300w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-1024x1024.jpg 1024w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-768x768.jpg 768w, http://localhost:10016/wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2.jpg 1200w" sizes="(max-width: 150px) 100vw, 150px" />
+				<img width="150" height="150" src="../wp-content/uploads/2025/10/Lucid_Origin_A_cinematic_poetic_vision_of_reincarnation__a_lon_2-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" />
 			</div></figure><figure class='gallery-item'>
 			<div class='gallery-icon landscape'>
 				<img width="150" height="150" src="../wp-content/uploads/2025/10/hero3763-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" />
 			</div></figure><figure class='gallery-item'>
 			<div class='gallery-icon landscape'>
-				<img width="150" height="150" src="../wp-content/uploads/2021/06/video-1-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" loading="lazy" srcset="http://localhost:10016/wp-content/uploads/2021/06/video-1-150x150.jpg 150w, http://localhost:10016/wp-content/uploads/2021/06/video-1-300x300.jpg 300w, http://localhost:10016/wp-content/uploads/2021/06/video-1.jpg 422w" sizes="auto, (max-width: 150px) 100vw, 150px" />
+				<img width="150" height="150" src="../wp-content/uploads/2021/06/video-1-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" loading="lazy" />
 			</div></figure><figure class='gallery-item'>
 			<div class='gallery-icon landscape'>
 				<img width="150" height="150" src="../wp-content/uploads/2021/06/blog-img-6-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" decoding="async" loading="lazy" />
@@ -966,7 +1111,7 @@ form.addEventListener("submit", async e=>{
 </article><article class="wp-block-post is-layout-flow post-919 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-133cf375 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Marconi" href="../marconi/index.html"><img loading="lazy" decoding="async" width="150" height="150" src="../wp-content/uploads/2021/06/video-1-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" srcset="http://localhost:10016/wp-content/uploads/2021/06/video-1-150x150.jpg 150w, http://localhost:10016/wp-content/uploads/2021/06/video-1-300x300.jpg 300w, http://localhost:10016/wp-content/uploads/2021/06/video-1.jpg 422w" sizes="auto, (max-width: 150px) 100vw, 150px" /></a></div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Marconi" href="../marconi/index.html"><img loading="lazy" decoding="async" width="150" height="150" src="../wp-content/uploads/2021/06/video-1-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" /></a></div>
 
 
 
@@ -985,9 +1130,9 @@ form.addEventListener("submit", async e=>{
 
 			</div><div class="ct-widget is-layout-flow widget_meta" id="meta-1"><h3 class="widget-title">Meta</h3>
 		<ul>
-						<li><a href="http://localhost:10016/wp-login.php">Log in</a></li>
-			<li><a href="http://localhost:10016/feed/">Entries feed</a></li>
-			<li><a href="http://localhost:10016/comments/feed/">Comments feed</a></li>
+						<li><a href="/wp-login.php">Log in</a></li>
+			<li><a href="/feed/">Entries feed</a></li>
+			<li><a href="/comments/feed/">Comments feed</a></li>
 
 			<li><a href="https://wordpress.org/">WordPress.org</a></li>
 		</ul>
@@ -1030,12 +1175,12 @@ form.addEventListener("submit", async e=>{
 .wp-elements-9b151e15d5a77cfdbf39b630d839dfce .wp-block-cover__background{background-color:#000000;opacity:0.5;}.wp-elements-5eb1ec1ae98a364d8b053a6fb7da87fa .wp-block-cover__background{background-color:#000000;opacity:0.5;}.wp-elements-04497b40f9fe26b40c88cf00ff301528 .wp-block-cover__background{background-color:#000000;opacity:0.5;}.wp-container-core-columns-is-layout-133cf375{flex-wrap:nowrap;gap:2em 20px;}
 </style>
 <script id="ct-scripts-js-extra">
-var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-ajax.php","public_url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/","rest_url":"http:\/\/localhost:10016\/wp-json\/","search_url":"http:\/\/localhost:10016\/search\/QUERY_STRING\/","show_more_text":"Show more","more_text":"More","search_live_results":"Search results","search_live_no_results":"No results","search_live_no_result":"No results","search_live_one_result":"You got %s result. Please press Tab to select it.","search_live_many_results":"You got %s results. Please press Tab to select one.","clipboard_copied":"Copied!","clipboard_failed":"Failed to Copy","expand_submenu":"Expand dropdown menu","collapse_submenu":"Collapse dropdown menu","dynamic_js_chunks":[{"id":"blocksy_sticky_header","selector":"header [data-sticky]","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/sticky.js?ver=2.1.16"}],"dynamic_styles":{"lazy_load":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/non-critical-styles.min.css?ver=2.1.16","search_lazy":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/non-critical-search-styles.min.css?ver=2.1.16","back_to_top":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/back-to-top.min.css?ver=2.1.16"},"dynamic_styles_selectors":[{"selector":".ct-header-cart, #woo-cart-panel","url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/cart-header-element-lazy.min.css?ver=2.1.16"},{"selector":".flexy","url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/flexy.min.css?ver=2.1.16"},{"selector":"#account-modal","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/header-account-modal-lazy.min.css?ver=2.1.16"},{"selector":".ct-header-account","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/header-account-dropdown-lazy.min.css?ver=2.1.16"}]};
+var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-ajax.php","public_url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/","rest_url":"http:\/\/localhost:10016\/wp-json\/","search_url":"http:\/\/localhost:10016\/search\/QUERY_STRING\/","show_more_text":"Show more","more_text":"More","search_live_results":"Search results","search_live_no_results":"No results","search_live_no_result":"No results","search_live_one_result":"You got %s result. Please press Tab to select it.","search_live_many_results":"You got %s results. Please press Tab to select one.","clipboard_copied":"Copied!","clipboard_failed":"Failed to Copy","expand_submenu":"Expand dropdown menu","collapse_submenu":"Collapse dropdown menu","dynamic_js_chunks":[{"id":"blocksy_sticky_header","selector":"header [data-sticky]","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/sticky.js?ver=2.1.17"}],"dynamic_styles":{"lazy_load":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/non-critical-styles.min.css?ver=2.1.17","search_lazy":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/non-critical-search-styles.min.css?ver=2.1.17","back_to_top":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/back-to-top.min.css?ver=2.1.17"},"dynamic_styles_selectors":[{"selector":".ct-header-cart, #woo-cart-panel","url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/cart-header-element-lazy.min.css?ver=2.1.17"},{"selector":".flexy","url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/flexy.min.css?ver=2.1.17"},{"selector":"#account-modal","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/header-account-modal-lazy.min.css?ver=2.1.16"},{"selector":".ct-header-account","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/header-account-dropdown-lazy.min.css?ver=2.1.16"}]};
 </script>
-<script src="../wp-content/themes/blocksy/static/bundle/main4e10.js?ver=2.1.16" id="ct-scripts-js"></script>
+<script src="../wp-content/themes/blocksy/static/bundle/main6472.js?ver=2.1.17" id="ct-scripts-js"></script>
 <script src="../wp-includes/js/comment-reply.min32d4.js?ver=6.8.3" id="comment-reply-js" async data-wp-strategy="async"></script>
 
 </body>
 
-<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 02:39:04 GMT -->
+<!-- Mirrored from localhost:10016/dingo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Oct 2025 04:09:13 GMT -->
 </html>
