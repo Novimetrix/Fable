@@ -1,23 +1,25 @@
-
-# === ONECLICK SAFE MODE (v3) ===
-# Goal: Keep Lighthouse score high while guaranteeing <img> has a valid src.
-# Changes from v2:
-#  - DO NOT remove loading="lazy" or decoding="async" (keeps offscreen images deferred)
-#  - When creating src from srcset, pick the SMALLEST candidate (best for mobile/LCP)
+# === ONECLICK FINAL (Unified v3 — syntax fixed) ===
+# Ensures every <img> has a valid src on first paint for static exports,
+# while keeping performance (lazy-loading + srcset). Works on Windows PowerShell 5+.
 param()
 
-Write-Host "Running ONECLICK SAFE MODE (v3)..."
+Write-Host "Running ONECLICK FINAL (syntax-fixed)..."
 
-# Process all HTML files
-Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
-    $path = $_.FullName
-    $html = Get-Content $path -Raw
+# Gather all HTML files
+$files = Get-ChildItem -Recurse -File -Include *.html
 
-    # 0) Scrub localhost/127.0.0.1 to root-relative (safe)
+foreach ($f in $files) {
+    $path = $f.FullName
+    $orig = Get-Content $path -Raw
+    $html = $orig
+
+    # 0) Scrub localhost/127.0.0.1 (plain & URL-encoded) to root-relative
     $html = $html -replace 'https?://localhost(?::\d+)?', ''
     $html = $html -replace 'https?://127\.0\.0\.1(?::\d+)?', ''
+    $html = $html -replace 'http%3A%2F%2Flocalhost(?::\d+)?', ''
+    $html = $html -replace 'http%3A%2F%2F127%2E0%2E0%2E1(?::\d+)?', ''
 
-    # 1) data-* → real attributes (wide net, safe)
+    # 1) data-* → real attributes (src and srcset)
     $pat_src  = @'
 <img([^>]*?)\s(?:data-lazy-src|data-src|data-original|data-echo)=["']([^"']+)["']([^>]*)>
 '@
@@ -38,9 +40,9 @@ Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
     $pat_missing_src = @'
 <img((?:(?!\ssrc=).)*?)\ssrcset=["']([^"']+)["']([^>]*)>
 '@
-    $html = $html -replace $pat_missing_src, {
-        $set = $args[0].Groups[2].Value
-        # Split srcset into parts and choose the smallest descriptor (w or x). Fallback to first URL.
+    $html = [regex]::Replace($html, $pat_missing_src, {
+        param($m)
+        $set = $m.Groups[2].Value
         $bestUrl = $null
         $bestVal = [double]::PositiveInfinity
         foreach($part in ($set -split ',')) {
@@ -53,7 +55,7 @@ Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
                 if($desc -match '^(\d+(?:\.\d+)?)w$') {
                     $val = [double]$matches[1]
                 } elseif($desc -match '^(\d+(?:\.\d+)?)x$') {
-                    $val = [double]$matches[1] * 1000  # treat 1x ~ 1000w to rank below any 'w' if both exist
+                    $val = [double]$matches[1] * 1000
                 } else {
                     $val = 1e9
                 }
@@ -63,14 +65,30 @@ Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
             if($val -lt $bestVal) { $bestVal = $val; $bestUrl = $url }
         }
         if(-not $bestUrl) { $bestUrl = ($set -split ',')[0].Trim().Split(' ')[0] }
-        "<img$($args[0].Groups[1].Value) src=""$bestUrl"" srcset=""$set""$($args[0].Groups[3].Value)>"
-    }
+        return "<img{0} src=""{1}"" srcset=""{2}""{3}>" -f $m.Groups[1].Value, $bestUrl, $set, $m.Groups[3].Value
+    })
 
     # 3) Remove previously injected no-srcset runtime guard (if present)
     $html = $html -replace '<script[^>]*no-srcset\.js[^>]*></script>', ''
 
-    # Save
-    $orig = Get-Content $path -Raw
+    # 3b) Ensure <img src> is root-relative (fix 'wp-content/...' without leading slash)
+    $pat_rel_src = @'
+<img([^>]*?)\ssrc=["'](?!https?:|/|data:|#)([^"']+)["']([^>]*?)>
+'@
+    $html = [regex]::Replace($html, $pat_rel_src, {
+        param($m)
+        $before = $m.Groups[1].Value
+        $url    = $m.Groups[2].Value
+        $after  = $m.Groups[3].Value
+        if($url -match '^(?:\./|\.\./)+') {
+            $url = $url -replace '^(?:\./|\.\./)+', ''
+        }
+        if($url -notmatch '^(?:https?:|/|data:|#)') {
+            $url = '/' + $url
+        }
+        return "<img{0} src=""{1}""{2}>" -f $before, $url, $after
+    })
+
     if ($html -ne $orig) {
         Set-Content $path $html -Encoding UTF8
         Write-Host ("Changed: {0}" -f $path)
@@ -78,11 +96,11 @@ Get-ChildItem -Recurse -File -Include *.html | ForEach-Object {
 }
 
 # Summary
-$left_lazy = (Get-ChildItem -Recurse -File -Include *.html | % { (Get-Content $_.FullName -Raw) } | Select-String -Pattern 'data-src|data-lazy-src|data-original|data-echo' -AllMatches | Measure-Object).Count
-$missing_src = (Get-ChildItem -Recurse -File -Include *.html | % { (Get-Content $_.FullName -Raw) } | Select-String -Pattern '<img(?![^>]*\ssrc=)[^>]*>' -AllMatches | Measure-Object).Count
+$left_lazy = ($files | % { (Get-Content $_.FullName -Raw) } | Select-String -Pattern 'data-src|data-lazy-src|data-original|data-echo' -AllMatches | Measure-Object).Count
+$missing_src = ($files | % { (Get-Content $_.FullName -Raw) } | Select-String -Pattern '<img(?![^>]*\ssrc=)[^>]*>' -AllMatches | Measure-Object).Count
 
 Write-Host ""
-Write-Host "SAFE v3 Summary:"
+Write-Host "ONECLICK FINAL Summary:"
 Write-Host ("  remaining lazy attrs (should be 0 or very low): {0}" -f $left_lazy)
 Write-Host ("  <img> without src (should be 0): {0}" -f $missing_src)
 Write-Host ""
