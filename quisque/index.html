@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/quisque/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Oct 2025 05:39:53 GMT -->
+<!-- Mirrored from localhost:10016/quisque/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Oct 2025 06:33:22 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -151,7 +151,7 @@
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Quisque Comments Feed" href="/quisque/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global1224.css?ver=38735' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globale05f.css?ver=39999' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -187,7 +187,36 @@
 <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%3A10016%2Fquisque%2F&amp;format=xml" />
 <noscript><link rel='stylesheet' href='../wp-content/themes/blocksy/static/bundle/no-scripts.min.css' type='text/css'></noscript>
 
-<style class="stk-block-styles">.stk-de17865{height:200px !important;}</style><style id="comments-title-spacing-universal-100">
+<style class="stk-block-styles">.stk-de17865{height:200px !important;}</style><style class="wpcode-css-snippet">/* === NM â€” Hide "Stories" + Keep Card Alignment (v1.2) === */
+:root { --nm-meta-gap: 18px; } /* tweak 16â€“22px if needed */
+
+/* 1) Hide the â€œStoriesâ€ category label in card meta */
+.blog .entry-meta li:has(a[href*="/category/stories/"]),
+.archive .entry-meta li:has(a[href*="/category/stories/"]),
+.blog .ct-post-meta li:has(a[href*="/category/stories/"]),
+.archive .ct-post-meta li:has(a[href*="/category/stories/"]) {
+  display: none !important;
+}
+
+/* 2) Normalize meta row height so card titles line up even if meta becomes empty */
+.blog article .entry-meta,
+.archive article .entry-meta,
+.blog article .ct-post-meta,
+.archive article .ct-post-meta {
+  min-height: var(--nm-meta-gap);
+  display: block; /* ensure the height applies even if theme uses inline/flex */
+}
+
+/* 3) Extra safety: if there are no *visible* <li> items, create a spacer */
+.blog article .entry-meta:not(:has(li:not([style*="display: none"])) )::before,
+.archive article .entry-meta:not(:has(li:not([style*="display: none"])) )::before,
+.blog article .ct-post-meta:not(:has(li:not([style*="display: none"])) )::before,
+.archive article .ct-post-meta:not(:has(li:not([style*="display: none"])) )::before {
+  content: "";
+  display: block;
+  height: var(--nm-meta-gap);
+}
+</style><style id="comments-title-spacing-universal-100">
 /* Firebase injectors (your MU plugins) */
 #commentSection.fc-wrap h2{margin-bottom:100px !important;}
 #commentSection.fc-wrap.fc-light h2{margin-bottom:100px !important;}
@@ -1095,10 +1124,10 @@ form.addEventListener("submit", async e=>{
 	</div></div><style id='core-block-supports-inline-css'>
 .wp-elements-9b151e15d5a77cfdbf39b630d839dfce .wp-block-cover__background{background-color:#000000;opacity:0.5;}.wp-elements-5eb1ec1ae98a364d8b053a6fb7da87fa .wp-block-cover__background{background-color:#000000;opacity:0.5;}.wp-elements-04497b40f9fe26b40c88cf00ff301528 .wp-block-cover__background{background-color:#000000;opacity:0.5;}.wp-container-core-columns-is-layout-133cf375{flex-wrap:nowrap;gap:2em 20px;}
 </style>
-<script id="nm-fb-cc-v16d-js-before">
+<script id="nm-fb-cc-v16d-hide0-js-before">
 window.__NM_FB_CFG__ = {"apiKey":"AIzaSyCxL84hZpy24GECDfQwShRamIMcneSw4A","authDomain":"fable-893ed.firebaseapp.com","projectId":"fable-893ed","storageBucket":"fable-893ed.appspot.com","messagingSenderId":"662833409327"};
 </script>
-<script id="nm-fb-cc-v16d-js-after">
+<script id="nm-fb-cc-v16d-hide0-js-after">
 (() => {
   const CFG = window.__NM_FB_CFG__ || {};
   const BASE='https://www.gstatic.com/firebasejs/9.22.1/';
@@ -1118,7 +1147,6 @@ window.__NM_FB_CFG__ = {"apiKey":"AIzaSyCxL84hZpy24GECDfQwShRamIMcneSw4A","authD
 
   async function countFor(id){
     try{
-      // EXACT mirror of v1.4 logic (no 'deleted' filter, string postId)
       const snap = await firebase.firestore().collection('comments').where('postId','==', String(id)).get();
       return snap?.size || 0;
     }catch(e){ return 0; }
@@ -1152,6 +1180,13 @@ window.__NM_FB_CFG__ = {"apiKey":"AIzaSyCxL84hZpy24GECDfQwShRamIMcneSw4A","authD
   }
 
   function updateOrInsert(root, count){
+    // âœ… Hide counter completely when there are no comments
+    if (!count || count < 1) {
+      const existing = root.querySelector('.nm-fb-synced, .nm-fb-inline');
+      if (existing) existing.remove();
+      return;
+    }
+
     const href = '#comments';
     const ul = findMetaUL(root);
     if (ul){
@@ -1171,7 +1206,7 @@ window.__NM_FB_CFG__ = {"apiKey":"AIzaSyCxL84hZpy24GECDfQwShRamIMcneSw4A","authD
       ul.appendChild(li);
       return;
     }
-    // Inline fallback (rare)
+
     const meta = root.querySelector('.entry-meta, .ct-post-meta, .post-meta, .meta');
     if (meta && !meta.querySelector('.nm-fb-inline')){
       const span = document.createElement('span');
@@ -1226,6 +1261,6 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/quisque/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Oct 2025 05:39:53 GMT -->
+<!-- Mirrored from localhost:10016/quisque/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Oct 2025 06:33:22 GMT -->
 </html>
 
