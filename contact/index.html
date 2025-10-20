@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Oct 2025 03:57:02 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Oct 2025 05:39:49 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -150,7 +150,7 @@
   </script>
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globald0fa.css?ver=32571' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global1224.css?ver=38735' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocksa2f8.css?ver=3.19.1' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -167,9 +167,6 @@
 .stk--container-scheme--scheme-default-3{--stk-container-background-color:#0f0e17;--stk-heading-color:#fffffe;--stk-text-color:#fffffe;--stk-link-color:#f00069;--stk-accent-color:#f00069;--stk-subtitle-color:#f00069;--stk-button-background-color:#f00069;--stk-button-text-color:#fffffe;--stk-button-outline-color:#fffffe;}
 /* Global Preset Controls */
 :root{--stk--preset--font-size--small:var(--wp--preset--font-size--small);--stk--preset--font-size--medium:var(--wp--preset--font-size--medium);--stk--preset--font-size--large:var(--wp--preset--font-size--large);--stk--preset--font-size--x-large:var(--wp--preset--font-size--x-large);--stk--preset--font-size--xx-large:var(--wp--preset--font-size--xx-large);--stk--preset--spacing--20:var(--wp--preset--spacing--20);--stk--preset--spacing--30:var(--wp--preset--spacing--30);--stk--preset--spacing--40:var(--wp--preset--spacing--40);--stk--preset--spacing--50:var(--wp--preset--spacing--50);--stk--preset--spacing--60:var(--wp--preset--spacing--60);--stk--preset--spacing--70:var(--wp--preset--spacing--70);--stk--preset--spacing--80:var(--wp--preset--spacing--80);}
-</style>
-<style id='nm-fb-count-v12-inline-css'>
-.nm-fb-comments-li a,.nm-fb-comments-inline{white-space:nowrap;opacity:.95;text-decoration:none}
 </style>
 <link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min32d4.css?ver=6.8.3' media='all' />
 <style id='global-styles-inline-css'>
@@ -754,122 +751,128 @@
 
 		<svg class="ct-icon" width="15" height="15" viewBox="0 0 20 20"><path d="M10,0L9.4,0.6L0.8,9.1l1.2,1.2l7.1-7.1V20h1.7V3.3l7.1,7.1l1.2-1.2l-8.5-8.5L10,0z"/></svg>	</a>
 
-	</div></div><script>requestAnimationFrame(() => document.body.classList.add( "stk--anim-init" ))</script><script id="nm-fb-count-v12-js-js-after">
+	</div></div><script>requestAnimationFrame(() => document.body.classList.add( "stk--anim-init" ))</script><script id="nm-fb-cc-v16d-js-before">
+window.__NM_FB_CFG__ = {"apiKey":"AIzaSyCxL84hZpy24GECDfQwShRamIMcneSw4A","authDomain":"fable-893ed.firebaseapp.com","projectId":"fable-893ed","storageBucket":"fable-893ed.appspot.com","messagingSenderId":"662833409327"};
+</script>
+<script id="nm-fb-cc-v16d-js-after">
 (() => {
+  const CFG = window.__NM_FB_CFG__ || {};
   const BASE='https://www.gstatic.com/firebasejs/9.22.1/';
   const FILES=['firebase-app-compat.js','firebase-firestore-compat.js'];
-  const CFG_KEY='NM_FB_CONFIG_CACHE_V12';
 
-  // Cache config if a Firebase app already exists (e.g., on singles)
-  try{ if (window.firebase && firebase.apps && firebase.apps.length) {
-    localStorage.setItem(CFG_KEY, JSON.stringify(firebase.app().options||{}));
-  }}catch(e){}
+  function loadCompat(){ return new Promise(res=>{ let left=FILES.length; FILES.forEach(f=>{ const s=document.createElement('script'); s.src=BASE+f; s.async=true; s.onload=()=>{ if(--left===0) res(); }; s.onerror=()=>{ if(--left===0) res(); }; document.head.appendChild(s); }); }); }
+  function ensureApp(){ try{ if (window.firebase && firebase.apps && firebase.apps.length) return true; firebase.initializeApp(CFG); return true; }catch(e){ return false; } }
+  async function ensureFirebase(){ try{ if (window.firebase && firebase.apps && firebase.apps.length) return true; }catch(e){} await loadCompat(); return ensureApp(); }
 
-  function loadCompat(){
-    return new Promise(res=>{
-      let left=FILES.length;
-      FILES.forEach(f=>{ const s=document.createElement('script'); s.src=BASE+f; s.onload=()=>{ if(--left===0) res(); }; s.onerror=()=>{ if(--left===0) res(); }; document.head.appendChild(s); });
-    });
+  function getPostId(scope){
+    const art = (scope && (scope.closest?.('article') || scope)) || document.body;
+    let id = null;
+    if (art && art.id){ const m = art.id.match(/post-(\d+)/); if (m) id = m[1]; }
+    if (!id){ const cls = (art && art.className) || ''; const m = cls.match(/post-(\d+)/); if (m) id = m[1]; }
+    return id;
   }
-  function initFromCache(){
+
+  async function countFor(id){
     try{
-      if (window.firebase && firebase.apps && firebase.apps.length) return true;
-      let cfg=null; try{ cfg = JSON.parse(localStorage.getItem(CFG_KEY)||'null'); }catch(e){ cfg=null; }
-      if (cfg){ firebase.initializeApp(cfg); return true; }
-    }catch(e){}
-    return false;
-  }
-  async function ensureFirebase(){
-    try{ if (window.firebase && firebase.apps && firebase.apps.length) return true; }catch(e){}
-    await loadCompat();
-    return initFromCache();
-  }
-
-  // Helpers
-  function getPostIdFromArticle(scope){
-    const art = scope && (scope.matches('article') ? scope : scope.closest('article'));
-    if (!art) return null;
-    const m = (art.id||'').match(/post-(\d+)/);
-    return m ? m[1] : null;
-  }
-
-  async function countFor(postId){
-    try{
-      const snap = await firebase.firestore().collection('comments').where('postId','==',String(postId)).get();
-      return snap.size || 0;
+      // EXACT mirror of v1.4 logic (no 'deleted' filter, string postId)
+      const snap = await firebase.firestore().collection('comments').where('postId','==', String(id)).get();
+      return snap?.size || 0;
     }catch(e){ return 0; }
-  }
-
-  function findMetaList(scope){
-    // Prefer the UL that contains .meta-author when present
-    const author = scope.querySelector('.meta-author');
-    if (author && author.parentElement && author.parentElement.tagName === 'UL') return author.parentElement;
-    // Otherwise any known meta UL on cards
-    return scope.querySelector('ul.entry-meta, ul.meta, ul[class*="entry-meta"]');
-  }
-  function findInlineMetaRoot(){
-    // singles fallback: common wrappers
-    return document.querySelector('.ct-meta, .ct-entry-meta, .entry-meta, .entry-meta-wrapper, .post-meta');
-  }
-
-  function appendToList(ul, linkHref, text){
-    // Avoid duplicates
-    if (ul.querySelector(':scope > li.nm-fb-comments-li')) return;
-    const li = document.createElement('li');
-    li.className = 'nm-fb-comments-li';
-    const a = document.createElement('a');
-    a.href = linkHref; a.textContent = text;
-    li.appendChild(a);
-    ul.appendChild(li); // append at END so Blocksy inserts proper slash before it
-  }
-  function appendInline(root, linkHref, text){
-    // Remove our previous injection if any
-    root.querySelectorAll(':scope > .nm-fb-comments-inline').forEach(n=>n.remove());
-    const a = document.createElement('a');
-    a.className = 'nm-fb-comments-inline';
-    a.href = linkHref;
-    a.textContent = ' / ' + text; // inline needs the leading slash
-    root.appendChild(a);
   }
 
   function label(n){ return n===1 ? '1 comment' : `${n} comments`; }
 
+  function findMetaUL(root){
+    const uls = root.querySelectorAll('ul.entry-meta, ul.ct-post-meta, ul.post-meta, ul.meta, .entry-meta ul, .ct-post-meta ul, .post-meta ul, article ul');
+    for (const u of uls){ if (u.querySelector('li')) return u; }
+    return null;
+  }
+
+  function findExistingCommentsLi(container){
+    let li = container.querySelector(':scope > li.meta-comments, :scope > li.comments, :scope > li[class*="comment"]');
+    if (li) return li;
+    const items = container.querySelectorAll(':scope > li, li');
+    for (const it of items) {
+      const a = it.querySelector('a');
+      const txt = (a?.textContent || it.textContent || '').toLowerCase();
+      const href = (a?.getAttribute('href') || '');
+      if (href.includes('#comments') || txt.includes('comment')) return it;
+    }
+    return null;
+  }
+
+  function ensureCommentsLink(li, href){
+    const a = li.querySelector('a') || li.appendChild(document.createElement('a'));
+    a.href = href;
+    return a;
+  }
+
+  function updateOrInsert(root, count){
+    const href = '#comments';
+    const ul = findMetaUL(root);
+    if (ul){
+      const existing = findExistingCommentsLi(ul);
+      if (existing){
+        const a = ensureCommentsLink(existing, href);
+        a.textContent = label(count);
+        existing.classList.add('nm-fb-synced');
+        return;
+      }
+      const li = document.createElement('li');
+      li.className = 'meta-comments nm-fb-synced';
+      const a = document.createElement('a');
+      a.href = href;
+      a.textContent = label(count);
+      li.appendChild(a);
+      ul.appendChild(li);
+      return;
+    }
+    // Inline fallback (rare)
+    const meta = root.querySelector('.entry-meta, .ct-post-meta, .post-meta, .meta');
+    if (meta && !meta.querySelector('.nm-fb-inline')){
+      const span = document.createElement('span');
+      span.className = 'nm-fb-inline';
+      span.textContent = ' / ' + label(count);
+      meta.appendChild(span);
+    }
+  }
+
   async function processCard(card){
-    const postId = getPostIdFromArticle(card); if (!postId) return;
-    const total = await countFor(postId); if (!total) return;
-    const linkEl = card.querySelector('.entry-title a, .ct-title a, .entry-card .entry-title a, h2 a, h3 a');
-    const href = (linkEl && linkEl.href ? linkEl.href : '#') + '#comments';
-
-    const ul = findMetaList(card);
-    if (ul) { appendToList(ul, href, label(total)); return; }
-
-    // Fallback: inline root (very rare on cards)
-    const inlineRoot = findInlineMetaRoot(); if (inlineRoot) appendInline(inlineRoot, href, label(total));
+    if (!card || card.dataset.nmFbDone) return;
+    const id = getPostId(card);
+    if (!id) { card.dataset.nmFbDone='1'; return; }
+    const total = await countFor(id);
+    updateOrInsert(card, total);
+    card.dataset.nmFbDone='1';
   }
 
   async function processSingle(){
-    // prefer list if present, else inline
-    const art = document.querySelector('article');
-    const postId = getPostIdFromArticle(art || document.body); if (!postId) return;
-    const total = await countFor(postId); if (!total) return;
-    const href = '#comments';
-
-    const ul = document.querySelector('ul.entry-meta, ul.meta, ul[class*="entry-meta"]');
-    if (ul) { appendToList(ul, href, label(total)); return; }
-
-    const inlineRoot = findInlineMetaRoot(); if (inlineRoot) appendInline(inlineRoot, href, label(total));
+    const art = document.querySelector('article') || document.body;
+    const id = getPostId(art);
+    if (!id) return;
+    const total = await countFor(id);
+    updateOrInsert(art, total);
   }
 
   async function run(){
-    const ok = await ensureFirebase();
-    if (!ok) return;
-    const cards = document.querySelectorAll('article[id^="post-"]');
-    // Heuristic: if more than one article on page, treat as archive
-    if (cards.length > 1) { cards.forEach(processCard); }
-    else { await processSingle(); }
+    const ok = await ensureFirebase(); if (!ok) return;
+    document.querySelectorAll('article').forEach(processCard);
+    processSingle();
+    const obs = new MutationObserver(muts => {
+      for (const m of muts){
+        m.addedNodes && m.addedNodes.forEach(n => {
+          if (!(n instanceof HTMLElement)) return;
+          if (n.matches && (n.matches('article') || n.querySelector?.('article'))) {
+            (n.matches('article') ? [n] : n.querySelectorAll('article')).forEach(processCard);
+          }
+        });
+      }
+    });
+    obs.observe(document.body, {childList:true, subtree:true});
   }
 
-  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', run, {once:true}); else run();
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', run, {once:true});
+  else run();
 })();
 </script>
 <script id="ct-scripts-js-extra">
@@ -879,6 +882,6 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Oct 2025 03:57:02 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Oct 2025 05:39:49 GMT -->
 </html>
 
