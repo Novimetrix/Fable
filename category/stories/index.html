@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Oct 2025 04:02:37 GMT -->
+<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Oct 2025 04:10:24 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -164,15 +164,25 @@
 <link rel="https://api.w.org/" href="/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/categories/9" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 6.8.3" />
 <noscript><link rel='stylesheet' href='../../wp-content/themes/blocksy/static/bundle/no-scripts.min.css' type='text/css'></noscript>
-<style class="wpcode-css-snippet">/* === Typography â€” Fix Em/En Dash Width (All Devices) ===
-   Ensures em (â€”) and en (â€“) dashes appear full-length on all devices.
-   Works automatically after every export; no plugins or HTML edits needed.
+<style class="wpcode-css-snippet">/* === Typography â€” Universal Em Dash Fix (System Fonts + Mobile) ===
+   Forces consistent full-width em (â€”) and en (â€“) dashes across all devices.
+   Works with system fonts like Segoe UI, San Francisco, Roboto, etc.
+   No plugins, no HTML edits â€” survives static exports.
 */
+
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&amp;display=swap&amp;text=%E2%80%94%E2%80%93");
 
-html {
-  font-family: "Noto Sans", "DM Sans", system-ui, -apple-system,
-               "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+/* Borrow dash glyphs from Noto Sans only when rendering em/en dashes */
+@font-face {
+  font-family: "DashFix";
+  src: local("Noto Sans"), url("https://fonts.gstatic.com/s/notosans/v40/o-0IIpQlx3QUlC5A4PNr4TRA.woff2") format("woff2");
+  unicode-range: U+2013, U+2014; /* en & em dash */
+  font-display: swap;
+}
+
+html, body {
+  font-family: "DashFix", system-ui, -apple-system, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 </style>	<style id="fc-gutterlines-dom-custom">
 		#commentSection.fc-wrap{
@@ -883,6 +893,6 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Oct 2025 04:02:37 GMT -->
+<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Oct 2025 04:10:24 GMT -->
 </html>
 
