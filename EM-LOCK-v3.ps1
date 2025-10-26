@@ -1,7 +1,7 @@
-﻿# EM-LOCK-v2.ps1 — Make mobile/tablet text match desktop 1em
+﻿# EM-LOCK-v3.ps1 — Targeted story-text only (desktop-size on mobile)
 $ErrorActionPreference = 'Stop'
 
-# Work in folder where this script lives
+# Work in the folder where this script lives
 $Root = Split-Path -Parent $PSCommandPath
 if (-not (Test-Path $Root)) { Write-Host "Folder not found: $Root" -ForegroundColor Red; Read-Host "Press Enter to close"; exit 1 }
 
@@ -12,12 +12,12 @@ $files = Get-ChildItem -LiteralPath $Root -Recurse -File | Where-Object { $_.Ext
 $tot = $files.Count
 Write-Host ("Found {0} HTML files" -f $tot)
 
-# Compact CSS (one line) — stronger overrides for typical WP/Blocksy containers
-# Note: !important used deliberately to win over theme breakpoints
+# Targeted CSS (one line): only body content containers
+# - Prevents text inflation
+# - On <=1024px: sets font-size for .entry-content and its p/li, and common WP/Blocksy content wrappers
 $cssOneLine = 'html{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}'+
 '@media (max-width:1024px){'+
-'html,body,.entry-content,.page-content,.article-content,.post-content,.ct-content,.ct-typography,.wp-block-group{font-size:16px!important;line-height:1.6}'+
-':root{--font-size-base:16px!important;--text-font-size:16px!important;--ct-body-font-size:16px!important;--content-text-size:16px!important;--font-size:16px!important}'+
+'.entry-content,.entry-content p,.entry-content li,.wp-block-post-content,.wp-block-group.is-layout-constrained,.single .entry-content,.page .entry-content{font-size:16px!important;line-height:1.7}'+
 '}'
 
 $styleStart = '<style id="em-mobile-size-lock">'
@@ -44,7 +44,7 @@ foreach($f in $files){
     $newTxt = Ensure-Viewport $txt
     if ($newTxt -ne $txt) { $txt = $newTxt; $vpAdded++ }
 
-    # Replace existing em-lock block if present
+    # Replace an existing em-lock block (any previous version), else insert after <head>
     $idx = $txt.IndexOf($styleStart, [StringComparison]::OrdinalIgnoreCase)
     if ($idx -ge 0) {
       $endIdx = $txt.IndexOf('</style>', $idx)
@@ -57,7 +57,6 @@ foreach($f in $files){
         $inserted++
       }
     } else {
-      # Insert after <head>
       $ci = [System.Globalization.CultureInfo]::InvariantCulture
       $headIdx = $ci.CompareInfo.IndexOf($txt, '<head', [System.Globalization.CompareOptions]::IgnoreCase)
       if ($headIdx -ge 0){
