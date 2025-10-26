@@ -1,16 +1,15 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Oct 2025 05:10:55 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Oct 2025 10:56:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
 	<link rel="profile" href="../../gmpg.org/xfn/11.html">
 
-	<meta charset="utf-8">
-<title>The Last Life &#8211; Fable Odyssey</title>
+	<title>The Last Life &#8211; Fable Odyssey</title>
 <meta name='robots' content='max-image-preview:large' />
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	  <style id="nm-overlay-guard-css-v2">
@@ -152,7 +151,7 @@
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; The Last Life Comments Feed" href="/the-last-life/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global910d.css?ver=54776' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globalaec2.css?ver=64145' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -974,6 +973,95 @@ const commentsEl=document.getElementById("comments"),
       cancelReply=document.getElementById("cancelReply");
 
 let isAdmin=false;
+// === FO per-post disable toggle (uses Firestore) ===
+const FO_SETTINGS_COL = 'fo_post_settings';
+const FO_SLUG = (function(){
+  try{
+    const parts = location.pathname.replace(/\/+$/,'').split('/').filter(Boolean);
+    return parts[parts.length-1] || 'unknown';
+  }catch(e){ return 'unknown'; }
+})();
+
+function foDisableForm(){
+  try{
+    const root = document.getElementById("firebase-comments") || document.getElementById("comments");
+    const form = document.getElementById("commentForm") || (root ? root.querySelector("form") : null);
+    if(!form) return;
+    form.classList.add("fo-comments-disabled");
+    const submits = form.querySelectorAll('button[type="submit"], input[type="submit"]');
+    submits.forEach(btn => {
+      if(!btn.dataset.__foOriginalText){
+        btn.dataset.__foOriginalText = btn.tagName==='BUTTON' ? (btn.textContent||'') : (btn.value||'');
+      }
+      if(btn.tagName==='BUTTON') btn.textContent = 'Comments closed';
+      else btn.value = 'Comments closed';
+      btn.setAttribute('disabled','disabled');
+      btn.setAttribute('aria-disabled','true');
+    });
+    const fields = form.querySelectorAll('input[type="text"], input[type="email"], input[type="url"], textarea');
+    fields.forEach(f => { try{ f.readOnly = true; f.setAttribute('aria-readonly','true'); f.setAttribute('tabindex','-1'); }catch(e){} });
+    form.addEventListener('submit', e => { e.preventDefault(); e.stopImmediatePropagation(); }, true);
+  }catch(e){}
+}
+function foEnableForm(){
+  try{
+    const form = document.getElementById("commentForm");
+    if(!form) return;
+    form.classList.remove("fo-comments-disabled");
+    const submits = form.querySelectorAll('button[type="submit"], input[type="submit"]');
+    submits.forEach(btn => {
+      if(btn.dataset.__foOriginalText){
+        if(btn.tagName==='BUTTON') btn.textContent = btn.dataset.__foOriginalText;
+        else btn.value = btn.dataset.__foOriginalText;
+      }
+      btn.removeAttribute('disabled'); btn.removeAttribute('aria-disabled');
+    });
+    const fields = form.querySelectorAll('input[type="text"], input[type="email"], input[type="url"], textarea');
+    fields.forEach(f => { try{ f.readOnly = false; f.removeAttribute('aria-readonly'); f.removeAttribute('tabindex'); }catch(e){} });
+  }catch(e){}
+}
+
+async function foGetSetting(){
+  try{
+    const snap = await db.collection(FO_SETTINGS_COL).doc(FO_SLUG).get();
+    const data = snap.exists ? snap.data() : {};
+    return !!data.commentsDisabled;
+  }catch(e){ return false; }
+}
+async function foSetSetting(disabled){
+  try{
+    await db.collection(FO_SETTINGS_COL).doc(FO_SLUG).set({commentsDisabled: !!disabled}, {merge:true});
+    return true;
+  }catch(e){ alert('Save failed'); return false; }
+}
+function foShowPanel(currentDisabled){
+  const panel = document.createElement('div');
+  panel.id = 'fo-admin-panel';
+  panel.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:99999;background:#111;color:#fff;padding:12px 14px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.45);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Arial';
+  panel.innerHTML = '<div style="margin-bottom:8px;font-weight:600">Comments (this post)</div>'
+    + '<label style="display:flex;align-items:center;gap:8px;cursor:pointer">'
+    + '  <input id="fo-toggle" type="checkbox" '+(currentDisabled?'checked':'')+' />'
+    + '  <span>Disable comment form</span>'
+    + '</label>'
+    + '<div style="margin-top:8px;opacity:.75">Slug: '+FO_SLUG+'</div>'
+    + '<button id="fo-close" style="margin-top:10px;background:#2e2e2e;border:0;padding:6px 10px;border-radius:8px;color:#fff;cursor:pointer">Close</button>';
+  document.body.appendChild(panel);
+  const toggle = panel.querySelector('#fo-toggle');
+  const close = panel.querySelector('#fo-close');
+  toggle.addEventListener('change', async function(){
+    const disabled = !!toggle.checked;
+    if(disabled) foDisableForm(); else foEnableForm();
+    const ok = await foSetSetting(disabled);
+    if(!ok){ toggle.checked = !disabled; if(toggle.checked) foDisableForm(); else foEnableForm(); }
+  });
+  close.addEventListener('click', function(){ panel.remove(); });
+}
+
+// Apply on load
+(function applyInitial(){
+  foGetSetting().then(disabled => { if(disabled) foDisableForm(); });
+})();
+
 document.addEventListener('keydown', (e)=>{
   if(e.key.toLowerCase()==='a' && e.shiftKey){
     const key=prompt("Enter admin password:");
@@ -981,6 +1069,7 @@ document.addEventListener('keydown', (e)=>{
       isAdmin=true;
       alert("Admin Mode Enabled!");
       document.querySelectorAll(".adminControls").forEach(el=>el.style.display="inline-block");
+      foGetSetting().then(disabled=>foShowPanel(disabled));
     } else {
       alert("Incorrect password");
     }
@@ -1195,11 +1284,11 @@ form.addEventListener("submit", async e=>{
 <div data-id="02394856" class="wp-block-blocksy-query"><div class="ct-query-template-default is-layout-flow"><article class="wp-block-post is-layout-flow post-919 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-133cf375 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="A new story is taking shape…" href="../a-new-story-is-taking-shape/index.html"><img decoding="async" width="150" height="150" src="/wp-content/uploads/2021/06/video-1-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" srcset="/wp-content/uploads/2021/06/video-1-150x150.jpg 150w, /wp-content/uploads/2021/06/video-1-300x300.jpg 300w, /wp-content/uploads/2021/06/video-1.jpg 422w" sizes="(max-width: 150px) 100vw, 150px" /></a></div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="A new story is taking shape…" href="../placeholder/index.html"><img decoding="async" width="150" height="150" src="/wp-content/uploads/2021/06/video-1-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" srcset="/wp-content/uploads/2021/06/video-1-150x150.jpg 150w, /wp-content/uploads/2021/06/video-1-300x300.jpg 300w, /wp-content/uploads/2021/06/video-1.jpg 422w" sizes="(max-width: 150px) 100vw, 150px" /></a></div>
 
 
 
-<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:75%"><h2 style="font-size:clamp(14px, 0.875rem + ((1vw - 3.2px) * 0.078), 15px);font-weight:500; margin-bottom:var(--wp--preset--spacing--20);" class="ct-dynamic-data wp-elements-5eb1ec1ae98a364d8b053a6fb7da87fa"><a href="../a-new-story-is-taking-shape/index.html">A new story is taking shape…</a></h2>
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:75%"><h2 style="font-size:clamp(14px, 0.875rem + ((1vw - 3.2px) * 0.078), 15px);font-weight:500; margin-bottom:var(--wp--preset--spacing--20);" class="ct-dynamic-data wp-elements-5eb1ec1ae98a364d8b053a6fb7da87fa"><a href="../placeholder/index.html">A new story is taking shape…</a></h2>
 
 <div style="border-style:none;border-width:0px;" class="ct-dynamic-data wp-elements-04497b40f9fe26b40c88cf00ff301528 has-small-font-size">October 15, 2025</div></div>
 </div>
@@ -1563,6 +1652,6 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Oct 2025 05:10:55 GMT -->
+<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Oct 2025 10:56:12 GMT -->
 </html>
 
