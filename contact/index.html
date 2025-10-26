@@ -47,7 +47,7 @@
       backdrop-filter: none !important;
     }
 
-    /* 3) Ensure page isnâ€™t visually dimmed */
+    /* 3) Ensure page isn’t visually dimmed */
     html, body, #page, .site, #content, main, .ct-main {
       filter: none !important;
       opacity: 1 !important;
@@ -71,7 +71,7 @@
         var docEl = document.documentElement;
         var body = document.body;
 
-        // Remove â€œpage lockedâ€ classes if exporter caught them
+        // Remove “page locked” classes if exporter caught them
         ['ct-scroll-lock','ct-offcanvas-open','modal-open','overflow-hidden','ct-drawer-open']
           .forEach(function(c){ docEl.classList.remove(c); body.classList.remove(c); });
 
@@ -474,9 +474,9 @@
 	class="ct-header-text "
 	data-id="text">
 	<div class="entry-content is-layout-flow">
-		<!-- NM2 â€” CSS-only Toggle Menu (image-ready, works on static) -->
+		<!-- NM2 — CSS-only Toggle Menu (image-ready, works on static) -->
 <style>
-  /* === âš™ï¸ ADJUSTABLE FIELDS === */
+  /* === ⚙️ ADJUSTABLE FIELDS === */
   :root{
     /* Colors & spacing */
     --nm2-bg: #1f1f1f;                       /* Drawer base color (theme dark) */
@@ -493,7 +493,7 @@
     /* If you prefer: --nm2-bg-image: url("/assets/menu-bg.jpg"); */
 
     --nm2-bg-image-enabled: 1;               /* 1 = on, 0 = off */
-    --nm2-bg-image-opacity: 0.35;            /* 0.00 â€“ 1.00 (brightness/strength) */
+    --nm2-bg-image-opacity: 0.35;            /* 0.00 – 1.00 (brightness/strength) */
     --nm2-bg-image-size: cover;              /* cover | contain */
     --nm2-bg-image-position: center center;  /* e.g., center top */
   }
@@ -580,7 +580,7 @@
   #nm2-toggle:checked ~ .nm2-panel{ transform:translateX(0); }
   #nm2-toggle:checked ~ .nm2-overlay{ opacity:1; pointer-events:auto; }
 
-  /* === ðŸ“±â†’ðŸ’» Responsive Drawer Width & Padding === */
+  /* === 📱→💻 Responsive Drawer Width & Padding === */
   @media (min-width:768px) and (max-width:1024px){
     .nm2-panel{
       width:100vw !important;        /* full-screen on tablet */
@@ -733,7 +733,7 @@
 	class="ct-footer-copyright"
 	data-id="copyright">
 
-	<p>Copyright Â© 2025 - Fable Odyssey</p></div>
+	<p>Copyright © 2025 - Fable Odyssey</p></div>
 </div><div data-column="ghost"></div></div></div></footer></div>
 
 <script type="speculationrules">
@@ -797,7 +797,7 @@ window.__NM_FB_CFG__ = {"apiKey":"AIzaSyCxL84hZpy24GECDfQwShRamIMcneSw4A","authD
   fetchBlocked();
   setInterval(fetchBlocked, 30000);
 
-  // --- Perâ€‘post adjusted count cache (5 min TTL) ---
+  // --- Per‑post adjusted count cache (5 min TTL) ---
   const CNT_TTL_MS = 5 * 60 * 1000;
   function cacheKey(id){ return 'nm_fb_count_' + String(id); }
   function readCountCache(id){
@@ -983,4 +983,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 <!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Oct 2025 05:10:54 GMT -->
 </html>
+
 
