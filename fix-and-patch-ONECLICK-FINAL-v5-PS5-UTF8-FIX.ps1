@@ -13,7 +13,7 @@ $files = Get-ChildItem -Recurse -File -Include *.html
 
 foreach ($f in $files) {
   $path = $f.FullName
-  $orig = Get-Content $path -Raw
+  $orig = Get-Content -LiteralPath $path -Raw -Encoding UTF8
   $html = $orig
 
   # 0) Scrub localhost/127.0.0.1 (plain & URL-encoded)
@@ -83,14 +83,14 @@ foreach ($f in $files) {
   $html = $html -replace '\ssizes=["'']\s*auto,\s*', ' sizes="'
 
   if ($html -ne $orig) {
-    Set-Content $path $html -Encoding UTF8
+    Set-Content $path $html  -Encoding UTF8
     Write-Host ("Changed: {0}" -f $path)
   }
 }
 
 # Summary
-$left_lazy = ($files | % { (Get-Content $_.FullName -Raw) } | Select-String -Pattern 'data-src|data-lazy-src|data-original|data-echo' -AllMatches | Measure-Object).Count
-$missing_src = ($files | % { (Get-Content $_.FullName -Raw) } | Select-String -Pattern '<img(?![^>]*\ssrc=)[^>]*>' -AllMatches | Measure-Object).Count
+$left_lazy = ($files | % { (Get-Content -LiteralPath $_.FullName -Raw -Encoding UTF8) } | Select-String -Pattern 'data-src|data-lazy-src|data-original|data-echo' -AllMatches | Measure-Object).Count
+$missing_src = ($files | % { (Get-Content -LiteralPath $_.FullName -Raw -Encoding UTF8) } | Select-String -Pattern '<img(?![^>]*\ssrc=)[^>]*>' -AllMatches | Measure-Object).Count
 
 Write-Host ""
 Write-Host "ONECLICK FINAL v5 Summary:"
