@@ -1,36 +1,39 @@
-﻿# em-lock-ULTRA4.ps1 — Stronger "same em on mobile" patch
+﻿# EM-LOCK-v2.ps1 — Make mobile/tablet text match desktop 1em
 $ErrorActionPreference = 'Stop'
 
-# Work in the folder where this script lives
+# Work in folder where this script lives
 $Root = Split-Path -Parent $PSCommandPath
 if (-not (Test-Path $Root)) { Write-Host "Folder not found: $Root" -ForegroundColor Red; Read-Host "Press Enter to close"; exit 1 }
 
 Write-Host "Scanning (HTML only): $Root" -ForegroundColor Cyan
 
-# Gather HTML files safely
+# Collect HTML files safely
 $files = Get-ChildItem -LiteralPath $Root -Recurse -File | Where-Object { $_.Extension -in @('.html','.htm') } | Sort-Object FullName
 $tot = $files.Count
 Write-Host ("Found {0} HTML files" -f $tot)
 
-# Stronger CSS (one-liner to avoid quoting issues)
-$cssOneLine = 'html{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}@media (max-width:1024px){html,body{font-size:16px!important;line-height:1.5} :root{--font-size-base:16px!important;--text-font-size:16px!important}}'
+# Compact CSS (one line) — stronger overrides for typical WP/Blocksy containers
+# Note: !important used deliberately to win over theme breakpoints
+$cssOneLine = 'html{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}'+
+'@media (max-width:1024px){'+
+'html,body,.entry-content,.page-content,.article-content,.post-content,.ct-content,.ct-typography,.wp-block-group{font-size:16px!important;line-height:1.6}'+
+':root{--font-size-base:16px!important;--text-font-size:16px!important;--ct-body-font-size:16px!important;--content-text-size:16px!important;--font-size:16px!important}'+
+'}'
+
 $styleStart = '<style id="em-mobile-size-lock">'
 $styleTag   = $styleStart + $cssOneLine + '</style>'
 
 function Ensure-Viewport($html){
-  # If a viewport meta already exists, keep it. Otherwise add a standard one after <head>
   if ($html.IndexOf('<meta name="viewport"', [StringComparison]::OrdinalIgnoreCase) -ge 0) { return $html }
   $headIdx = [System.Globalization.CultureInfo]::InvariantCulture.CompareInfo.IndexOf($html, '<head', [System.Globalization.CompareOptions]::IgnoreCase)
   if ($headIdx -ge 0) {
     $gt = $html.IndexOf('>', $headIdx)
-    if ($gt -ge 0) {
-      return $html.Insert($gt+1, "`r`n<meta name=""viewport"" content=""width=device-width, initial-scale=1"">`r`n")
-    }
+    if ($gt -ge 0) { return $html.Insert($gt+1, "`r`n<meta name=""viewport"" content=""width=device-width, initial-scale=1"">`r`n") }
   }
   return "<meta name=""viewport"" content=""width=device-width, initial-scale=1"">`r`n" + $html
 }
 
-$changed = 0; $i = 0; $replaced = 0; $inserted = 0; $vpAdded = 0
+$changed = 0; $replaced = 0; $inserted = 0; $vpAdded = 0; $i = 0
 foreach($f in $files){
   $i++
   Write-Host ("[{0}/{1}] {2}" -f $i, $tot, $f.FullName)
@@ -41,27 +44,25 @@ foreach($f in $files){
     $newTxt = Ensure-Viewport $txt
     if ($newTxt -ne $txt) { $txt = $newTxt; $vpAdded++ }
 
-    # Replace existing style (if our id is already there), else insert after <head>
+    # Replace existing em-lock block if present
     $idx = $txt.IndexOf($styleStart, [StringComparison]::OrdinalIgnoreCase)
     if ($idx -ge 0) {
-      # Find closing </style> after idx
       $endIdx = $txt.IndexOf('</style>', $idx)
       if ($endIdx -gt $idx) {
-        $endIdx += 8  # include closing tag
+        $endIdx += 8
         $txt = $txt.Substring(0,$idx) + $styleTag + $txt.Substring($endIdx)
         $replaced++
       } else {
-        # malformed? just insert fresh at top
         $txt = $styleTag + "`r`n" + $txt
         $inserted++
       }
     } else {
-      # insert after <head>
+      # Insert after <head>
       $ci = [System.Globalization.CultureInfo]::InvariantCulture
       $headIdx = $ci.CompareInfo.IndexOf($txt, '<head', [System.Globalization.CompareOptions]::IgnoreCase)
-      if ($headIdx -ge 0) {
+      if ($headIdx -ge 0){
         $gt = $txt.IndexOf('>', $headIdx)
-        if ($gt -ge 0) {
+        if ($gt -ge 0){
           $txt = $txt.Insert($gt+1, "`r`n"+$styleTag+"`r`n")
           $inserted++
         } else {
