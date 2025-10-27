@@ -1,4 +1,4 @@
-# css-defer-ONECLICK-ps5.ps1 (QUIET, PS5-safe, ASCII-only)
+# css-defer-ONECLICK-ps5-NOBACKUP.ps1  (no backups, PS5-safe, ASCII-only)
 param([string]$Root = ".")
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
@@ -8,7 +8,6 @@ $re = [regex]'(?is)<link\s+([^>]*\brel\s*=\s*["'']stylesheet["''][^>]*)>'
 
 function MakeTrio {
   param([string]$attrs)
-
   $m = [regex]::Match($attrs,'(?is)\bhref\s*=\s*["'']([^"'']+)["'']')
   if(-not $m.Success){ return $null }
   $href = $m.Groups[1].Value
@@ -28,23 +27,14 @@ function MakeTrio {
 }
 
 $rootPath = Resolve-Path $Root
-Write-Host ">>> ONECLICK CSS Defer -- $rootPath"
+Write-Host ">>> ONECLICK CSS Defer (NOBACKUP) -- $rootPath"
 
 $files = Get-ChildItem -Path $rootPath -Recurse -Include $extensions -File | Sort-Object FullName
-if(-not $files){
-  Write-Host "No HTML files found."
-  exit 0
-}
+if(-not $files){ Write-Host "No HTML files found."; exit 0 }
 
-[int]$changed=0
-[int]$converted=0
-
+[int]$changed=0; [int]$converted=0
 foreach($f in $files){
   $html = Get-Content -Raw -LiteralPath $f.FullName
-
-  $bak = $f.FullName + ".bak"
-  if(-not (Test-Path $bak)){ Copy-Item -LiteralPath $f.FullName -Destination $bak -Force | Out-Null }
-
   $new = $re.Replace($html,{
     param($m)
     $attrs = $m.Groups[1].Value
@@ -54,12 +44,6 @@ foreach($f in $files){
     $script:converted++
     return $t
   })
-
-  if($new -ne $html){
-    Set-Content -LiteralPath $f.FullName -Value $new -Encoding UTF8
-    $changed++
-  }
+  if($new -ne $html){ Set-Content -LiteralPath $f.FullName -Value $new -Encoding UTF8; $changed++ }
 }
-
 Write-Host ">>> Done. Files changed: $changed; Stylesheets converted: $converted"
-# No Read-Host here; the .cmd handles the single final pause.
