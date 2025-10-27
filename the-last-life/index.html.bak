@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Oct 2025 10:56:12 GMT -->
+<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Oct 2025 06:03:04 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -150,7 +150,7 @@
   </script>
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; The Last Life Comments Feed" href="/the-last-life/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Protected: The Last Life Comments Feed" href="/the-last-life/feed/" />
 <link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globalaec2.css?ver=64145' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2' media='all' />
 <style id='ugb-style-css-inline-css'>
@@ -691,7 +691,7 @@
 		
 	<article
 		id="post-812"
-		class="post-812 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
+		class="post-812 post type-post status-publish format-standard post-password-required hentry category-stories">
 
 		
 <div class="hero-section is-width-constrained" data-type="type-1">
@@ -701,235 +701,17 @@
 				<path d="M2,6.9L4.8,4L2,1.1L2.6,0l4,4l-4,4L2,6.9z"/>
 			</svg></span><span class="item-0"itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="2"><a href="../category/stories/index.html" itemprop="item"><span itemprop="name">Stories</span></a><meta itemprop="url" content="/category/stories/"/><svg class="ct-separator" fill="currentColor" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
 				<path d="M2,6.9L4.8,4L2,1.1L2.6,0l4,4l-4,4L2,6.9z"/>
-			</svg></span><span class="last-item" aria-current="page" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="3"><span itemprop="name">The Last Life</span><meta itemprop="url" content="/the-last-life/"/></span>			</nav>
+			</svg></span><span class="last-item" aria-current="page" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="3"><span itemprop="name">Protected: The Last Life</span><meta itemprop="url" content="/the-last-life/"/></span>			</nav>
 
-		<h1 class="page-title" itemprop="headline">The Last Life</h1><ul class="entry-meta" data-type="simple:slash" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a href="../author/fluke/index.html" tabindex="-1" class="ct-media-container-static"><img decoding="async" src="https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=50&amp;d=mm&amp;r=g" width="25" height="25" style="height:25px" alt="fluke"></a><a class="ct-meta-element-author" href="../author/fluke/index.html" title="Posts by fluke" rel="author" itemprop="url"><span itemprop="name">fluke</span></a></li><li class="meta-date" itemprop="datePublished"><time class="ct-meta-element-date" datetime="2025-10-16T09:41:30+00:00">October 16, 2025</time></li><li class="meta-categories" data-type="simple"><a href="../category/stories/index.html" rel="tag" class="ct-term-9">Stories</a></li></ul>		</header>
+		<h1 class="page-title" itemprop="headline">Protected: The Last Life</h1><ul class="entry-meta" data-type="simple:slash" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a href="../author/fluke/index.html" tabindex="-1" class="ct-media-container-static"><img decoding="async" src="https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=50&amp;d=mm&amp;r=g" width="25" height="25" style="height:25px" alt="fluke"></a><a class="ct-meta-element-author" href="../author/fluke/index.html" title="Posts by fluke" rel="author" itemprop="url"><span itemprop="name">fluke</span></a></li><li class="meta-date" itemprop="datePublished"><time class="ct-meta-element-date" datetime="2025-10-16T09:41:30+00:00">October 16, 2025</time></li><li class="meta-categories" data-type="simple"><a href="../category/stories/index.html" rel="tag" class="ct-term-9">Stories</a></li></ul>		</header>
 	</div><figure class="ct-featured-image "><div class="ct-media-container"><img width="1200" height="1200" src="/wp-content/uploads/2025/10/reincarnation.webp" class="attachment-full size-full wp-post-image" alt="Lucid Origin. A cinematic poetic vision of reincarnation, a man standing" loading="lazy" decoding="async" srcset="/wp-content/uploads/2025/10/reincarnation.webp 1200w, /wp-content/uploads/2025/10/reincarnation-300x300.webp 300w, /wp-content/uploads/2025/10/reincarnation-1024x1024.webp 1024w, /wp-content/uploads/2025/10/reincarnation-150x150.webp 150w, /wp-content/uploads/2025/10/reincarnation-768x768.webp 768w" sizes="(max-width: 1200px) 100vw, 1200px" itemprop="image" style="aspect-ratio: 16/9;" /></div></figure>
 		
 		
 		<div class="entry-content is-layout-flow">
-			
-<p>On the desolate yet familiar grey limbo ground that had ushered his consciousness into countless new lives—he felt a distinct, alien turn this time. A presence, vague and shifting, closed in with a strange, compelling gravity, stirring unease. He recoiled, his heart beating a rhythm foreign to the stillness of that place. As the shifting form drew closer, it spoke, the words intoned with terrifying solemnity: “This is your last time.”</p>
-
-
-
-<p>The grim inevitability of his final rebirth struck him like a physical blow. His thoughts raced, frantic, grasping for meaning. “I dare do all that may become a man”—the words rose, then sank again, hollow and weightless. Futility clung to him like a shadow. The end of perpetuity held no dread—only the ache of squandered possibility. Each life had burned fast and foolish. Now, stripped of endless tomorrows, the chance to breathe meaning into them felt as though it had slipped beyond reach, leaving nothing but a profound emptiness.</p>
-
-
-
-<p>It was as if his mind had frozen mid-stride. His gaze trembled, unfocused, while within, thoughts tangled and unraveled in the same breath—until clarity seemed unreachable.</p>
-
-
-
-<p>Through the haze, a flicker: a fracture in his mind.</p>
-
-
-
-<p>He saw a hand—his hand, but smaller, dirt under its nails—clutching a wooden toy soldier. The image dissolved as quickly as it came, leaving behind the scent of smoke and the echo of a child’s laughter that was not his own, yet undeniably his. He staggered, heart hammering, as if the memory had been stripped from within.</p>
-
-
-
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-default"/>
-
-
-
-<p>The Presence, which had been still and immutable, now began to shimmer and fracture.</p>
-
-
-
-<p>Beneath him, the grey limbo floor violently ceased to be. The sensation was less a transport than a shearing—as if he were being dragged through a thousand layers of splintered memories, each one seared into his being. A dizzying, downward velocity seized him. He didn’t fall through space; he fell through time, the very thread of his personal legacy unwinding beneath the collective weight of all that he had been.</p>
-
-
-
-<p>And then, the plummet stopped.</p>
-
-
-
-<p>He gasped, air filling lungs that felt new, yet familiar. He did not land softly; he hit the ground hard, rolled once, and settled with his back against a low, dusty stone wall. Gone was the grey limbo, replaced by the humid, clammy dark of a late afternoon. The air was thick with the scent of wet soil, cooking smoke, and something acrid—maybe industrial solvent.</p>
-
-
-
-<p>A cramped alleyway stretched between two towering, soot-stained brick buildings. Above him, a chaotic web of laundry lines crisscrossed the narrow gap between the leaning balconies, catching the last shreds of bruised, orange daylight. The world was loud: the layered clamor from beyond, the high, immediate shriek of a nearby kettle, and the sharp, rhythmic tap-tap-tap of a hammer.</p>
-
-
-
-<p>He looked down at his hands, expecting the dirt-caked child’s hands or the scarred, adult hands of the soldier. Instead, they were pale and clean, the skin too smooth to have done much living. He wore cheap, rough cloth that stuck uncomfortably to his skin. He felt young.</p>
-
-
-
-<p>As his eyes adjusted to the mundane reality of the alley, a greater reality asserted itself. The memories were not gone. They were simply quieted, stacked beneath the immediate demands of the new form. He could still taste the grit of old lives, the smoke from the toy soldier’s fire, and the crushing weight of all the potential he had sworn to carry, but could never truly realize.</p>
-
-
-
-<p>He was a blank slate, but the slate was made of dense, ancient stone.</p>
-
-
-
-<p>The final life had begun, not with a philosophical quest, but with the simple, visceral act of finding his footing. He pushed away from the stone wall, the rough stones grating his shoulders as he straightened.</p>
-
-
-
-<p>He took a slow, deliberate step toward the mouth of the alley amid the cacophony of his final world.</p>
-
-
-
-<p>The alley didn’t notice him leave.</p>
-
-
-
-<p>He slept that night on a mattress that had opinions. The window didn’t latch. Wind came in with the talk of the alley—pots set down hard, the scuff of movement, a cough someone tried to cheat out of their body. On the sill, a dead fly with its legs curled. He turned his pillow to the cold side and watched the corner where the paint blistered around a nail.<br>Somewhere down the hall, a radio played—half static, half truth. He let it tell him the shape of the world and decided that was close enough.<br><br></p>
-
-
-
-<hr class="wp-block-separator has-alpha-channel-opacity"/>
-
-
-
-<p>Morning pressed in dim and heavy; the alley’s haze had curdled into something sour and familiar. He walked until the city began to yawn—vendors waking shutters, pans clanging, pigeons debating with their wings.</p>
-
-
-
-<p>A shout ahead: “Fire!”</p>
-
-
-
-<p>He ran without thinking and kicked the basement door open; heat and burnt sugar rushed out like a held breath. Inside, a pot fumed on the stove. A small girl crouched beneath the table, clutching a wooden toy soldier—the kind that looked older than she did, its paint blistered into half a face.</p>
-
-
-
-<p>He pulled her out, coughing. The mother grabbed the child, slapped the air. “You scared her half to death! It’s just the stove!”</p>
-
-
-
-<p>The girl blinked up from her mother’s arms. “You dropped my soldier.”</p>
-
-
-
-<p>He looked back. The soldier lay in the doorway, grey and still, as if it had run out of reasons to stand. He didn’t go for it. The smoke made the choice first.</p>
-
-
-
-<p>He stood in the street, useless, the taste of burnt sugar and embarrassment in his mouth. Somewhere behind him, a kettle whistled its victory.</p>
-
-
-
-<hr class="wp-block-separator has-alpha-channel-opacity"/>
-
-
-
-<p>There was a toy stall on the corner, plastic soldiers leaning out of their bag by the handful. He lifted one up, felt the mold-line seam on its helmet and the nothing-weight of it, and put it back gently. The man behind the stall watched him do it and nodded once, as if to say: <em>It’s fine to want without taking.</em></p>
-
-
-
-<p>He walked on. Under a torn awning, an old man drew faces in chalk on the pavement. The faces blurred every time the wind disagreed.</p>
-
-
-
-<p>“You’ve been here before,” the man said.</p>
-
-
-
-<p>“Everyone’s been somewhere before.”</p>
-
-
-
-<p>“Not like that. You are not new here.”</p>
-
-
-
-<p>He waited for a punchline, curious despite himself, but the old man drew another mouth instead, open as if screaming for air.</p>
-
-
-
-<p>Rain began—small, indifferent drops. The chalk faces melted into one. When he looked back, the man had gone, leaving the chalk to finish the thought.</p>
-
-
-
-<hr class="wp-block-separator has-alpha-channel-opacity"/>
-
-
-
-<p>Down by the river, painters set up in the wind like stubborn flags. One woman worked in silence, brush quick and unforgiving. He liked the way her silence made space around him.</p>
-
-
-
-<p>“You’re standing in the light,” she said, not unkindly.</p>
-
-
-
-<p>He moved to the edge and watched the current. Across the river, a row of crumbling warehouses sagged into their own reflections, taking shape on her canvas.</p>
-
-
-
-<p>“Why paint things that are falling apart?” he asked.</p>
-
-
-
-<p>“It’s a symbol of impermanence — a metaphor for our condition,” she said.</p>
-
-
-
-<p>He didn’t answer, only watched her a moment longer, but the words settled in him like silt. She had already returned to her work.</p>
-
-
-
-<p>He came back the next day, and the next. Sometimes they talked, mostly they didn’t. Her jar of brushes rattled like teeth in a glass when she was pleased.</p>
-
-
-
-<p>One evening, the vision she was chasing in the canvas had slipped away. She set it alight by the water, and the blistering paint released a harsh smell that could have cleaned a wound or started one.</p>
-
-
-
-<p>He tried to save it, caught his sleeve in the fire. She slapped the flame out with a sigh.</p>
-
-
-
-<p>“Not everything you touch wants saving.”</p>
-
-
-
-<p>What she said felt like gravity explaining itself. After that, she moved farther downriver.</p>
-
-
-
-<hr class="wp-block-separator has-alpha-channel-opacity"/>
-
-
-
-<p>He walked home with shoes that had learned his feet and didn’t agree with the lesson. At the stall the toy soldiers had been moved; now they faced a row of plastic horses that all stood in the same wrong way. He looked once, not long enough to want, and kept walking.</p>
-
-
-
-<p>The city wore a slick, reflective sheen of recent rain. A boy darted past with one glove inside-out, hair refusing orders.</p>
-
-
-
-<p>“Is that yours?” the boy asked, pointing at nothing in particular.</p>
-
-
-
-<p>“For now,” he said, which sounded smarter than he felt. The boy nodded, satisfied with the kind of truth that had room to breathe.</p>
-
-
-
-<p>Night settled early. He turned down the alley where it had all started. The laundry lines hung bare, ghosts of wind tugging at them. On the ground, a half-charred toy soldier lay—maybe the same one, maybe just another repeating the pattern.</p>
-
-
-
-<p>He picked it up. The paint came away like old regret. The air thickened. The Presence stood at the far end of the alley, where the light forgot to reach.</p>
-
-
-
-<p>A gust rolled through, rattling the wires above. The toy soldier slipped from his fingers, landed upright in a puddle, and began to turn slowly with the wind. He watched it spin once, twice, three times. He could have steadied it, but he didn’t.</p>
-
-
-
-<p>He smiled—a small, tired curve—and turned toward the street. The puddle caught the last light and held it, stubborn and trembling, before finally going dark.</p>
-
-
-
-<div class="wp-block-stackable-spacer stk-block-spacer stk--no-padding stk-block stk-ebcec05" data-block-id="ebcec05"></div>
+			<form action="/wp-login.php?action=postpass" class="post-password-form" method="post"><input type="hidden" name="redirect_to" value="/the-last-life/" /></p>
+<p>This content is password protected. To view it please enter your password below:</p>
+<p><label for="pwbox-812">Password: <input name="post_password" id="pwbox-812" type="password" spellcheck="false" required size="20" /></label> <input type="submit" name="Submit" value="Enter" /></p>
+</form>
 <!-- Helper IDs -->
 <script>
   const WP_POST_ID = "812";
@@ -1293,14 +1075,14 @@ form.addEventListener("submit", async e=>{
 <div style="border-style:none;border-width:0px;" class="ct-dynamic-data wp-elements-04497b40f9fe26b40c88cf00ff301528 has-small-font-size">October 15, 2025</div></div>
 </div>
 
-</article><article class="wp-block-post is-layout-flow post-812 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
+</article><article class="wp-block-post is-layout-flow post-812 post type-post status-publish format-standard post-password-required hentry category-stories">
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-133cf375 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="The Last Life" href="index.html"><img decoding="async" width="150" height="150" src="/wp-content/uploads/2025/10/reincarnation-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Lucid Origin. A cinematic poetic vision of reincarnation, a man standing" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" srcset="/wp-content/uploads/2025/10/reincarnation-150x150.webp 150w, /wp-content/uploads/2025/10/reincarnation-300x300.webp 300w, /wp-content/uploads/2025/10/reincarnation-1024x1024.webp 1024w, /wp-content/uploads/2025/10/reincarnation-768x768.webp 768w, /wp-content/uploads/2025/10/reincarnation.webp 1200w" sizes="(max-width: 150px) 100vw, 150px" /></a></div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Protected: The Last Life" href="index.html"><img decoding="async" width="150" height="150" src="/wp-content/uploads/2025/10/reincarnation-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Lucid Origin. A cinematic poetic vision of reincarnation, a man standing" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" srcset="/wp-content/uploads/2025/10/reincarnation-150x150.webp 150w, /wp-content/uploads/2025/10/reincarnation-300x300.webp 300w, /wp-content/uploads/2025/10/reincarnation-1024x1024.webp 1024w, /wp-content/uploads/2025/10/reincarnation-768x768.webp 768w, /wp-content/uploads/2025/10/reincarnation.webp 1200w" sizes="(max-width: 150px) 100vw, 150px" /></a></div>
 
 
 
-<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:75%"><h2 style="font-size:clamp(14px, 0.875rem + ((1vw - 3.2px) * 0.078), 15px);font-weight:500; margin-bottom:var(--wp--preset--spacing--20);" class="ct-dynamic-data wp-elements-5eb1ec1ae98a364d8b053a6fb7da87fa"><a href="index.html">The Last Life</a></h2>
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:75%"><h2 style="font-size:clamp(14px, 0.875rem + ((1vw - 3.2px) * 0.078), 15px);font-weight:500; margin-bottom:var(--wp--preset--spacing--20);" class="ct-dynamic-data wp-elements-5eb1ec1ae98a364d8b053a6fb7da87fa"><a href="index.html">Protected: The Last Life</a></h2>
 
 <div style="border-style:none;border-width:0px;" class="ct-dynamic-data wp-elements-04497b40f9fe26b40c88cf00ff301528 has-small-font-size">October 16, 2025</div></div>
 </div>
@@ -1652,6 +1434,6 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Oct 2025 10:56:12 GMT -->
+<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Oct 2025 06:03:04 GMT -->
 </html>
 
