@@ -1,7 +1,8 @@
 @echo off
-:: css-defer-ONECLICK-ps5.cmd (ASCII-only)
+:: css-defer-ONECLICK-ps5.cmd (QUIET, single prompt)
 setlocal
 cd /d "%~dp0"
 powershell -ExecutionPolicy Bypass -File "%~dp0css-defer-ONECLICK-ps5.ps1" -Root "."
 echo.
-pause
+echo Press any key to exit . . .
+pause >nul

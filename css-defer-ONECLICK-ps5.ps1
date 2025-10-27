@@ -1,6 +1,7 @@
-# css-defer-ONECLICK-ps5.ps1  (ASCII-only, PowerShell 5 safe)
+# css-defer-ONECLICK-ps5.ps1 (QUIET, PS5-safe, ASCII-only)
 param([string]$Root = ".")
 $ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 
 $extensions = @("*.html","*.htm")
 $re = [regex]'(?is)<link\s+([^>]*\brel\s*=\s*["'']stylesheet["''][^>]*)>'
@@ -32,7 +33,6 @@ Write-Host ">>> ONECLICK CSS Defer -- $rootPath"
 $files = Get-ChildItem -Path $rootPath -Recurse -Include $extensions -File | Sort-Object FullName
 if(-not $files){
   Write-Host "No HTML files found."
-  Read-Host "Press Enter to exit"
   exit 0
 }
 
@@ -43,7 +43,7 @@ foreach($f in $files){
   $html = Get-Content -Raw -LiteralPath $f.FullName
 
   $bak = $f.FullName + ".bak"
-  if(-not (Test-Path $bak)){ Copy-Item $f.FullName $bak -Force }
+  if(-not (Test-Path $bak)){ Copy-Item -LiteralPath $f.FullName -Destination $bak -Force | Out-Null }
 
   $new = $re.Replace($html,{
     param($m)
@@ -62,4 +62,4 @@ foreach($f in $files){
 }
 
 Write-Host ">>> Done. Files changed: $changed; Stylesheets converted: $converted"
-Read-Host "Press Enter to exit"
+# No Read-Host here; the .cmd handles the single final pause.
