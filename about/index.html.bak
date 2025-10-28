@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Oct 2025 05:28:21 GMT -->
+<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Oct 2025 05:32:42 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -150,7 +150,7 @@
   </script>
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globalfeb3.css?ver=24728' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global7cb9.css?ver=29517' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -177,7 +177,6 @@
 <link rel='stylesheet' id='ct-main-styles-css' href='../wp-content/themes/blocksy/static/bundle/main.min6472.css?ver=2.1.17' media='all' />
 <link rel='stylesheet' id='ct-page-title-styles-css' href='../wp-content/themes/blocksy/static/bundle/page-title.min6472.css?ver=2.1.17' media='all' />
 <link rel='stylesheet' id='ct-stackable-styles-css' href='../wp-content/themes/blocksy/static/bundle/stackable.min6472.css?ver=2.1.17' media='all' />
-<link rel='stylesheet' id='ct-wpforms-styles-css' href='../wp-content/themes/blocksy/static/bundle/wpforms.min6472.css?ver=2.1.17' media='all' />
 <link rel="https://api.w.org/" href="/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/pages/768" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 6.8.3" />
 <link rel="canonical" href="index.html" />
@@ -696,7 +695,7 @@
 
 
 <div class="wp-block-stackable-column stk-block-column stk-column stk-block stk-99a53be stk-block-background" data-v="4" data-block-id="99a53be"><div class="stk-column-wrapper stk-block-column__content stk-container stk-99a53be-container stk--no-background stk--no-padding"><div class="stk-block-content stk-inner-blocks stk-99a53be-inner-blocks">
-<div class="wp-block-stackable-heading stk-block-heading stk-block-heading--v2 stk-block stk-f871e45" id="a-note-from-the-writer" data-block-id="f871e45"><h5 class="stk-block-heading__text has-text-color">A Note from the Writer</h5></div>
+<div class="wp-block-stackable-heading stk-block-heading stk-block-heading--v2 stk-block stk-f871e45" id="just-a-thought" data-block-id="f871e45"><h5 class="stk-block-heading__text has-text-color">Just a thought</h5></div>
 
 
 
@@ -999,6 +998,6 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Oct 2025 05:28:21 GMT -->
+<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Oct 2025 05:32:42 GMT -->
 </html>
 
