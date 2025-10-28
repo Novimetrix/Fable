@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Oct 2025 14:53:57 GMT -->
+<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Oct 2025 05:28:21 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -150,7 +150,7 @@
   </script>
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globalaec2.css?ver=64145' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/globalfeb3.css?ver=24728' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -177,6 +177,7 @@
 <link rel='stylesheet' id='ct-main-styles-css' href='../wp-content/themes/blocksy/static/bundle/main.min6472.css?ver=2.1.17' media='all' />
 <link rel='stylesheet' id='ct-page-title-styles-css' href='../wp-content/themes/blocksy/static/bundle/page-title.min6472.css?ver=2.1.17' media='all' />
 <link rel='stylesheet' id='ct-stackable-styles-css' href='../wp-content/themes/blocksy/static/bundle/stackable.min6472.css?ver=2.1.17' media='all' />
+<link rel='stylesheet' id='ct-wpforms-styles-css' href='../wp-content/themes/blocksy/static/bundle/wpforms.min6472.css?ver=2.1.17' media='all' />
 <link rel="https://api.w.org/" href="/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/pages/768" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 6.8.3" />
 <link rel="canonical" href="index.html" />
@@ -185,7 +186,14 @@
 <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%3A10016%2Fabout%2F&amp;format=xml" />
 <noscript><link rel='stylesheet' href='../wp-content/themes/blocksy/static/bundle/no-scripts.min.css' type='text/css'></noscript>
 
-<style class="stk-block-styles">.stk-1fd3982,.stk-b5fe06f{height:120px !important;}.stk-ad686cc .stk--block-align-ad686cc{align-items:center !important;}.stk-ad686cc{background-color:var(--theme-palette-color-7, #1a1a1a) !important;padding-top:120px !important;padding-right:35px !important;padding-bottom:120px !important;padding-left:35px !important;margin-top:0px !important;margin-right:0px !important;margin-bottom:0px !important;margin-left:0px !important;}.stk-ad686cc:before{background-color:var(--theme-palette-color-7, #1a1a1a) !important;}.stk-c984eeb-container{margin-top:0px !important;margin-right:0px !important;margin-bottom:0px !important;margin-left:0px !important;}.stk-583227d{margin-bottom:25px !important;}.stk-583227d .stk-block-heading__text{font-size:60px !important;line-height:1.2em !important;font-weight:800 !important;}.stk-abdecd5 .stk-block-text__text{color:#ffffff !important;}.stk-6a8268d{height:150px !important;}.stk-59d9e47{height:30px !important;}@media screen and (min-width:690px){.stk-c984eeb,.stk-99a53be{flex:var(--stk-flex-grow, 1) 1 calc(50% - var(--stk-column-gap, 0px) * 1 / 2 ) !important;}}@media screen and (min-width:690px) and (max-width:999px){.stk-c984eeb{flex:var(--stk-flex-grow, 1) 1 calc(100% - var(--stk-column-gap, 0px) * 0 / 1 ) !important;}}@media screen and (max-width:999px){.stk-1fd3982,.stk-b5fe06f{height:100px !important;}.stk-ad686cc-column{row-gap:70px !important;}.stk-583227d .stk-block-heading__text{font-size:30px !important;}}@media screen and (max-width:689px){.stk-ad686cc{padding-top:70px !important;padding-right:0px !important;padding-bottom:70px !important;padding-left:0px !important;}.stk-583227d .stk-block-heading__text{font-size:25px !important;}.stk-b5fe06f{height:70px !important;}.stk-6a8268d{height:50px !important;}}</style><style id="comments-title-spacing-universal-100">
+<style class="stk-block-styles">.stk-1fd3982,.stk-b5fe06f{height:120px !important;}.stk-ad686cc .stk--block-align-ad686cc{align-items:center !important;}.stk-ad686cc{background-color:var(--theme-palette-color-7, #1a1a1a) !important;padding-top:120px !important;padding-right:35px !important;padding-bottom:120px !important;padding-left:35px !important;margin-top:0px !important;margin-right:0px !important;margin-bottom:0px !important;margin-left:0px !important;}.stk-ad686cc:before{background-color:var(--theme-palette-color-7, #1a1a1a) !important;}.stk-c984eeb-container{margin-top:0px !important;margin-right:0px !important;margin-bottom:0px !important;margin-left:0px !important;}.stk-583227d{margin-bottom:25px !important;}.stk-583227d .stk-block-heading__text{font-size:60px !important;line-height:1.2em !important;font-weight:800 !important;}.stk-abdecd5 .stk-block-text__text{color:#ffffff !important;}.stk-99a53be,.stk-99a53be:before{background-color:var(--theme-palette-color-1, #F15808) !important;}.stk-f871e45 .stk-block-heading__text,:is(.stk-243c650, .stk-b4606b0) .stk-block-text__text{text-shadow:2px 2px 4px #00000033 !important;color:#ffffff !important;}.stk-6a8268d{height:150px !important;}.stk-59d9e47{height:30px !important;}@media screen and (min-width:690px){.stk-c984eeb,.stk-99a53be{flex:var(--stk-flex-grow, 1) 1 calc(50% - var(--stk-column-gap, 0px) * 1 / 2 ) !important;}}@media screen and (min-width:690px) and (max-width:999px){.stk-c984eeb{flex:var(--stk-flex-grow, 1) 1 calc(100% - var(--stk-column-gap, 0px) * 0 / 1 ) !important;}}@media screen and (max-width:999px){.stk-1fd3982,.stk-b5fe06f{height:100px !important;}.stk-ad686cc-column{row-gap:70px !important;}.stk-583227d .stk-block-heading__text{font-size:30px !important;}}@media screen and (max-width:689px){.stk-ad686cc{padding-top:70px !important;padding-right:0px !important;padding-bottom:70px !important;padding-left:0px !important;}.stk-583227d .stk-block-heading__text{font-size:25px !important;}.stk-b5fe06f{height:70px !important;}.stk-6a8268d{height:50px !important;}}</style><style class="wpcode-css-snippet">/* Meta strip capitalization fix */
+.entry-meta,
+.entry-meta a,
+.post-meta,
+.post-meta a {
+  text-transform: none !important;
+}
+</style><style id="comments-title-spacing-universal-100">
 /* Firebase injectors (your MU plugins) */
 #commentSection.fc-wrap h2{margin-bottom:100px !important;}
 #commentSection.fc-wrap.fc-light h2{margin-bottom:100px !important;}
@@ -676,12 +684,28 @@
 
 
 
+<div class="wp-block-group is-nowrap is-layout-flex wp-container-core-group-is-layout-6c531013 wp-block-group-is-layout-flex">
 <div class="wp-block-stackable-text stk-block-text stk-block stk-abdecd5" data-block-id="abdecd5"><p class="stk-block-text__text has-text-color has-palette-color-4-color has-text-align-left-mobile">A collection of short stories exploring time, memory, and the quiet details that shape us. Each piece stands alone yet belongs to the same thread of thought — what remains when everything else moves on. Through these stories, I trace the threads between ordinary days and extraordinary memories. Each glimpse into the inner world reveals the things we keep, the things we forget, and the emotions that outlast both. Together, they form a living tapestry of moments — a gentle reminder that even what feels fleeting can leave a lasting mark.</p></div>
+
+
+
+<div style="height:100px;width:0px" aria-hidden="true" class="wp-block-spacer wp-container-content-6388d5dc"></div>
+</div>
 </div></div></div>
 
 
 
-<div class="wp-block-stackable-column stk-block-column stk-column stk-block stk-99a53be" data-v="4" data-block-id="99a53be"><div class="stk-column-wrapper stk-block-column__content stk-container stk-99a53be-container stk--no-background stk--no-padding"><div class="stk-block-content stk-inner-blocks stk-99a53be-inner-blocks"></div></div></div>
+<div class="wp-block-stackable-column stk-block-column stk-column stk-block stk-99a53be stk-block-background" data-v="4" data-block-id="99a53be"><div class="stk-column-wrapper stk-block-column__content stk-container stk-99a53be-container stk--no-background stk--no-padding"><div class="stk-block-content stk-inner-blocks stk-99a53be-inner-blocks">
+<div class="wp-block-stackable-heading stk-block-heading stk-block-heading--v2 stk-block stk-f871e45" id="a-note-from-the-writer" data-block-id="f871e45"><h5 class="stk-block-heading__text has-text-color">A Note from the Writer</h5></div>
+
+
+
+<div class="wp-block-stackable-text stk-block-text stk-block stk-243c650" data-block-id="243c650"><p class="stk-block-text__text has-text-color">I never planned to write. It just happened one day, when thoughts became too heavy to keep. Words began to make sense of things I couldn’t explain any other way — and for a moment, that felt enough.</p></div>
+
+
+
+<div class="wp-block-stackable-text stk-block-text stk-block stk-b4606b0" data-block-id="b4606b0"><p class="stk-block-text__text has-text-color">I read a lot in my younger years, but never imagined I’d have anything worth saying myself. Maybe I still don’t. I’m still learning, and maybe that’s all this needs to be for now — a small attempt to put into words what would otherwise go unsaid. I don’t know if any of this will matter to anyone else, but it matters to me, and that keeps me going.</p></div>
+</div></div></div>
 </div></div>
 
 
@@ -975,6 +999,6 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Oct 2025 14:53:57 GMT -->
+<!-- Mirrored from localhost:10016/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Oct 2025 05:28:21 GMT -->
 </html>
 
