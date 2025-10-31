@@ -21,6 +21,13 @@ foreach ($f in $files) {
   $html = $html -replace 'https?://127\.0\.0\.1(?::\d+)?', ''
   $html = $html -replace 'http%3A%2F%2Flocalhost(?::\d+)?', ''
   $html = $html -replace 'http%3A%2F%2F127%2E0%2E0%2E1(?::\d+)?', ''
+  # 0.1) Remove REST/oEmbed/RSD localhost <link> tags and sticky.js includes
+  try {
+    $html = $html -replace '<link[^>]+(localhost|127\.0\.0\.1)[^>]+>', ''
+    $html = $html -replace '<script[^>]*sticky\.js[^>]*>\s*</script>', ''
+  } catch {
+    Write-Host "Note: extra cleanup skipped for $path ($($_.Exception.Message))"
+  }
 
   # 1) data-* → real attrs
   $pat_src = @'
