@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 29 Oct 2025 07:53:22 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Oct 2025 15:32:11 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -150,7 +150,7 @@
   </script>
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global7cb9.css?ver=29517' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global391c.css?ver=24230' media='all' />
 <link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -174,9 +174,9 @@
 :root :where(.wp-block-pullquote){font-size: clamp(0.984em, 0.984rem + ((1vw - 0.2em) * 0.645), 1.5em);line-height: 1.6;}
 </style>
 <link rel='stylesheet' id='parent-style-css' href='../wp-content/themes/blocksy/style32d4.css?ver=6.8.3' media='all' />
-<link rel='stylesheet' id='ct-main-styles-css' href='../wp-content/themes/blocksy/static/bundle/main.min6472.css?ver=2.1.17' media='all' />
-<link rel='stylesheet' id='ct-page-title-styles-css' href='../wp-content/themes/blocksy/static/bundle/page-title.min6472.css?ver=2.1.17' media='all' />
-<link rel='stylesheet' id='ct-stackable-styles-css' href='../wp-content/themes/blocksy/static/bundle/stackable.min6472.css?ver=2.1.17' media='all' />
+<link rel='stylesheet' id='ct-main-styles-css' href='../wp-content/themes/blocksy/static/bundle/main.min761a.css?ver=2.1.18' media='all' />
+<link rel='stylesheet' id='ct-page-title-styles-css' href='../wp-content/themes/blocksy/static/bundle/page-title.min761a.css?ver=2.1.18' media='all' />
+<link rel='stylesheet' id='ct-stackable-styles-css' href='../wp-content/themes/blocksy/static/bundle/stackable.min761a.css?ver=2.1.18' media='all' />
 <link rel="https://api.w.org/" href="/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/pages/765" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 6.8.3" />
 <link rel="canonical" href="index.html" />
@@ -391,7 +391,11 @@
 			}
 		})();
 	</script>
-			<style id="wp-custom-css">
+	<style id="nm-fc-email-merged-css">
+  #commentForm .nm-fc-emailwrap { margin:10px 0; }
+  #commentForm .nm-fc-emailwrap label { display:block; margin:6px 0 4px; font-size:0.9rem; }
+  #commentForm .nm-fc-emailwrap input[type=email] { display:block; width:100% !important; max-width:none !important; box-sizing:border-box; }
+  </style>		<style id="wp-custom-css">
 			.page-title,
 .ct-advanced-heading {
 	position: relative;
@@ -981,12 +985,175 @@ window.__NM_FB_CFG__ = {"apiKey":"AIzaSyCxL84hZpy24GECDfQwShRamIMcneSw4A","authD
 })();
 </script>
 <script id="ct-scripts-js-extra">
-var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-ajax.php","public_url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/","rest_url":"http:\/\/localhost:10016\/wp-json\/","search_url":"http:\/\/localhost:10016\/search\/QUERY_STRING\/","show_more_text":"Show more","more_text":"More","search_live_results":"Search results","search_live_no_results":"No results","search_live_no_result":"No results","search_live_one_result":"You got %s result. Please press Tab to select it.","search_live_many_results":"You got %s results. Please press Tab to select one.","clipboard_copied":"Copied!","clipboard_failed":"Failed to Copy","expand_submenu":"Expand dropdown menu","collapse_submenu":"Collapse dropdown menu","dynamic_js_chunks":[{"id":"blocksy_sticky_header","selector":"header [data-sticky]","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/sticky.js?ver=2.1.17"}],"dynamic_styles":{"lazy_load":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/non-critical-styles.min.css?ver=2.1.17","search_lazy":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/non-critical-search-styles.min.css?ver=2.1.17","back_to_top":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/back-to-top.min.css?ver=2.1.17"},"dynamic_styles_selectors":[{"selector":".ct-header-cart, #woo-cart-panel","url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/cart-header-element-lazy.min.css?ver=2.1.17"},{"selector":".flexy","url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/flexy.min.css?ver=2.1.17"},{"selector":"#account-modal","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/header-account-modal-lazy.min.css?ver=2.1.17"},{"selector":".ct-header-account","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/header-account-dropdown-lazy.min.css?ver=2.1.17"}]};
+var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-ajax.php","public_url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/","rest_url":"http:\/\/localhost:10016\/wp-json\/","search_url":"http:\/\/localhost:10016\/search\/QUERY_STRING\/","show_more_text":"Show more","more_text":"More","search_live_results":"Search results","search_live_no_results":"No results","search_live_no_result":"No results","search_live_one_result":"You got %s result. Please press Tab to select it.","search_live_many_results":"You got %s results. Please press Tab to select one.","clipboard_copied":"Copied!","clipboard_failed":"Failed to Copy","expand_submenu":"Expand dropdown menu","collapse_submenu":"Collapse dropdown menu","dynamic_js_chunks":[{"id":"blocksy_sticky_header","selector":"header [data-sticky]","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/sticky.js?ver=2.1.18"}],"dynamic_styles":{"lazy_load":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/non-critical-styles.min.css?ver=2.1.18","search_lazy":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/non-critical-search-styles.min.css?ver=2.1.18","back_to_top":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/back-to-top.min.css?ver=2.1.18"},"dynamic_styles_selectors":[{"selector":".ct-header-cart, #woo-cart-panel","url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/cart-header-element-lazy.min.css?ver=2.1.18"},{"selector":".flexy","url":"http:\/\/localhost:10016\/wp-content\/themes\/blocksy\/static\/bundle\/flexy.min.css?ver=2.1.18"},{"selector":"#account-modal","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/header-account-modal-lazy.min.css?ver=2.1.17"},{"selector":".ct-header-account","url":"http:\/\/localhost:10016\/wp-content\/plugins\/blocksy-companion\/static\/bundle\/header-account-dropdown-lazy.min.css?ver=2.1.17"}]};
 </script>
-<script src="../wp-content/themes/blocksy/static/bundle/main6472.js?ver=2.1.17" id="ct-scripts-js"></script>
+<script src="../wp-content/themes/blocksy/static/bundle/main761a.js?ver=2.1.18" id="ct-scripts-js"></script>
+  <script id="nm-fc-email-merged-js">
+  (function(){
+    function onReady(fn){ if(document.readyState!=='loading'){ fn(); } else { document.addEventListener('DOMContentLoaded', fn); } }
 
+    function ensureEmailField(){
+      var form = document.getElementById('commentForm');
+      if(!form) return false;
+
+      // Already present? keep it
+      var email = form.querySelector('input[name="nm_email"]');
+      var hidden = form.querySelector('input[name="emailHash"]');
+
+      if(!email){
+        var wrap = document.createElement('div');
+        wrap.className = 'nm-fc-emailwrap';
+
+        var lab = document.createElement('label');
+        lab.setAttribute('for','nm_email');
+        lab.textContent = 'Email (optional):';
+
+        email = document.createElement('input');
+        email.type = 'email';
+        email.name = 'nm_email';
+        email.id = 'nm_email';
+        email.placeholder = 'you@example.com';
+        email.autocomplete = 'email';
+
+        wrap.appendChild(lab);
+        wrap.appendChild(email);
+
+        // hidden hash
+        if(!hidden){
+          hidden = document.createElement('input');
+          hidden.type = 'hidden';
+          hidden.name = 'emailHash';
+          wrap.appendChild(hidden);
+        }
+
+        // Insert before submit button
+        var submit = form.querySelector('button[type="submit"], input[type="submit"]');
+        if(submit && submit.parentNode){ submit.parentNode.insertBefore(wrap, submit); }
+        else { form.appendChild(wrap); }
+      }
+
+      // Keep hash updated
+      if (email && (!email.__nmHashLinked)) {
+        email.addEventListener('input', function(ev){
+          var v = (ev.target.value||'').trim().toLowerCase();
+          try{
+            if(typeof window.md5 === 'function'){
+              if(!hidden) {
+                hidden = document.createElement('input');
+                hidden.type = 'hidden'; hidden.name = 'emailHash';
+                email.parentNode && email.parentNode.appendChild(hidden);
+              }
+              hidden.value = v ? md5(v) : '';
+            } else if (hidden) {
+              hidden.value = '';
+            }
+          }catch(e){ if (hidden) hidden.value = ''; }
+        });
+        email.__nmHashLinked = true;
+      }
+
+      return true;
+    }
+
+    // Augment payload for writes to 'comments'
+    function augmentPayloadIfComments(ref, payload){
+      try{
+        var isComments = false;
+        // CollectionReference.add
+        if (ref && ref.id === 'comments') isComments = true;
+        // DocumentReference.set (parent is the collection)
+        if (ref && ref.parent && ref.parent.id === 'comments') isComments = true;
+        if (!isComments) return payload;
+
+        var form = document.getElementById('commentForm');
+        if (!form) return payload;
+        var emailEl = form.querySelector('input[name="nm_email"]');
+        var hashEl  = form.querySelector('input[name="emailHash"]');
+        var email   = emailEl && emailEl.value ? (''+emailEl.value).trim().toLowerCase() : '';
+        var emailHash = hashEl && hashEl.value ? (''+hashEl.value).trim() : '';
+        if (!emailHash && email && typeof window.md5 === 'function'){
+          try { emailHash = md5(email); } catch(e){}
+        }
+        if (email && !('email' in payload)) payload.email = email;
+        if (emailHash && !('emailHash' in payload)) payload.emailHash = emailHash;
+      }catch(e){}
+      return payload;
+    }
+
+    // Patch db.collection wrapper (works for v8 namespaces after db is created)
+    function patchDbCollection(){
+      if (!window.db || !db.collection) return false;
+      if (db.__nmEmailPatched) return true;
+      var _collection = db.collection.bind(db);
+      db.collection = function(path){
+        var ref = _collection(path);
+        try{
+          if(path === 'comments' && ref && typeof ref.add === 'function' && !ref.__nmAddPatched){
+            var _add = ref.add.bind(ref);
+            ref.add = function(payload){
+              try{ payload = augmentPayloadIfComments(ref, payload||{}); }catch(e){}
+              return _add(payload);
+            };
+            ref.__nmAddPatched = true;
+          }
+        }catch(e){}
+        return ref;
+      };
+      db.__nmEmailPatched = true;
+      return true;
+    }
+
+    // Patch Firestore v8 prototypes as well (covers set/add even without db wrapper)
+    function patchFirestoreProto(){
+      try{
+        if (!window.firebase || !firebase.firestore) return false;
+        var fs = firebase.firestore;
+        // CollectionReference.add
+        if (fs.CollectionReference && !fs.CollectionReference.prototype.__nmAddPatched) {
+          var _add = fs.CollectionReference.prototype.add;
+          fs.CollectionReference.prototype.add = function(payload){
+            try{ payload = augmentPayloadIfComments(this, payload||{}); }catch(e){}
+            return _add.call(this, payload);
+          };
+          fs.CollectionReference.prototype.__nmAddPatched = true;
+        }
+        // DocumentReference.set
+        if (fs.DocumentReference && !fs.DocumentReference.prototype.__nmSetPatched) {
+          var _set = fs.DocumentReference.prototype.set;
+          fs.DocumentReference.prototype.set = function(data, opts){
+            try{ data = augmentPayloadIfComments(this, data||{}); }catch(e){}
+            return _set.call(this, data, opts);
+          };
+          fs.DocumentReference.prototype.__nmSetPatched = true;
+        }
+        return true;
+      }catch(e){ return false; }
+    }
+
+    function boot(){
+      ensureEmailField();
+      var a = patchDbCollection();
+      var b = patchFirestoreProto();
+
+      // Retry for late-loading Firebase or DOM churn
+      var tries = 0, iv = setInterval(function(){
+        ensureEmailField();
+        a = patchDbCollection() || a;
+        b = patchFirestoreProto() || b;
+        if (++tries > 80 || (a && b)) clearInterval(iv);
+      }, 250);
+
+      // Watch DOM for form re-renders
+      var mo = new MutationObserver(function(){ ensureEmailField(); });
+      mo.observe(document.documentElement, {childList:true, subtree:true});
+    }
+
+    onReady(function(){ setTimeout(boot, 100); });
+  })();
+  </script>
+  
 </body>
 
-<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 29 Oct 2025 07:53:22 GMT -->
+<!-- Mirrored from localhost:10016/contact/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Oct 2025 15:32:11 GMT -->
 </html>
 
