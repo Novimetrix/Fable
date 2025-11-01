@@ -42,6 +42,9 @@ if(-not $files){
 foreach($f in $files){
   $html = Get-Content -Raw -LiteralPath $f.FullName
 
+  $bak = $f.FullName + ".bak"
+  if(-not (Test-Path $bak)){ Copy-Item $f.FullName $bak -Force }
+
   $new = $re.Replace($html,{
     param($m)
     $attrs = $m.Groups[1].Value
