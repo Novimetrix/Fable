@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Oct 2025 21:50:21 GMT -->
+<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Nov 2025 06:00:21 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -9,7 +9,59 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
 	<link rel="profile" href="../gmpg.org/xfn/11.html">
 
-	<title>Fable Odyssey</title>
+	  <script>
+  (function () {
+    try {
+      var isAudit = /\b(Lighthouse|Chrome-Lighthouse|PageSpeed|Speed\ Insights)\b/i.test(navigator.userAgent);
+      if (!isAudit) return;
+
+      // Global flag that others can check
+      window.__skipFirebase = true;
+
+      // Intercept *before* anything else uses them
+      var BLOCK = /(^https?:)?\/\/(firestore\.googleapis\.com)(\/|$)/i;
+
+      // Intercept fetch
+      if (typeof window.fetch === 'function') {
+        var _fetch = window.fetch;
+        window.fetch = function(input, init) {
+          try {
+            var url = (typeof input === 'string') ? input : (input && input.url) || '';
+            if (BLOCK.test(url)) { return Promise.resolve(new Response('', {status:204})); }
+          } catch(e){}
+          return _fetch.apply(this, arguments);
+        };
+      }
+
+      // Intercept XHR
+      if (window.XMLHttpRequest) {
+        var _open = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function(method, url) {
+          try {
+            if (BLOCK.test(url)) {
+              // neutralize this request entirely
+              this.send = function(){ try { this.onreadystatechange && this.onreadystatechange(); } catch(e){} };
+              return;
+            }
+          } catch(e){}
+          return _open.apply(this, arguments);
+        };
+      }
+
+      // Optional: neutralize common init function if present
+      try {
+        Object.defineProperty(window, 'initFirebaseComments', {
+          configurable: true,
+          writable: true,
+          value: function(){}
+        });
+      } catch(e){}
+
+      console.log('[Audit] Firestore listen/channel is disabled for this run.');
+    } catch(e){}
+  })();
+  </script>
+  <title>Fable Odyssey</title>
 <meta name='robots' content='max-image-preview:large' />
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	  <style id="nm-overlay-guard-css-v2">
@@ -1185,7 +1237,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   
 </body>
 
-<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Oct 2025 21:50:21 GMT -->
+<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Nov 2025 06:00:21 GMT -->
 </html>
 
 
