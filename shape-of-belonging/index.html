@@ -46,7 +46,7 @@
       backdrop-filter: none !important;
     }
 
-    /* 3) Ensure page isnâ€™t visually dimmed */
+    /* 3) Ensure page isn’t visually dimmed */
     html, body, #page, .site, #content, main, .ct-main {
       filter: none !important;
       opacity: 1 !important;
@@ -70,7 +70,7 @@
         var docEl = document.documentElement;
         var body = document.body;
 
-        // Remove â€œpage lockedâ€ classes if exporter caught them
+        // Remove “page locked” classes if exporter caught them
         ['ct-scroll-lock','ct-offcanvas-open','modal-open','overflow-hidden','ct-drawer-open']
           .forEach(function(c){ docEl.classList.remove(c); body.classList.remove(c); });
 
@@ -148,9 +148,9 @@
     } catch(e){}
   })();
   </script>
-  <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="http://localhost:10016/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="http://localhost:10016/comments/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Shape of Belonging Comments Feed" href="http://localhost:10016/shape-of-belonging/feed/" />
+  <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Shape of Belonging Comments Feed" href="/shape-of-belonging/feed/" />
 <link rel="preload" as="style" href="../wp-content/uploads/blocksy/css/globalb715.css?ver=87058" data-nm-deferred="1">
 <link rel="stylesheet" href="../wp-content/uploads/blocksy/css/globalb715.css?ver=87058" media="print" onload="this.media='all'" data-nm-deferred="1">
 <noscript><link rel="stylesheet" href="../wp-content/uploads/blocksy/css/globalb715.css?ver=87058"></noscript>
@@ -195,12 +195,12 @@
 <link rel="preload" as="style" href="../wp-content/themes/blocksy/static/bundle/stackable.min761a.css?ver=2.1.18" data-nm-deferred="1">
 <link rel="stylesheet" href="../wp-content/themes/blocksy/static/bundle/stackable.min761a.css?ver=2.1.18" media="print" onload="this.media='all'" data-nm-deferred="1">
 <noscript><link rel="stylesheet" href="../wp-content/themes/blocksy/static/bundle/stackable.min761a.css?ver=2.1.18"></noscript>
-<link rel="https://api.w.org/" href="http://localhost:10016/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="http://localhost:10016/wp-json/wp/v2/posts/919" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost:10016/xmlrpc.php?rsd" />
+<link rel="https://api.w.org/" href="/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/posts/919" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 6.8.3" />
 <link rel="canonical" href="index.html" />
 <link rel='shortlink' href='../index6f5e.html?p=919' />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="http://localhost:10016/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A10016%2Fshape-of-belonging%2F" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="http://localhost:10016/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A10016%2Fshape-of-belonging%2F&amp;format=xml" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=%3A10016%2Fshape-of-belonging%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%3A10016%2Fshape-of-belonging%2F&amp;format=xml" />
 <noscript><link rel="preload" as="style" href="../wp-content/themes/blocksy/static/bundle/no-scripts.min.css" data-nm-deferred="1">
 <link rel="stylesheet" href="../wp-content/themes/blocksy/static/bundle/no-scripts.min.css" media="print" onload="this.media='all'" data-nm-deferred="1">
 <noscript><link rel="stylesheet" href="../wp-content/themes/blocksy/static/bundle/no-scripts.min.css"></noscript></noscript>
@@ -548,9 +548,9 @@
 	class="ct-header-text "
 	data-id="text">
 	<div class="entry-content is-layout-flow">
-		<!-- NM2 â€” CSS-only Toggle Menu (image-ready, works on static) -->
+		<!-- NM2 — CSS-only Toggle Menu (image-ready, works on static) -->
 <style>
-  /* === âš™ï¸ ADJUSTABLE FIELDS === */
+  /* === ⚙️ ADJUSTABLE FIELDS === */
   :root{
     /* Colors & spacing */
     --nm2-bg: #1f1f1f;                       /* Drawer base color (theme dark) */
@@ -567,7 +567,7 @@
     /* If you prefer: --nm2-bg-image: url("/assets/menu-bg.jpg"); */
 
     --nm2-bg-image-enabled: 1;               /* 1 = on, 0 = off */
-    --nm2-bg-image-opacity: 0.35;            /* 0.00 â€“ 1.00 (brightness/strength) */
+    --nm2-bg-image-opacity: 0.35;            /* 0.00 – 1.00 (brightness/strength) */
     --nm2-bg-image-size: cover;              /* cover | contain */
     --nm2-bg-image-position: center center;  /* e.g., center top */
   }
@@ -654,7 +654,7 @@
   #nm2-toggle:checked ~ .nm2-panel{ transform:translateX(0); }
   #nm2-toggle:checked ~ .nm2-overlay{ opacity:1; pointer-events:auto; }
 
-  /* === ðŸ“±â†’ðŸ’» Responsive Drawer Width & Padding === */
+  /* === 📱→💻 Responsive Drawer Width & Padding === */
   @media (min-width:768px) and (max-width:1024px){
     .nm2-panel{
       width:100vw !important;        /* full-screen on tablet */
@@ -726,43 +726,43 @@
 <div class="hero-section is-width-constrained" data-type="type-1">
 			<header class="entry-header">
 			
-			<nav class="ct-breadcrumbs" data-source="default"  itemscope="" itemtype="https://schema.org/BreadcrumbList"><span class="first-item" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="1"><a href="../index.html" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="url" content="http://localhost:10016/"/><svg class="ct-separator" fill="currentColor" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
+			<nav class="ct-breadcrumbs" data-source="default"  itemscope="" itemtype="https://schema.org/BreadcrumbList"><span class="first-item" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="1"><a href="../index.html" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="url" content="/"/><svg class="ct-separator" fill="currentColor" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
 				<path d="M2,6.9L4.8,4L2,1.1L2.6,0l4,4l-4,4L2,6.9z"/>
-			</svg></span><span class="item-0"itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="2"><a href="../category/stories/index.html" itemprop="item"><span itemprop="name">Stories</span></a><meta itemprop="url" content="http://localhost:10016/category/stories/"/><svg class="ct-separator" fill="currentColor" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
+			</svg></span><span class="item-0"itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="2"><a href="../category/stories/index.html" itemprop="item"><span itemprop="name">Stories</span></a><meta itemprop="url" content="/category/stories/"/><svg class="ct-separator" fill="currentColor" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" focusable="false">
 				<path d="M2,6.9L4.8,4L2,1.1L2.6,0l4,4l-4,4L2,6.9z"/>
-			</svg></span><span class="last-item" aria-current="page" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="3"><span itemprop="name">Shape of Belonging</span><meta itemprop="url" content="http://localhost:10016/shape-of-belonging/"/></span>			</nav>
+			</svg></span><span class="last-item" aria-current="page" itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem"><meta itemprop="position" content="3"><span itemprop="name">Shape of Belonging</span><meta itemprop="url" content="/shape-of-belonging/"/></span>			</nav>
 
 		<h1 class="page-title" itemprop="headline">Shape of Belonging</h1><ul class="entry-meta" data-type="simple:slash" ><li class="meta-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a href="../author/fluke/index.html" tabindex="-1" class="ct-media-container-static"><img decoding="async" src="https://secure.gravatar.com/avatar/96c8b82e8b52d081d7d05fc9c56178855076a681a1508957442b0868c1affaeb?s=50&amp;d=mm&amp;r=g" width="25" height="25" style="height:25px" alt="Fluke"></a><a class="ct-meta-element-author" href="../author/fluke/index.html" title="Posts by Fluke" rel="author" itemprop="url"><span itemprop="name">Fluke</span></a></li><li class="meta-date" itemprop="datePublished"><time class="ct-meta-element-date" datetime="2025-10-31T16:02:50+00:00">October 31, 2025</time></li><li class="meta-categories" data-type="simple"><a href="../category/stories/index.html" rel="tag" class="ct-term-9">Stories</a></li></ul>		</header>
-	</div><figure class="ct-featured-image "><div class="ct-media-container"><img width="1376" height="768" src="../wp-content/uploads/2025/10/shape.webp" class="attachment-full size-full wp-post-image" alt="" loading="lazy" decoding="async" srcset="http://localhost:10016/wp-content/uploads/2025/10/shape.webp 1376w, http://localhost:10016/wp-content/uploads/2025/10/shape-300x167.webp 300w, http://localhost:10016/wp-content/uploads/2025/10/shape-1024x572.webp 1024w, http://localhost:10016/wp-content/uploads/2025/10/shape-768x429.webp 768w" sizes="auto, (max-width: 1376px) 100vw, 1376px" itemprop="image" style="aspect-ratio: 16/9;" /></div></figure>
+	</div><figure class="ct-featured-image "><div class="ct-media-container"><img width="1376" height="768" src="/wp-content/uploads/2025/10/shape.webp" class="attachment-full size-full wp-post-image" alt="" loading="lazy" decoding="async" srcset="/wp-content/uploads/2025/10/shape.webp 1376w, /wp-content/uploads/2025/10/shape-300x167.webp 300w, /wp-content/uploads/2025/10/shape-1024x572.webp 1024w, /wp-content/uploads/2025/10/shape-768x429.webp 768w" sizes="(max-width: 1376px) 100vw, 1376px" itemprop="image" style="aspect-ratio: 16/9;" /></div></figure>
 		
 		
 		<div class="entry-content is-layout-flow">
 			
-<p>People liked to guess where Adam was from.<br>They would squint at him the way people do when a word is on the tip of their tongue.<br>â€œTurkish?â€<br>He smiled. â€œNo.â€<br>â€œGreek?â€<br>â€œNot quite.â€<br>â€œNo, waitâ€”North African?â€<br>He shrugged. â€œClose enough.â€<br>And then came the inevitable: â€œNo, but where are you really from?â€</p>
+<p>People liked to guess where Adam was from.<br>They would squint at him the way people do when a word is on the tip of their tongue.<br>“Turkish?”<br>He smiled. “No.”<br>“Greek?”<br>“Not quite.”<br>“No, wait—North African?”<br>He shrugged. “Close enough.”<br>And then came the inevitable: “No, but where are you really from?”</p>
 
 
 
-<p>He used to explain it all: the names of two countries that barely spoke to each other, the third he had grown up in, the airports that blurred into his accent. His skin carried an elusive shadeâ€”dark enough to be foreign everywhere, light enough to belong nowhere. But the explanation always left people disappointed. They wanted a single, defined phraseâ€”something tidy enough to make sense of. A neat border. He came from the blank spaces between them.</p>
+<p>He used to explain it all: the names of two countries that barely spoke to each other, the third he had grown up in, the airports that blurred into his accent. His skin carried an elusive shade—dark enough to be foreign everywhere, light enough to belong nowhere. But the explanation always left people disappointed. They wanted a single, defined phrase—something tidy enough to make sense of. A neat border. He came from the blank spaces between them.</p>
 
 
 
-<p>At restaurants, waiters would switch languages mid-sentence, testing him like a code, their eyes lingering with an almost-recognition. On the metro, strangers assumed he spoke their tongue. When he corrected them, their faces tightened in puzzled frowns, as though he had betrayed a silent agreement â€” the same faint disappointment he had seen in the waitersâ€™ eyes when he failed their test.</p>
+<p>At restaurants, waiters would switch languages mid-sentence, testing him like a code, their eyes lingering with an almost-recognition. On the metro, strangers assumed he spoke their tongue. When he corrected them, their faces tightened in puzzled frowns, as though he had betrayed a silent agreement — the same faint disappointment he had seen in the waiters’ eyes when he failed their test.</p>
 
 
 
-<p>Once, a woman at a party said, â€œYou must feel so exotic.â€ He almost laughed, but her tone was too admiring, too self-satisfied. â€œYou mean confusing,â€ he replied. She didnâ€™t get the joke.</p>
+<p>Once, a woman at a party said, “You must feel so exotic.” He almost laughed, but her tone was too admiring, too self-satisfied. “You mean confusing,” he replied. She didn’t get the joke.</p>
 
 
 
-<p>With one group, he would lower his voice and season his speech with the right slang. With another, he would flatten his vowels and keep his hands still. He could belong anywhere for about fifteen minutesâ€”a performance that took more effort than anyone guessedâ€”as long as no one looked too closely at the fragility of his adaptation.</p>
+<p>With one group, he would lower his voice and season his speech with the right slang. With another, he would flatten his vowels and keep his hands still. He could belong anywhere for about fifteen minutes—a performance that took more effort than anyone guessed—as long as no one looked too closely at the fragility of his adaptation.</p>
 
 
 
-<p>At school, he was â€œthe foreign kid.â€ At university, â€œthe Global Local.â€ At work, they settled on â€œversatile.â€ He smiled at the title; it sounded less lonely than unrooted. But the fatigue was realâ€”a constant, dull ache from perpetually being both familiar and foreign in the same breath.</p>
+<p>At school, he was “the foreign kid.” At university, “the Global Local.” At work, they settled on “versatile.” He smiled at the title; it sounded less lonely than unrooted. But the fatigue was real—a constant, dull ache from perpetually being both familiar and foreign in the same breath.</p>
 
 
 
-<p>At lunch, colleagues debated news about immigration. One said, â€œI just wish people would stay where they belong.â€<br>Adam asked softly, â€œAnd whereâ€™s that, exactly?â€<br>They laughed it off, assuming he was joking.<br>He wasnâ€™t.</p>
+<p>At lunch, colleagues debated news about immigration. One said, “I just wish people would stay where they belong.”<br>Adam asked softly, “And where’s that, exactly?”<br>They laughed it off, assuming he was joking.<br>He wasn’t.</p>
 
 
 
@@ -774,7 +774,7 @@
 
 
 
-<p>Downtown stood a community center that hosted cultural nightsâ€”dancing, music, food from his fatherâ€™s side. The smell of cumin and coffee hit him like a memory that wasnâ€™t his.</p>
+<p>Downtown stood a community center that hosted cultural nights—dancing, music, food from his father’s side. The smell of cumin and coffee hit him like a memory that wasn’t his.</p>
 
 
 
@@ -782,27 +782,27 @@
 
 
 
-<p>â€œYouâ€™re one of us?â€ the man asked.</p>
+<p>“You’re one of us?” the man asked.</p>
 
 
 
-<p>â€œMy father was.â€</p>
+<p>“My father was.”</p>
 
 
 
-<p>â€œWas?â€ the man echoed, a trace of skepticism in his voice. â€œAnd your mother?â€</p>
+<p>“Was?” the man echoed, a trace of skepticism in his voice. “And your mother?”</p>
 
 
 
-<p>â€œDifferent place,â€ Adam said.</p>
+<p>“Different place,” Adam said.</p>
 
 
 
-<p>â€œAh,â€ the man nodded slowly. â€œStill, welcome. Itâ€™s good to see young people reconnecting.â€</p>
+<p>“Ah,” the man nodded slowly. “Still, welcome. It’s good to see young people reconnecting.”</p>
 
 
 
-<p>For a while, the space was his. They laughed easily, made room for him. Someone handed him a pastry and said, â€œYou remember this, right?â€ He nodded, though he didnâ€™t.</p>
+<p>For a while, the space was his. They laughed easily, made room for him. Someone handed him a pastry and said, “You remember this, right?” He nodded, though he didn’t.</p>
 
 
 
@@ -810,27 +810,27 @@
 
 
 
-<p>â€œWhere did you grow up?â€</p>
+<p>“Where did you grow up?”</p>
 
 
 
-<p>â€œHere.â€</p>
+<p>“Here.”</p>
 
 
 
-<p>â€œOh, so you donâ€™t speak the language?â€</p>
+<p>“Oh, so you don’t speak the language?”</p>
 
 
 
-<p>â€œNot fluently.â€</p>
+<p>“Not fluently.”</p>
 
 
 
-<p>â€œYou must visit home often, no?â€</p>
+<p>“You must visit home often, no?”</p>
 
 
 
-<p>â€œWhich one?â€ he asked, and the man laughed politely and turned away.</p>
+<p>“Which one?” he asked, and the man laughed politely and turned away.</p>
 
 
 
@@ -838,15 +838,15 @@
 
 
 
-<p>So he tried the other sideâ€”his motherâ€™s. Different flag, different music.</p>
+<p>So he tried the other side—his mother’s. Different flag, different music.</p>
 
 
 
-<p>At a family event, someone clapped him on the backâ€”twice, quick. Approval that didn&#8217;t bind him to anything. â€œYou look too much like the other half,â€ he joked.</p>
+<p>At a family event, someone clapped him on the back—twice, quick. Approval that didn&#8217;t bind him to anything. “You look too much like the other half,” he joked.</p>
 
 
 
-<p>He smiled thinly. â€œAnd you look like youâ€™ve rehearsed that line.â€</p>
+<p>He smiled thinly. “And you look like you’ve rehearsed that line.”</p>
 
 
 
@@ -858,15 +858,15 @@
 
 
 
-<p>The world liked its boxes tidy. There were rulesâ€”spoken and unspokenâ€”for who could claim which heritage, which label, which shade of belonging. When people said they â€œdidnâ€™t see race,â€ what they really meant was they saw its borders everywhere and simply preferred not to speak of it. When they asked â€œwhere are you really from,â€ what they truly meant was: You are not from here, not like us.</p>
+<p>The world liked its boxes tidy. There were rules—spoken and unspoken—for who could claim which heritage, which label, which shade of belonging. When people said they “didn’t see race,” what they really meant was they saw its borders everywhere and simply preferred not to speak of it. When they asked “where are you really from,” what they truly meant was: You are not from here, not like us.</p>
 
 
 
-<p>The sadness was a lifetime in the making, an invisible and quiet layer settled upon him like fog thickening over the years. It wasnâ€™t sharp, just ever-present. At some point, he avoided mirrors, but his reflection found him in windows, and passing glances. He saw two worlds that never merged beyond the personal, and in trying to be bothâ€”or even eitherâ€”he had become neither.</p>
+<p>The sadness was a lifetime in the making, an invisible and quiet layer settled upon him like fog thickening over the years. It wasn’t sharp, just ever-present. At some point, he avoided mirrors, but his reflection found him in windows, and passing glances. He saw two worlds that never merged beyond the personal, and in trying to be both—or even either—he had become neither.</p>
 
 
 
-<p>Sometimes at night, he would scroll through family chats where cousins shared jokes in languages he couldnâ€™t read. He would type emojis, smile at the screen, then delete half-formed replies. He wasnâ€™t angryâ€”just quietly unmoored and tetherless, like a word missing its sentence.</p>
+<p>Sometimes at night, he would scroll through family chats where cousins shared jokes in languages he couldn’t read. He would type emojis, smile at the screen, then delete half-formed replies. He wasn’t angry—just quietly unmoored and tetherless, like a word missing its sentence.</p>
 
 
 
@@ -874,35 +874,35 @@
 
 
 
-<p>He often went to a small cafÃ© on the cornerâ€”a place that played quiet jazz and didnâ€™t ask questions. The barista, a tired man with gentle eyes, stopped asking for his name after a while.</p>
+<p>He often went to a small café on the corner—a place that played quiet jazz and didn’t ask questions. The barista, a tired man with gentle eyes, stopped asking for his name after a while.</p>
 
 
 
-<p>â€œYour usual?â€ he would ask.</p>
+<p>“Your usual?” he would ask.</p>
 
 
 
-<p>Adam nodded. â€œThanks.â€</p>
+<p>Adam nodded. “Thanks.”</p>
 
 
 
-<p>One day, the barista lingered. â€œYou from around here?â€</p>
+<p>One day, the barista lingered. “You from around here?”</p>
 
 
 
-<p>â€œKind of,â€ Adam said.</p>
+<p>“Kind of,” Adam said.</p>
 
 
 
-<p>The man smiled. â€œArenâ€™t we all â€˜kind ofâ€™? My familyâ€™s from five countries. I stopped keeping count a long time ago.â€</p>
+<p>The man smiled. “Aren’t we all ‘kind of’? My family’s from five countries. I stopped keeping count a long time ago.”</p>
 
 
 
-<p>Adam looked up, genuinely shocked. â€œDoesnâ€™t that bother you?â€</p>
+<p>Adam looked up, genuinely shocked. “Doesn’t that bother you?”</p>
 
 
 
-<p>â€œWhy should it?â€ the barista shrugged. â€œToo many roots just make a stronger tree.â€</p>
+<p>“Why should it?” the barista shrugged. “Too many roots just make a stronger tree.”</p>
 
 
 
@@ -910,11 +910,11 @@
 
 
 
-<p>He would often remember his grandmother. She lived in a house filled with too many languages, where people argued about everything except where they came from. She never remarked on his diverse heritage. She just called him my boyâ€”once in Arabic, once in Italian, once in a dialect of a village that no longer existed on any map.</p>
+<p>He would often remember his grandmother. She lived in a house filled with too many languages, where people argued about everything except where they came from. She never remarked on his diverse heritage. She just called him my boy—once in Arabic, once in Italian, once in a dialect of a village that no longer existed on any map.</p>
 
 
 
-<p>When she cooked, she never measured ingredientsâ€”just handfuls, pinches, and confident guesses guided by a steady intuition. â€œThatâ€™s how life tastes,â€ she would say, laughing. â€œNever quite perfect, always exactly enough.â€</p>
+<p>When she cooked, she never measured ingredients—just handfuls, pinches, and confident guesses guided by a steady intuition. “That’s how life tastes,” she would say, laughing. “Never quite perfect, always exactly enough.”</p>
 
 
 
@@ -922,11 +922,11 @@
 
 
 
-<p>He dreamt of her sometimes, standing in her kitchen, stirring something fragrant, tapping the spoon a few times against the potâ€™s edge.</p>
+<p>He dreamt of her sometimes, standing in her kitchen, stirring something fragrant, tapping the spoon a few times against the pot’s edge.</p>
 
 
 
-<p>â€œYou keep trying to find your place,â€ she would tell him. â€œBut youâ€™re not meant to fit, Adam. You are the space between them.â€</p>
+<p>“You keep trying to find your place,” she would tell him. “But you’re not meant to fit, Adam. You are the space between them.”</p>
 
 
 
@@ -934,7 +934,7 @@
 
 
 
-<p>Weeks later, he walked home late one night. From a nearby corner, someone shouted something he couldnâ€™t quite catch. Once, he would have flinched, braced for the usual questions he had heard all his life. He didnâ€™t turn to listen. Whatever the remark or the question was, he felt he had already outgrown the need to validate himself.</p>
+<p>Weeks later, he walked home late one night. From a nearby corner, someone shouted something he couldn’t quite catch. Once, he would have flinched, braced for the usual questions he had heard all his life. He didn’t turn to listen. Whatever the remark or the question was, he felt he had already outgrown the need to validate himself.</p>
 
 
 
@@ -942,11 +942,11 @@
 
 
 
-<p>â€œExcuse me,â€ one said, fumbling through words in a language he only half-understood. They asked for directions.</p>
+<p>“Excuse me,” one said, fumbling through words in a language he only half-understood. They asked for directions.</p>
 
 
 
-<p>He hesitatedâ€”a moment of instinctive doubt, a leftover reflex from a lifelong conditioningâ€”but he was surprised by how natural it felt to answer, how unguarded his voice sounded.</p>
+<p>He hesitated—a moment of instinctive doubt, a leftover reflex from a lifelong conditioning—but he was surprised by how natural it felt to answer, how unguarded his voice sounded.</p>
 
 
 
@@ -954,7 +954,7 @@
 
 
 
-<p>â€œYou speak it?â€ one asked, genuinely surprised.<br>â€œNot well enough for the purists,â€ Adam smiled.</p>
+<p>“You speak it?” one asked, genuinely surprised.<br>“Not well enough for the purists,” Adam smiled.</p>
 
 
 
@@ -962,19 +962,19 @@
 
 
 
-<p>He stood there, the sound of his own voice still hanging in the air. It was a patchwork of accents, tones, and rhythms, but for the first time, it didnâ€™t sound fractured. It sounded full.</p>
+<p>He stood there, the sound of his own voice still hanging in the air. It was a patchwork of accents, tones, and rhythms, but for the first time, it didn’t sound fractured. It sounded full.</p>
 
 
 
-<p>He felt, for a brief moment, like the first of his kind â€” a man made of many beginnings.</p>
+<p>He felt, for a brief moment, like the first of his kind — a man made of many beginnings.</p>
 
 
 
-<p>In that realization, he saw he had been chasing the wrong thing his entire adult lifeâ€”external validation and pre-defined structures to fit into. True belonging was not conformity or recognition, but alignmentâ€”a settled coherence between self and world. What he had pursued was its shadow: a surrender, a muted plea to be seen. The real invigorating power was in being uncontained, in refusing to let others define the borders of his existence.</p>
+<p>In that realization, he saw he had been chasing the wrong thing his entire adult life—external validation and pre-defined structures to fit into. True belonging was not conformity or recognition, but alignment—a settled coherence between self and world. What he had pursued was its shadow: a surrender, a muted plea to be seen. The real invigorating power was in being uncontained, in refusing to let others define the borders of his existence.</p>
 
 
 
-<p>&#8220;He thought of every question, every doubtful glance, every moment of forced familiarity, every &#8220;but where are you really from.&#8221; And the worldâ€™s endless need to define him.</p>
+<p>&#8220;He thought of every question, every doubtful glance, every moment of forced familiarity, every &#8220;but where are you really from.&#8221; And the world’s endless need to define him.</p>
 
 
 
@@ -982,15 +982,15 @@
 
 
 
-<p>A small laugh escaped himâ€”sudden, unguarded. A few passersby glanced over, curious. He didnâ€™t care.</p>
+<p>A small laugh escaped him—sudden, unguarded. A few passersby glanced over, curious. He didn’t care.</p>
 
 
 
-<p>As the bus pulled in, he caught his reflection in its glassâ€”blurred, shifting with the city lights. He saw not a divided face, but a mosaic. Every fragment was a story, and every border was an illusion.</p>
+<p>As the bus pulled in, he caught his reflection in its glass—blurred, shifting with the city lights. He saw not a divided face, but a mosaic. Every fragment was a story, and every border was an illusion.</p>
 
 
 
-<p>He stepped onto the bus, the doors hissing shut behind him. The bus roared to life. The night moved, and so did heâ€”belonging not to any one place, but to motion itself.</p>
+<p>He stepped onto the bus, the doors hissing shut behind him. The bus roared to life. The night moved, and so did he—belonging not to any one place, but to motion itself.</p>
 
 
 
@@ -1353,7 +1353,7 @@ form.addEventListener("submit", async e=>{
 <div data-id="02394856" class="wp-block-blocksy-query"><div class="ct-query-template-default is-layout-flow"><article class="wp-block-post is-layout-flow post-812 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-133cf375 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="The Last Life" href="../the-last-life/index.html"><img decoding="async" width="150" height="150" src="../wp-content/uploads/2025/10/reincarnation-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Lucid Origin. A cinematic poetic vision of reincarnation, a man standing" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" srcset="http://localhost:10016/wp-content/uploads/2025/10/reincarnation-150x150.webp 150w, http://localhost:10016/wp-content/uploads/2025/10/reincarnation-300x300.webp 300w, http://localhost:10016/wp-content/uploads/2025/10/reincarnation-1024x1024.webp 1024w, http://localhost:10016/wp-content/uploads/2025/10/reincarnation-768x768.webp 768w, http://localhost:10016/wp-content/uploads/2025/10/reincarnation.webp 1200w" sizes="(max-width: 150px) 100vw, 150px" /></a></div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="The Last Life" href="../the-last-life/index.html"><img decoding="async" width="150" height="150" src="/wp-content/uploads/2025/10/reincarnation-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Lucid Origin. A cinematic poetic vision of reincarnation, a man standing" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" srcset="/wp-content/uploads/2025/10/reincarnation-150x150.webp 150w, /wp-content/uploads/2025/10/reincarnation-300x300.webp 300w, /wp-content/uploads/2025/10/reincarnation-1024x1024.webp 1024w, /wp-content/uploads/2025/10/reincarnation-768x768.webp 768w, /wp-content/uploads/2025/10/reincarnation.webp 1200w" sizes="(max-width: 150px) 100vw, 150px" /></a></div>
 
 
 
@@ -1365,7 +1365,7 @@ form.addEventListener("submit", async e=>{
 </article><article class="wp-block-post is-layout-flow post-919 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-133cf375 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Shape of Belonging" href="index.html"><img decoding="async" width="150" height="150" src="../wp-content/uploads/2025/10/shape-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" /></a></div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Shape of Belonging" href="index.html"><img decoding="async" width="150" height="150" src="/wp-content/uploads/2025/10/shape-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" /></a></div>
 
 
 
@@ -1377,7 +1377,7 @@ form.addEventListener("submit", async e=>{
 </article><article class="wp-block-post is-layout-flow post-1475 post type-post status-publish format-standard has-post-thumbnail hentry category-stories">
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-133cf375 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Coming soon&#8230;" href="../coming-soon/index.html"><img loading="lazy" decoding="async" width="150" height="150" src="../wp-content/uploads/2025/10/dingo-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" /></a></div>
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%"><a class="ct-dynamic-media wp-elements-9b151e15d5a77cfdbf39b630d839dfce" aria-label="Coming soon&#8230;" href="../coming-soon/index.html"><img loading="lazy" decoding="async" width="150" height="150" src="/wp-content/uploads/2025/10/dingo-150x150.webp" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" style="width:100%;height:100%;object-fit: cover;aspect-ratio: 1;" /></a></div>
 
 
 
@@ -1408,7 +1408,7 @@ form.addEventListener("submit", async e=>{
 	class="ct-footer-copyright"
 	data-id="copyright">
 
-	<p>Copyright Â© 2025 - Fable Odyssey</p></div>
+	<p>Copyright © 2025 - Fable Odyssey</p></div>
 </div><div data-column="ghost"></div></div></div></footer></div>
 
 <script type="speculationrules">
@@ -1445,7 +1445,7 @@ form.addEventListener("submit", async e=>{
   let BLOCKED = new Set();
   async function refreshBlocked(){
     try{
-      const r = await fetch('http://localhost:10016/wp-json/nm-fb/v1/blocked',{cache:'no-store'});
+      const r = await fetch('/wp-json/nm-fb/v1/blocked',{cache:'no-store'});
       const j = await r.json();
       if (j && Array.isArray(j.ids)) BLOCKED = new Set(j.ids.map(String));
     }catch(e){}
@@ -1476,7 +1476,7 @@ form.addEventListener("submit", async e=>{
         const author_email = data.email || '';
         const content = data.message || data.text || data.content || '';
         if (!content) return;
-        fetch('http://localhost:10016/wp-json/nm-fb/v1/comment?secret=NM_AUTO_LOCAL_123', {
+        fetch('/wp-json/nm-fb/v1/comment?secret=NM_AUTO_LOCAL_123', {
           method:'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({ postId: postId, firebase_id: fid, author_name, author_email, content })
@@ -1537,7 +1537,7 @@ window.__NM_FB_CFG__ = {"apiKey":"AIzaSyCxL84hZpy24GECDfQwShRamIMcneSw4A","authD
   }
   async function fetchBlocked(){
     try{
-      const r = await fetch('http://localhost:10016/wp-json/nm-fb/v1/blocked', {cache:'no-store'});
+      const r = await fetch('/wp-json/nm-fb/v1/blocked', {cache:'no-store'});
       const j = await r.json();
       const next = new Set((j && Array.isArray(j.ids) ? j.ids : []).map(String));
       const changed = !BLOCKED || next.size !== BLOCKED.size || Array.from(next).some(id => !BLOCKED.has(id));
@@ -1549,7 +1549,7 @@ window.__NM_FB_CFG__ = {"apiKey":"AIzaSyCxL84hZpy24GECDfQwShRamIMcneSw4A","authD
   fetchBlocked();
   setInterval(fetchBlocked, 30000);
 
-  // --- Perâ€‘post adjusted count cache (5 min TTL) ---
+  // --- Per‑post adjusted count cache (5 min TTL) ---
   const CNT_TTL_MS = 5 * 60 * 1000;
   function cacheKey(id){ return 'nm_fb_count_' + String(id); }
   function readCountCache(id){
@@ -1898,4 +1898,5 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 <!-- Mirrored from localhost:10016/shape-of-belonging/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Nov 2025 14:32:07 GMT -->
 </html>
+
 
