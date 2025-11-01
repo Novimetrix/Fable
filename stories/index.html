@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Nov 2025 06:34:12 GMT -->
+<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Nov 2025 07:40:00 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -654,70 +654,6 @@
 <script type="speculationrules">
 {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/blocksy-child\/*","\/wp-content\/themes\/blocksy\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
-  <script>
-  (function () {
-    var SELECTORS = ['#fo-comments', '.comments-area', '#comments', '[data-lazy-comments]'];
-    var ROOT_MARGIN = '200px 0px';
-
-    function log() { try { console.log.apply(console, ['[Lazyload]'].concat([].slice.call(arguments))); } catch(e){} }
-
-    if (window.__foLazyInit) return;
-    window.__foLazyInit = true;
-
-    function findTarget() {
-      for (var i = 0; i < SELECTORS.length; i++) {
-        var el = document.querySelector(SELECTORS[i]);
-        if (el) return el;
-      }
-      return null;
-    }
-
-    function triggerInit(reason) {
-      if (window.__foLazyDone) return;
-      window.__foLazyDone = true;
-      log('Initializing Firebase comments… (' + reason + ')');
-      try { window.initFirebaseComments && window.initFirebaseComments(); } catch (e) { log('init error:', e); }
-    }
-
-    function setupIO(el) {
-      if (!('IntersectionObserver' in window)) {
-        window.addEventListener('load', function () {
-          setTimeout(function () { triggerInit('no-IO fallback'); }, 5000);
-        }, { once: true });
-        return;
-      }
-
-      var io = new IntersectionObserver(function (entries, obs) {
-        if (entries[0].isIntersecting) {
-          log('Comment section visible — waiting 5s before init…');
-          setTimeout(function () { triggerInit('in-view + 5s delay'); }, 5000);
-          obs.disconnect();
-        }
-      }, { rootMargin: ROOT_MARGIN });
-
-      io.observe(el);
-      log('Observer attached to', el);
-    }
-
-    var target = findTarget();
-    if (target) {
-      setupIO(target);
-    } else {
-      log('Waiting for comments container…');
-      var mo = new MutationObserver(function (muts, obs) {
-        var el = findTarget();
-        if (el) {
-          log('Comments container found later');
-          setupIO(el);
-          obs.disconnect();
-        }
-      });
-      mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
-    }
-
-    window.foLazyForce = function () { triggerInit('manual'); };
-  })();
-  </script>
 <div class="ct-drawer-canvas" data-location="end"><div class="ct-drawer-inner">
 	<a href="#main-container" class="ct-back-to-top ct-hidden-sm"
 		data-shape="circle"
@@ -1142,7 +1078,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   
 </body>
 
-<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Nov 2025 06:34:12 GMT -->
+<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Nov 2025 07:40:00 GMT -->
 </html>
 
 
