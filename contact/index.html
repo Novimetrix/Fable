@@ -453,32 +453,7 @@
 .ct-special-features .stk-block-column:hover {
 	transform: scale3d(1.05, 1.05, 1);
 }		</style>
-			
-<!-- NM_FLASHGUARD_START -->
-<style id="nm-flashguard-css">
-/* NM FlashGuard v6f â€” nav-only mask, LCP-friendly */
-html.nm-preload a.skip-link{position:absolute !important; left:-9999px !important;}
-/* Hide alternate logo variants to avoid double image */
-html.nm-preload .header-logo img:not(:first-child){display:none !important;}
-/* Remove bullets and soften nav only (not whole header) */
-html.nm-preload .ct-header .menu, html.nm-preload .ct-header .menu *{list-style:none !important; padding-left:0 !important;}
-html.nm-preload .ct-main-navigation, html.nm-preload nav[role="navigation"]{opacity:0;}
-</style>
-<script id="nm-flashguard-js">
-(function(){
-  try{
-    var d=document, html=d.documentElement, revealed=false;
-    if(!html.classList.contains('nm-preload')) html.classList.add('nm-preload');
-    function reveal(){ if(revealed) return; revealed=true; try{ html.classList.remove('nm-preload'); }catch(e){} }
-    function domReady(){ setTimeout(reveal, 60); }
-    if(d.readyState==='loading'){ d.addEventListener('DOMContentLoaded', domReady, {once:true}); } else { domReady(); }
-    setTimeout(reveal, 320);          // short safety cap to avoid LCP delay
-    window.addEventListener('load', reveal, {once:true}); // in case it fires earlier on cached runs
-  }catch(e){}
-})();
-</script>
-<!-- NM_FLASHGUARD_END -->
-</head>
+			</head>
 
 
 <body class="wp-singular page-template-default page page-id-765 wp-custom-logo wp-embed-responsive wp-theme-blocksy wp-child-theme-blocksy-child stk--is-blocksy-theme stk-has-block-style-inheritance" data-link="type-2" data-prefix="single_page" data-header="type-1:sticky" data-footer="type-1:reveal" itemscope="itemscope" itemtype="https://schema.org/WebPage">
@@ -491,7 +466,7 @@ html.nm-preload .ct-main-navigation, html.nm-preload nav[role="navigation"]{opac
       document.body.style.overflow = 'auto';
     } catch(e){} })();
   </script>
-  <a class="skip-link screen-reader-text" href="#main">Skip to content</a><div class="ct-drawer-canvas" data-location="start"></div>
+  <div class="ct-drawer-canvas" data-location="start"></div>
 <div id="main-container">
 	<header id="header" class="ct-header" data-id="type-1" itemscope="" itemtype="https://schema.org/WPHeader"><div data-device="desktop"><div class="ct-sticky-container"><div data-sticky="shrink"><div data-row="middle" data-column-set="3"><div class="ct-container-fluid"><div data-column="start" data-placements="1"><div data-items="primary">
 <div	class="site-branding"
@@ -507,7 +482,7 @@ html.nm-preload .ct-main-navigation, html.nm-preload nav[role="navigation"]{opac
 	data-id="menu" data-interaction="hover"	data-menu="type-2:left"
 	data-dropdown="type-1:simple"		data-responsive="no"	itemscope="" itemtype="https://schema.org/SiteNavigationElement"	aria-label="Main Menu">
 
-	<ul id="menu-main-menu" class="menu"><li id="menu-item-773" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-773"><a href="../index.html" class="ct-menu-link">Home</a></li>
+	<ul id="menu-main-menu" class="menu" style="list-style:none;padding-left:0;margin:0;"><li id="menu-item-773" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-773"><a href="../index.html" class="ct-menu-link">Home</a></li>
 <li id="menu-item-775" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-775"><a href="../about/index.html" class="ct-menu-link">About</a></li>
 <li id="menu-item-720" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-720"><a href="../stories/index.html" class="ct-menu-link">Stories</a></li>
 <li id="menu-item-776" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-765 current_page_item menu-item-776"><a href="index.html" aria-current="page" class="ct-menu-link">Contact</a></li>
@@ -654,7 +629,7 @@ html.nm-preload .ct-main-navigation, html.nm-preload nav[role="navigation"]{opac
       <span class="nm2-bars"><span></span></span>
     </label>
 
-    <ul class="nm2-menu">
+    <ul class="nm2-menu" style="list-style:none;padding-left:0;margin:0;">
       <li><a href="../index.html">Home</a></li>
       <li><a href="../about/index.html">About</a></li>
       <li><a href="../stories/index.html">Stories</a></li>
@@ -775,7 +750,7 @@ html.nm-preload .ct-main-navigation, html.nm-preload nav[role="navigation"]{opac
 	class="footer-menu-inline menu-container "
 	data-id="menu"		itemscope="" itemtype="https://schema.org/SiteNavigationElement"	>
 
-	<ul class="menu"><li class="page_item page-item-768"><a href="../about/index.html" class="ct-menu-link">About</a></li><li class="page_item page-item-765 current_page_item current-menu-item"><a href="index.html" aria-current="page" class="ct-menu-link">Contact</a></li><li class="page_item page-item-772"><a href="../index.html" class="ct-menu-link">Home</a></li><li class="page_item page-item-11"><a href="../stories/index.html" class="ct-menu-link">Stories</a></li></ul></nav>
+	<ul class="menu" style="list-style:none;padding-left:0;margin:0;"><li class="page_item page-item-768"><a href="../about/index.html" class="ct-menu-link">About</a></li><li class="page_item page-item-765 current_page_item current-menu-item"><a href="index.html" aria-current="page" class="ct-menu-link">Contact</a></li><li class="page_item page-item-772"><a href="../index.html" class="ct-menu-link">Home</a></li><li class="page_item page-item-11"><a href="../stories/index.html" class="ct-menu-link">Stories</a></li></ul></nav>
 </div><div data-column="ghost"></div><div data-column="ghost"></div><div data-column="widget-area-4"><div class="ct-widget is-layout-flow widget_text" id="text-5"><h3 class="widget-title">Contact</h3>			<div class="textwidget"><p>Phone: +1 832 617 4142</p>
 <p>Email: hello@fableodyssey.com</p>
 </div>
