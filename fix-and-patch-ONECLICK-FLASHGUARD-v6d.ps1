@@ -1,8 +1,10 @@
-# fix-and-patch-ONECLICK-FLASHGUARD-v6c.ps1
-# Lighter FlashGuard to minimize LCP impact:
-# - Only suppresses duplicate logo variants and bullet styles during preload.
-# - No full-header opacity mask.
-# - Reveal at DOMContentLoaded + 40ms (no rAF). Safety: 800ms.
+# fix-and-patch-ONECLICK-FLASHGUARD-v6d.ps1
+# Goal: kill header flicker reliably while minimizing LCP impact.
+# Strategy:
+#  - During preload: show ONLY the first logo image, hide all others;
+#    hide nav bullets and temporarily fade the nav block to avoid unstyled jump.
+#  - Reveal on window 'load' (CSS/JS settled) OR after 1200ms as safety.
+#  - Replace any previous NM_FLASHGUARD block automatically.
 param([switch]$MakeBackup = $false)
 
 $ErrorActionPreference = 'Stop'
@@ -12,31 +14,37 @@ $markerEnd   = '<!-- NM_FLASHGUARD_END -->'
 
 $css = @'
 <style id="nm-flashguard-css">
-/* NM FlashGuard v6c — minimal impact */
+/* NM FlashGuard v6d — robust, minimal LCP impact */
+
+/* Only permit a single logo during preload */
+html.nm-preload .header-logo img { display: none !important; }
+html.nm-preload .header-logo img:first-of-type { display: inline-block !important; }
+
+/* Prevent bullet flash and raw list spacing */
 html.nm-preload .ct-header .menu,
-html.nm-preload .ct-header .menu * { list-style: none !important; }
+html.nm-preload .ct-header .menu * { list-style: none !important; padding-left: 0 !important; }
 
-/* Hide alternate logo variants during preload (avoid double logo) */
-html.nm-preload .header-logo img:not(:first-child) { display: none !important; }
+/* Soften unstyled nav text without hiding whole header */
+html.nm-preload .ct-main-navigation,
+html.nm-preload nav[role="navigation"] { opacity: 0; }
 
-/* Keep Skip-to-content hidden during preload to avoid top-left flash */
+/* Hide "Skip to content" link during preload */
 html.nm-preload a.skip-link { position: absolute !important; left: -9999px !important; }
 </style>
 '@
 
 $js = @'
 <script id="nm-flashguard-js">
-/* NM FlashGuard v6c — minimal delay to reduce LCP effects */
+/* NM FlashGuard v6d — reveal on window.load (preferred) or 1200ms safety */
 (function () {
   try {
     var d = document, html = d.documentElement, revealed = false;
     if (!html.classList.contains('nm-preload')) html.classList.add('nm-preload');
     function reveal(){ if (revealed) return; revealed = true; try{ html.classList.remove('nm-preload'); }catch(e){} }
-    function domReady(){ setTimeout(reveal, 40); }  // small buffer only
-    if (d.readyState === 'loading') { d.addEventListener('DOMContentLoaded', domReady, {once:true}); }
-    else { domReady(); }
-    setTimeout(reveal, 800);   // safety cap
-    window.addEventListener('load', reveal, {once:true});
+    // Prefer full load to ensure theme CSS/JS applied
+    window.addEventListener('load', reveal, { once:true });
+    // Safety cap
+    setTimeout(reveal, 1200);
   } catch(e){}
 })();
 </script>
@@ -59,6 +67,7 @@ $replaced  = 0
 foreach ($f in $files) {
   try {
     $content = Get-Content -Path $f.FullName -Raw -Encoding UTF8
+
     if ($MakeBackup) {
       $rel = $f.FullName.Substring($root.Length).TrimStart('\','/')
       $destPath = Join-Path $backupDir $rel
@@ -91,5 +100,5 @@ foreach ($f in $files) {
   }
 }
 
-Write-Host ("NM FlashGuard v6c fresh: {0}, replaced: {1}" -f $processed, $replaced) -ForegroundColor Green
+Write-Host ("NM FlashGuard v6d fresh: {0}, replaced: {1}" -f $processed, $replaced) -ForegroundColor Green
 Write-Host "Done."
