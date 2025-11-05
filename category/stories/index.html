@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Nov 2025 17:56:05 GMT -->
+<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Nov 2025 16:48:13 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -178,7 +178,21 @@
 <noscript><link rel="preload" as="style" href="../../wp-content/themes/blocksy/static/bundle/no-scripts.min.css" data-nm-deferred="1">
 <link rel="stylesheet" href="../../wp-content/themes/blocksy/static/bundle/no-scripts.min.css" media="print" onload="this.media='all'" data-nm-deferred="1">
 <noscript><link rel="stylesheet" href="../../wp-content/themes/blocksy/static/bundle/no-scripts.min.css"></noscript></noscript>
-<style class="wpcode-css-snippet">/* Meta strip capitalization fix */
+<style class="wpcode-css-snippet">/* Hide header during first paint to prevent logo/menu flash */
+body:not(.ct-header-loaded) header,
+body:not(.ct-header-loaded) .ct-header {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Reveal when Blocksy finishes rendering */
+body.ct-header-loaded header,
+body.ct-header-loaded .ct-header {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .25s ease-in;
+}
+</style><style class="wpcode-css-snippet">/* Meta strip capitalization fix */
 .entry-meta,
 .entry-meta a,
 .post-meta,
@@ -1081,7 +1095,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   
 </body>
 
-<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Nov 2025 17:56:05 GMT -->
+<!-- Mirrored from localhost:10016/category/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Nov 2025 16:48:13 GMT -->
 </html>
 
 
