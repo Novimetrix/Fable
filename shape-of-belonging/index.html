@@ -502,8 +502,17 @@
 	transform: scale3d(1.05, 1.05, 1);
 }		</style>
 			
-<!-- NM_NAV_PRELOAD -->
-<script>document.addEventListener("DOMContentLoaded",function(){try{document.querySelectorAll("nav[data-nm-preload]").forEach(function(n){n.style.visibility="";n.removeAttribute("data-nm-preload");});}catch(e){}});</script>
+<!-- NM_NO_BULLETS_HEAD -->
+<style>
+/* NM No-Bullets v9c: kill list bullets in header nav at first paint */
+header nav ul, header nav li,
+.ct-header nav ul, .ct-header nav li,
+header .menu, header .menu * {
+  list-style: none !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+}
+</style>
 </head>
 
 
@@ -517,13 +526,13 @@
       document.body.style.overflow = 'auto';
     } catch(e){} })();
   </script>
-  <div class="ct-drawer-canvas" data-location="start"></div>
+  <a class="skip-link screen-reader-text" href="#main">Skip to content</a><div class="ct-drawer-canvas" data-location="start"></div>
 <div id="main-container">
 	<header id="header" class="ct-header" data-id="type-1" itemscope="" itemtype="https://schema.org/WPHeader"><div data-device="desktop"><div class="ct-sticky-container"><div data-sticky="shrink"><div data-row="middle" data-column-set="3"><div class="ct-container-fluid"><div data-column="start" data-placements="1"><div data-items="primary">
 <div	class="site-branding"
 	data-id="logo"		itemscope="itemscope" itemtype="https://schema.org/Organization">
 
-			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ></a>	
+			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="348" height="352" src="/wp-content/uploads/2025/11/logogo.png" class="default-logo" alt="Fable Odyssey logo" decoding="async" fetchpriority="high" srcset="/wp-content/uploads/2025/11/logogo.png 348w, /wp-content/uploads/2025/11/logogo-297x300.png 297w" sizes="(max-width: 348px) 100vw, 348px" /></a>	
 	</div>
 
 </div></div><div data-column="middle"><div data-items="">
@@ -533,7 +542,7 @@
 	data-id="menu" data-interaction="hover"	data-menu="type-2:left"
 	data-dropdown="type-1:simple"		data-responsive="no"	itemscope="" itemtype="https://schema.org/SiteNavigationElement"	aria-label="Main Menu">
 
-	<ul id="menu-main-menu" class="menu" style="list-style:none;padding-left:0;margin:0;"><li id="menu-item-773" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-773"><a href="../index.html" class="ct-menu-link">Home</a></li>
+	<ul id="menu-main-menu" class="menu"><li id="menu-item-773" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-773"><a href="../index.html" class="ct-menu-link">Home</a></li>
 <li id="menu-item-775" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-775"><a href="../about/index.html" class="ct-menu-link">About</a></li>
 <li id="menu-item-720" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-720"><a href="../stories/index.html" class="ct-menu-link">Stories</a></li>
 <li id="menu-item-776" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-776"><a href="../contact/index.html" class="ct-menu-link">Contact</a></li>
@@ -543,7 +552,7 @@
 <div	class="site-branding"
 	data-id="logo"		>
 
-			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ></a>	
+			<a href="../index.html" class="site-logo-container" rel="home" itemprop="url" ><img width="348" height="352" src="/wp-content/uploads/2025/11/logogo.png" class="default-logo" alt="Fable Odyssey logo" decoding="async" srcset="/wp-content/uploads/2025/11/logogo.png 348w, /wp-content/uploads/2025/11/logogo-297x300.png 297w" sizes="(max-width: 348px) 100vw, 348px" /></a>	
 	</div>
 
 </div></div><div data-column="end" data-placements="1"><div data-items="primary">
@@ -680,7 +689,7 @@
       <span class="nm2-bars"><span></span></span>
     </label>
 
-    <ul class="nm2-menu" style="list-style:none;padding-left:0;margin:0;">
+    <ul class="nm2-menu">
       <li><a href="../index.html">Home</a></li>
       <li><a href="../about/index.html">About</a></li>
       <li><a href="../stories/index.html">Stories</a></li>
@@ -1398,7 +1407,7 @@ form.addEventListener("submit", async e=>{
 	class="footer-menu-inline menu-container "
 	data-id="menu"		itemscope="" itemtype="https://schema.org/SiteNavigationElement"	>
 
-	<ul class="menu" style="list-style:none;padding-left:0;margin:0;"><li class="page_item page-item-768"><a href="../about/index.html" class="ct-menu-link">About</a></li><li class="page_item page-item-765"><a href="../contact/index.html" class="ct-menu-link">Contact</a></li><li class="page_item page-item-772"><a href="../index.html" class="ct-menu-link">Home</a></li><li class="page_item page-item-11 current_page_parent"><a href="../stories/index.html" class="ct-menu-link">Stories</a></li></ul></nav>
+	<ul class="menu"><li class="page_item page-item-768"><a href="../about/index.html" class="ct-menu-link">About</a></li><li class="page_item page-item-765"><a href="../contact/index.html" class="ct-menu-link">Contact</a></li><li class="page_item page-item-772"><a href="../index.html" class="ct-menu-link">Home</a></li><li class="page_item page-item-11 current_page_parent"><a href="../stories/index.html" class="ct-menu-link">Stories</a></li></ul></nav>
 </div><div data-column="ghost"></div><div data-column="ghost"></div><div data-column="widget-area-4"><div class="ct-widget is-layout-flow widget_text" id="text-5"><h3 class="widget-title">Contact</h3>			<div class="textwidget"><p>Phone: +1 832 617 4142</p>
 <p>Email: hello@fableodyssey.com</p>
 </div>
