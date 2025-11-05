@@ -414,11 +414,28 @@
 			
 <!-- NM_FLASHGUARD_START -->
 <style id="nm-flashguard-css">
-/* NM FlashGuard v7 â€” always-on minimal guard (no JS) */
-.ct-header .menu, .ct-header .menu * { list-style: none !important; padding-left: 0 !important; }
-.header-logo img + img { display: none !important; } /* keep only first logo image visible */
-a.skip-link { position: absolute !important; left: -9999px !important; } /* keep accessible but offscreen */
+/* NM FlashGuard v6e â€” mask header briefly to kill flicker */
+html.nm-preload a.skip-link { position:absolute !important; left:-9999px !important; }
+html.nm-preload body > header,
+html.nm-preload .ct-header,
+html.nm-preload header.site-header { opacity:0; visibility:hidden; }
+
+/* Avoid bullet/nav jank even if header becomes visible early */
+html.nm-preload .ct-header .menu, html.nm-preload .ct-header .menu * { list-style:none !important; padding-left:0 !important; }
+html.nm-preload .header-logo img:not(:first-child) { display:none !important; }
 </style>
+<script id="nm-flashguard-js">
+(function(){
+  try{
+    var d=document, html=d.documentElement, revealed=false;
+    if(!html.classList.contains('nm-preload')) html.classList.add('nm-preload');
+    function reveal(){ if(revealed) return; revealed=true; try{ html.classList.remove('nm-preload'); }catch(e){} }
+    // Prefer full load; cap at 600ms to keep LCP stable
+    window.addEventListener('load', reveal, {once:true});
+    setTimeout(reveal, 600);
+  }catch(e){}
+})();
+</script>
 <!-- NM_FLASHGUARD_END -->
 </head>
 
