@@ -483,15 +483,13 @@
 			
 <!-- NM_FLASHGUARD_START -->
 <style id="nm-flashguard-css">
-/* NM FlashGuard v6e â€” mask header briefly to kill flicker */
-html.nm-preload a.skip-link { position:absolute !important; left:-9999px !important; }
-html.nm-preload body > header,
-html.nm-preload .ct-header,
-html.nm-preload header.site-header { opacity:0; visibility:hidden; }
-
-/* Avoid bullet/nav jank even if header becomes visible early */
-html.nm-preload .ct-header .menu, html.nm-preload .ct-header .menu * { list-style:none !important; padding-left:0 !important; }
-html.nm-preload .header-logo img:not(:first-child) { display:none !important; }
+/* NM FlashGuard v6f â€” nav-only mask, LCP-friendly */
+html.nm-preload a.skip-link{position:absolute !important; left:-9999px !important;}
+/* Hide alternate logo variants to avoid double image */
+html.nm-preload .header-logo img:not(:first-child){display:none !important;}
+/* Remove bullets and soften nav only (not whole header) */
+html.nm-preload .ct-header .menu, html.nm-preload .ct-header .menu *{list-style:none !important; padding-left:0 !important;}
+html.nm-preload .ct-main-navigation, html.nm-preload nav[role="navigation"]{opacity:0;}
 </style>
 <script id="nm-flashguard-js">
 (function(){
@@ -499,9 +497,10 @@ html.nm-preload .header-logo img:not(:first-child) { display:none !important; }
     var d=document, html=d.documentElement, revealed=false;
     if(!html.classList.contains('nm-preload')) html.classList.add('nm-preload');
     function reveal(){ if(revealed) return; revealed=true; try{ html.classList.remove('nm-preload'); }catch(e){} }
-    // Prefer full load; cap at 600ms to keep LCP stable
-    window.addEventListener('load', reveal, {once:true});
-    setTimeout(reveal, 600);
+    function domReady(){ setTimeout(reveal, 60); }
+    if(d.readyState==='loading'){ d.addEventListener('DOMContentLoaded', domReady, {once:true}); } else { domReady(); }
+    setTimeout(reveal, 320);          // short safety cap to avoid LCP delay
+    window.addEventListener('load', reveal, {once:true}); // in case it fires earlier on cached runs
   }catch(e){}
 })();
 </script>

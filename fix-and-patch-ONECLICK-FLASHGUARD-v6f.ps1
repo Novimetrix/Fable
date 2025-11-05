@@ -1,20 +1,22 @@
-# fix-and-patch-ONECLICK-FLASHGUARD-v6e.ps1
+# fix-and-patch-ONECLICK-FLASHGUARD-v6f.ps1
+# Goal: stop header flicker without hurting Mobile LCP.
+# Strategy: do NOT hide the whole header; only fade the nav + suppress extra logo images.
+# Reveal right after DOMContentLoaded (+60ms), with a 320ms safety; still reveal on 'load' if earlier.
 param([switch]$MakeBackup = $false)
 $ErrorActionPreference = 'Stop'
+
 $markerStart = '<!-- NM_FLASHGUARD_START -->'
 $markerEnd   = '<!-- NM_FLASHGUARD_END -->'
 
 $css = @'
 <style id="nm-flashguard-css">
-/* NM FlashGuard v6e — mask header briefly to kill flicker */
-html.nm-preload a.skip-link { position:absolute !important; left:-9999px !important; }
-html.nm-preload body > header,
-html.nm-preload .ct-header,
-html.nm-preload header.site-header { opacity:0; visibility:hidden; }
-
-/* Avoid bullet/nav jank even if header becomes visible early */
-html.nm-preload .ct-header .menu, html.nm-preload .ct-header .menu * { list-style:none !important; padding-left:0 !important; }
-html.nm-preload .header-logo img:not(:first-child) { display:none !important; }
+/* NM FlashGuard v6f — nav-only mask, LCP-friendly */
+html.nm-preload a.skip-link{position:absolute !important; left:-9999px !important;}
+/* Hide alternate logo variants to avoid double image */
+html.nm-preload .header-logo img:not(:first-child){display:none !important;}
+/* Remove bullets and soften nav only (not whole header) */
+html.nm-preload .ct-header .menu, html.nm-preload .ct-header .menu *{list-style:none !important; padding-left:0 !important;}
+html.nm-preload .ct-main-navigation, html.nm-preload nav[role="navigation"]{opacity:0;}
 </style>
 '@
 
@@ -25,9 +27,10 @@ $js = @'
     var d=document, html=d.documentElement, revealed=false;
     if(!html.classList.contains('nm-preload')) html.classList.add('nm-preload');
     function reveal(){ if(revealed) return; revealed=true; try{ html.classList.remove('nm-preload'); }catch(e){} }
-    // Prefer full load; cap at 600ms to keep LCP stable
-    window.addEventListener('load', reveal, {once:true});
-    setTimeout(reveal, 600);
+    function domReady(){ setTimeout(reveal, 60); }
+    if(d.readyState==='loading'){ d.addEventListener('DOMContentLoaded', domReady, {once:true}); } else { domReady(); }
+    setTimeout(reveal, 320);          // short safety cap to avoid LCP delay
+    window.addEventListener('load', reveal, {once:true}); // in case it fires earlier on cached runs
   }catch(e){}
 })();
 </script>
@@ -66,5 +69,5 @@ foreach($f in $files){
     $fresh++
   }
 }
-Write-Host ("NM FlashGuard v6e fresh: {0}, replaced: {1}" -f $fresh, $replaced) -ForegroundColor Green
+Write-Host ("NM FlashGuard v6f fresh: {0}, replaced: {1}" -f $fresh, $replaced) -ForegroundColor Green
 Write-Host "Done."
