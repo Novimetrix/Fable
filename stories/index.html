@@ -1,7 +1,7 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Nov 2025 16:57:27 GMT -->
+<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Nov 2025 17:04:58 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -177,17 +177,7 @@
 <noscript><link rel="preload" as="style" href="../wp-content/themes/blocksy/static/bundle/no-scripts.min.css" data-nm-deferred="1">
 <link rel="stylesheet" href="../wp-content/themes/blocksy/static/bundle/no-scripts.min.css" media="print" onload="this.media='all'" data-nm-deferred="1">
 <noscript><link rel="stylesheet" href="../wp-content/themes/blocksy/static/bundle/no-scripts.min.css"></noscript></noscript>
-<style class="wpcode-css-snippet">/* Hide alternate logo variants during first paint */
-.header-logo img:not(:first-child) { display: none !important; }
-
-/* If you use sticky, reveal its variant only when sticky activates */
-.ct-sticky .header-logo img:first-child { display: none !important; }
-.ct-sticky .header-logo img[data-logo="sticky"],
-.ct-sticky .header-logo .sticky-logo { display: inline-block !important; }
-
-/* Prevent bullet-list flash on nav before theme CSS settles */
-.ct-header .menu, .ct-header .menu * { list-style: none !important; }
-</style><style class="wpcode-css-snippet">/* Meta strip capitalization fix */
+<style class="wpcode-css-snippet">/* Meta strip capitalization fix */
 .entry-meta,
 .entry-meta a,
 .post-meta,
@@ -421,7 +411,43 @@
 .ct-special-features .stk-block-column:hover {
 	transform: scale3d(1.05, 1.05, 1);
 }		</style>
-			</head>
+			
+<!-- NM_FLASHGUARD_START -->
+<style id="nm-flashguard-css">
+/* NM FlashGuard â€” keep header from flashing raw logos/menus on static export */
+html.nm-preload .ct-header,
+html.nm-preload header.site-header { opacity: 0; }
+
+/* Avoid bullet flash while hidden */
+html.nm-preload .ct-header .menu,
+html.nm-preload .ct-header .menu * { list-style: none !important; }
+
+/* Hide alternate logo variants during preload */
+html.nm-preload .header-logo img:not(:first-child) { display: none !important; }
+</style>
+<script id="nm-flashguard-js">
+/* NM FlashGuard â€” add/remove .nm-preload without relying on theme JS */
+(function () {
+  try {
+    var docEl = document.documentElement;
+    // Add preload class ASAP (script is in <head>)
+    if (!docEl.classList.contains('nm-preload')) {
+      docEl.classList.add('nm-preload');
+    }
+    var done = function () {
+      try { docEl.classList.remove('nm-preload'); } catch (e) {}
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', done, { once: true });
+    } else {
+      // DOM already parsed
+      done();
+    }
+  } catch (e) { /* no-op */ }
+})();
+</script>
+<!-- NM_FLASHGUARD_END -->
+</head>
 
 
 <body class="blog wp-custom-logo wp-embed-responsive wp-theme-blocksy wp-child-theme-blocksy-child stk--is-blocksy-theme stk-has-block-style-inheritance" data-link="type-2" data-prefix="blog" data-header="type-1:sticky" data-footer="type-1:reveal">
@@ -1088,7 +1114,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   
 </body>
 
-<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Nov 2025 16:57:27 GMT -->
+<!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Nov 2025 17:04:58 GMT -->
 </html>
 
 
