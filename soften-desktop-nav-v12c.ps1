@@ -1,20 +1,13 @@
-# soften-header-menu-v12b.ps1
-# Keeps nav, kills skip-link, and inlines no-bullet styles so the menu doesn't flash.
-# - Removes the "Skip to content" anchor
-# - Adds inline list-style:none; padding-left:0; margin:0; to UL/OL/LI inside any <nav>…</nav>
-# - Also enforces same styles on <ul id="menu-main-menu"> globally
-# - Creates .bak backups next to modified files
-$files = Get-ChildItem -Recurse -Include *.html
+# soften-desktop-nav-v12c.ps1
+# Purpose: Keep desktop nav visible but prevent bullet flash by inlining styles
+# Scope:   Only inside <nav id="header-menu-1">…</nav> blocks and on <ul id="menu-main-menu">
+# Backup:  Creates .bak next to modified files
+$files = Get-ChildItem -Recurse -Include *.html, *.htm -File
 foreach ($f in $files) {
   $html = Get-Content -LiteralPath $f.FullName -Raw
   $orig = $html
 
-  # 1) Remove skip-link
-  $html = [regex]::Replace($html, '(?is)<a\s+class="skip-link[^"]*"\s+href="#main">.*?</a>', '')
-
-  # Helpers
   $rxStyle = New-Object regex '(?is)\sstyle="([^"]*)"'
-
   function AddOrMerge([string]$attrs, [string]$css) {
     if ($rxStyle.IsMatch($attrs)) {
       return $rxStyle.Replace($attrs, { param($m) ' style="' + $css + $m.Groups[1].Value + '"' }, 1)
@@ -23,29 +16,31 @@ foreach ($f in $files) {
     }
   }
 
-  # 2) Inside each <nav>…</nav>, inline list reset
-  $html = [regex]::Replace($html, '(?is)<nav\b[^>]*>.*?</nav>', {
+  # 1) Inside desktop header nav only
+  $html = [regex]::Replace($html, '(?is)<nav\b[^>]*id="header-menu-1"[^>]*>.*?</nav>', {
     param($mNav)
     $block = $mNav.Value
-    $block = [regex]::Replace($block, '(?is)<ul(?<a>[^>]*)>', { param($mUL)
+
+    # Add inline to ULs
+    $block = [regex]::Replace($block, '(?is)<ul(?<a>[^>]*)>', {
+      param($mUL)
       $attrs = $mUL.Groups['a'].Value
       $attrs = AddOrMerge $attrs 'list-style:none;padding-left:0;margin:0;'
       '<ul' + $attrs + '>'
     })
-    $block = [regex]::Replace($block, '(?is)<ol(?<a>[^>]*)>', { param($mOL)
-      $attrs = $mOL.Groups['a'].Value
-      $attrs = AddOrMerge $attrs 'list-style:none;padding-left:0;margin:0;'
-      '<ol' + $attrs + '>'
-    })
-    $block = [regex]::Replace($block, '(?is)<li(?<a>[^>]*)>', { param($mLI)
+
+    # Add inline to LIs
+    $block = [regex]::Replace($block, '(?is)<li(?<a>[^>]*)>', {
+      param($mLI)
       $attrs = $mLI.Groups['a'].Value
       $attrs = AddOrMerge $attrs 'list-style:none;margin:0;padding:0;'
       '<li' + $attrs + '>'
     })
+
     return $block
   })
 
-  # 3) Global safety: target <ul id="menu-main-menu">
+  # 2) Safety: ensure the main UL has it even outside of nav match
   $html = [regex]::Replace($html, '(?is)<ul(?<a>[^>]*\bid="menu-main-menu"[^>]*)>', {
     param($mMain)
     $attrs = $mMain.Groups['a'].Value
