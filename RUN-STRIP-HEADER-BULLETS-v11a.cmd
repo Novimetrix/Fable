@@ -1,0 +1,7 @@
+@echo off
+setlocal
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0strip-header-bullets-v11a.ps1"
+echo.
+echo Press any key to exit...
+pause >nul
+endlocal
