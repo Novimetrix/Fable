@@ -32,7 +32,7 @@ Write-Host ">>> ONECLICK CSS Defer -- $rootPath"
 $files = Get-ChildItem -Path $rootPath -Recurse -Include $extensions -File | Sort-Object FullName
 if(-not $files){
   Write-Host "No HTML files found."
-  Read-Host "Press Enter to exit"
+  # Read-Host "Press Enter to exit"  <-- REMOVED for CI/automation
   exit 0
 }
 
@@ -47,11 +47,10 @@ foreach($f in $files){
     $attrs = $m.Groups[1].Value
 
     # --- START FOUC FIX: EXCLUDE CRITICAL BLOCKS ---
-    # EXCLUDE the Blocksy main CSS file that styles the desktop menu.
-    # We check for 'blocksy' or 'ct-main' (common theme stylesheet identifiers)
-    if ($attrs -match '(?is)blocksy' -or $attrs -match '(?is)ct-main') { 
-        # Skip deferral for this critical file
-        Write-Host "Skipping critical Blocksy CSS for FOUC fix." -ForegroundColor Yellow
+    # EXCLUDE critical theme/block CSS from deferral (keep render-blocking)
+    # This prevents FOUC and broken styling for the menu, Gutenberg blocks, and base theme styles.
+    if ($attrs -match '(?is)blocksy|ct-main|wp-block-library|global-styles|/wp-content/themes/|style\.css') {
+        Write-Host "Skipping critical theme/block CSS." -ForegroundColor Yellow
         return $m.Value 
     }
     # --- END FOUC FIX ---
@@ -70,4 +69,4 @@ foreach($f in $files){
 }
 
 Write-Host ">>> Done. Files changed: $changed; Stylesheets converted: $converted"
-Read-Host "Press Enter to exit"
+# Read-Host "Press Enter to exit" <-- REMOVED for CI/automation
