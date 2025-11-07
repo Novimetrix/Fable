@@ -32,7 +32,6 @@ Write-Host ">>> ONECLICK CSS Defer -- $rootPath"
 $files = Get-ChildItem -Path $rootPath -Recurse -Include $extensions -File | Sort-Object FullName
 if(-not $files){
   Write-Host "No HTML files found."
-  # Read-Host "Press Enter to exit"  <-- REMOVED for CI/automation
   exit 0
 }
 
@@ -46,11 +45,10 @@ foreach($f in $files){
     param($m)
     $attrs = $m.Groups[1].Value
 
-    # --- START FOUC FIX: EXCLUDE CRITICAL BLOCKS ---
-    # EXCLUDE critical theme/block CSS from deferral (keep render-blocking)
-    # This prevents FOUC and broken styling for the menu, Gutenberg blocks, and base theme styles.
-    if ($attrs -match '(?is)blocksy|ct-main|wp-block-library|global-styles|/wp-content/themes/|style\.css') {
-        Write-Host "Skipping critical theme/block CSS." -ForegroundColor Yellow
+    # --- START FOUC FIX: EXCLUDE CRITICAL BLOCKS (MINIMALIST LCP-FRIENDLY) ---
+    # EXCLUDE only theme-specific critical files to maintain high LCP score and fix menu flash.
+    if ($attrs -match '(?is)blocksy|ct-main|style\.css') {
+        Write-Host "Skipping critical Blocksy theme CSS." -ForegroundColor Yellow
         return $m.Value 
     }
     # --- END FOUC FIX ---
@@ -69,4 +67,3 @@ foreach($f in $files){
 }
 
 Write-Host ">>> Done. Files changed: $changed; Stylesheets converted: $converted"
-# Read-Host "Press Enter to exit" <-- REMOVED for CI/automation
