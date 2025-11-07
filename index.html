@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Nov 2025 18:01:32 GMT -->
+<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Nov 2025 18:06:11 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -150,9 +150,9 @@
   </script>
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
-<link rel="preload" as="style" href="wp-content/uploads/blocksy/css/globalf5fa.css?ver=38463" data-nm-deferred="1">
-<link rel="stylesheet" href="wp-content/uploads/blocksy/css/globalf5fa.css?ver=38463" media="print" onload="this.media='all'" data-nm-deferred="1">
-<noscript><link rel="stylesheet" href="wp-content/uploads/blocksy/css/globalf5fa.css?ver=38463"></noscript>
+<link rel="preload" as="style" href="wp-content/uploads/blocksy/css/global96a2.css?ver=38745" data-nm-deferred="1">
+<link rel="stylesheet" href="wp-content/uploads/blocksy/css/global96a2.css?ver=38745" media="print" onload="this.media='all'" data-nm-deferred="1">
+<noscript><link rel="stylesheet" href="wp-content/uploads/blocksy/css/global96a2.css?ver=38745"></noscript>
 <link rel="preload" as="style" href="wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2" data-nm-deferred="1">
 <link rel="stylesheet" href="wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2" media="print" onload="this.media='all'" data-nm-deferred="1">
 <noscript><link rel="stylesheet" href="wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2"></noscript>
@@ -451,32 +451,17 @@
 .ct-special-features .stk-block-column:hover {
 	transform: scale3d(1.05, 1.05, 1);
 }
-/* Blocksy Desktop Menu FOUC Fix (LCP-Friendly)
+/*
+   Blocksy Desktop Menu FOUC Fix (Aggressive, Target-Specific)
    
-   This CSS targets the UL and LI elements of the main desktop menu
-   (.ct-menu-container) and applies the correct styling instantly 
-   to suppress the vertical list and bullets flash, without hiding the element.
+   This CSS hides only the inner UL of the main desktop menu instantly,
+   preventing the unstyled list flash, while minimizing LCP impact on 
+   the larger header container.
 */
-
-/* 1. Target the main list container (UL) */
-.ct-menu-container > ul, 
-.site-main-menu > ul {
-    /* Remove default list markers (bullets/numbers) instantly */
-    list-style: none !important;
-    
-    /* Ensure the list is a horizontal flex container immediately (the key to the horizontal layout) */
-    display: flex !important;
-    
-    /* Remove default padding/margin that causes indentation */
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* 2. Target the individual list items (LI) */
-.ct-menu-container > ul > li, 
-.site-main-menu > ul > li {
-    /* Ensure items are inline blocks or flex children, not vertical list items */
-    display: block !important;
+.ct-menu-container > ul {
+    /* Hides the list content instantly, before Blocksy's horizontal styling loads */
+    visibility: hidden !important; 
+    list-style: none !important; /* Ensure bullets are suppressed just in case */
 }		</style>
 			</head>
 
@@ -1168,7 +1153,7 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
   
 </body>
 
-<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Nov 2025 18:01:32 GMT -->
+<!-- Mirrored from localhost:10016/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Nov 2025 18:06:11 GMT -->
 </html>
 
 
