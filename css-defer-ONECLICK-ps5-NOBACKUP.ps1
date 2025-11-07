@@ -45,10 +45,10 @@ foreach($f in $files){
     param($m)
     $attrs = $m.Groups[1].Value
 
-    # --- START FOUC FIX: EXCLUDE CRITICAL BLOCKS (MINIMALIST LCP-FRIENDLY) ---
-    # EXCLUDE only theme-specific critical files to maintain high LCP score and fix menu flash.
-    if ($attrs -match '(?is)blocksy|ct-main|style\.css') {
-        Write-Host "Skipping critical Blocksy theme CSS." -ForegroundColor Yellow
+    # --- START FOUC FIX: EXCLUDE CRITICAL BLOCKS (FINAL LCP-OPTIMIZED) ---
+    # Includes theme main styles, menu fix, and general layout styles.
+    if ($attrs -match '(?is)blocksy|ct-main|style\.css|general-styles') {
+        Write-Host "Skipping critical Blocksy theme CSS for LCP and FOUC fix." -ForegroundColor Yellow
         return $m.Value 
     }
     # --- END FOUC FIX ---
