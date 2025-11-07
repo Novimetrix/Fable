@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en-US">
 
 <!-- Mirrored from localhost:10016/stories/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Nov 2025 22:52:40 GMT -->
@@ -411,7 +411,63 @@
 .ct-special-features .stk-block-column:hover {
 	transform: scale3d(1.05, 1.05, 1);
 }		</style>
-			</head>
+			
+<!-- NM_FLASHGUARD_START -->
+<style id="nm-flashguard-css">
+/* NM FlashGuard v6b â€” smooth header reveal on static exports */
+html.nm-preload .ct-header,
+html.nm-preload header.site-header { opacity: 0; pointer-events: none; }
+
+/* Avoid bullet flash while hidden */
+html.nm-preload .ct-header .menu,
+html.nm-preload .ct-header .menu * { list-style: none !important; }
+
+/* Hide alternate logo variants during preload */
+html.nm-preload .header-logo img:not(:first-child) { display: none !important; }
+</style>
+<script id="nm-flashguard-js">
+/* NM FlashGuard v6b â€” theme-agnostic guard */
+(function () {
+  try {
+    var doc = document, docEl = doc.documentElement;
+    if (!docEl.classList.contains('nm-preload')) docEl.classList.add('nm-preload');
+
+    var revealed = false;
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      try { docEl.classList.remove('nm-preload'); } catch(e){}
+    }
+
+    // Minimum-delay reveal once DOM is parsed: 2 rAF ticks + 120ms
+    function domReadyReveal() {
+      try {
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){
+            setTimeout(reveal, 120);
+          });
+        });
+      } catch(e) {
+        setTimeout(reveal, 180);
+      }
+    }
+
+    if (doc.readyState === 'loading') {
+      doc.addEventListener('DOMContentLoaded', domReadyReveal, { once: true });
+    } else {
+      domReadyReveal();
+    }
+
+    // Safety: never keep hidden longer than 1200ms
+    setTimeout(reveal, 1200);
+
+    // If window fully loads earlier, reveal then as well (covers heavy CSS fetches)
+    window.addEventListener('load', reveal, { once: true });
+  } catch (e) { /* no-op */ }
+})();
+</script>
+<!-- NM_FLASHGUARD_END -->
+</head>
 
 
 <body class="blog wp-embed-responsive wp-theme-blocksy wp-child-theme-blocksy-child stk--is-blocksy-theme stk-has-block-style-inheritance" data-link="type-2" data-prefix="blog" data-header="type-1:sticky" data-footer="type-1:reveal">
