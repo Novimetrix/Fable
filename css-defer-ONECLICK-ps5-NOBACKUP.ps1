@@ -1,12 +1,16 @@
 # css-defer-ONECLICK-ps5-NOBACKUP.ps1
-# Plain-ASCII, PS5-safe. No prompts, no backups.
-# Defers non-critical stylesheets using media="print" and onload swap (classic pattern).
-# Adds <noscript> fallback. Preserves integrity/crossorigin/referrerpolicy. Skips Blocksy/core CSS.
-# Exit with non-zero on error.
+# Plain ASCII, PowerShell 5-safe. No prompts, no backups.
+# Behavior:
+# - Defer NON-CRITICAL stylesheets by switching to media="print" and flipping to media="all" via onload.
+# - Preserve integrity/crossorigin/referrerpolicy attributes (we don't touch them).
+# - Add <noscript> fallback for each deferred stylesheet.
+# - Skip critical CSS via the skip list below.
+# - UTF-8 (no BOM) writes.
+# Exit codes: 0 success, 2 regex failure, 3 write failure.
 
 $ErrorActionPreference = 'Stop'
 
-# Skip list: any href or tag containing these will NOT be deferred
+# === SKIP LIST (never defer if tag or href contains any of these) ===
 $SkipList = @(
   'blocksy',
   'ct-main',
@@ -14,10 +18,11 @@ $SkipList = @(
   'global-styles',
   '/wp-content/themes/',
   'style.css',
-  '/wp-includes/css/'
+  '/wp-includes/css/',
+  'stackable-ultimate-gutenberg-blocks'  # NEW: keep Stackable CSS render-blocking
 )
 
-# Regex to find stylesheet link tags
+# Regex to find link rel="stylesheet" tags (single line or multi-line)
 $Pattern = '<link\b(?:(?!>)[\s\S])*?\brel=["'']stylesheet["''](?:(?!>)[\s\S])*?>'
 
 function Should-SkipLink([string]$tag, [string]$href) {
@@ -29,7 +34,7 @@ function Should-SkipLink([string]$tag, [string]$href) {
 }
 
 function Convert-Link([string]$tag) {
-  # Already deferred? leave it alone
+  # If already deferred with this pattern, leave as-is
   if ($tag -match 'media\s*=\s*["'']print["'']' -and $tag -match 'onload\s*=\s*["''][^"'']*this\.media\s*=\s*[\'']all[\'']') { return $tag }
   if ($tag -match 'data-deferred\s*=\s*["'']1["'']') { return $tag }
 
@@ -38,6 +43,7 @@ function Convert-Link([string]$tag) {
   $m = [regex]::Match($tag, 'href\s*=\s*["'']([^"'']+)["'']', 'IgnoreCase')
   if ($m.Success) { $href = $m.Groups[1].Value }
 
+  # Skip critical files
   if (Should-SkipLink $tag $href) { return $tag }
 
   # Ensure media="print"
@@ -47,7 +53,7 @@ function Convert-Link([string]$tag) {
     $tag = $tag -replace '>$', ' media="print">'
   }
 
-  # Append or add onload to flip to all
+  # Add/append onload to flip to 'all'
   if ($tag -notmatch '\bonload\s*=') {
     $tag = $tag -replace '>$', ' onload="this.media=''all''">'
   } elseif ($tag -notmatch 'this\.media\s*=\s*[\'']all[\'']') {
@@ -59,7 +65,7 @@ function Convert-Link([string]$tag) {
     }, 'IgnoreCase')
   }
 
-  # Mark
+  # Mark as deferred (for visibility/tools)
   if ($tag -notmatch 'data-deferred\s*=') {
     $tag = $tag -replace '>$', ' data-deferred="1">'
   }
@@ -74,7 +80,7 @@ function Convert-Link([string]$tag) {
   return $tag + $noscript
 }
 
-# Process files
+# Process *.html / *.htm recursively from current directory
 $files = Get-ChildItem -Recurse -Include *.html, *.htm -File
 [int]$changed = 0
 
