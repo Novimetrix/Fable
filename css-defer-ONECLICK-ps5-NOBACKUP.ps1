@@ -1,69 +1,114 @@
-# css-defer-ONECLICK-ps5.ps1  (ASCII-only, PowerShell 5 safe)
-param([string]$Root = ".")
-$ErrorActionPreference = "Stop"
+# css-defer-ONECLICK-ps5-NOBACKUP.ps1
+# Plain-ASCII, PS5-safe. No prompts, no backups.
+# Defers non-critical stylesheets using media="print" and onload swap (classic pattern).
+# Adds <noscript> fallback. Preserves integrity/crossorigin/referrerpolicy. Skips Blocksy/core CSS.
+# Exit with non-zero on error.
 
-$extensions = @("*.html","*.htm")
-$re = [regex]'(?is)<link\s+([^>]*\brel\s*=\s*["'']stylesheet["''][^>]*)>'
+$ErrorActionPreference = 'Stop'
 
-function MakeTrio {
-  param([string]$attrs)
+# Skip list: any href or tag containing these will NOT be deferred
+$SkipList = @(
+  'blocksy',
+  'ct-main',
+  'wp-block-library',
+  'global-styles',
+  '/wp-content/themes/',
+  'style.css',
+  '/wp-includes/css/'
+)
 
-  $m = [regex]::Match($attrs,'(?is)\bhref\s*=\s*["'']([^"'']+)["'']')
-  if(-not $m.Success){ return $null }
-  $href = $m.Groups[1].Value
+# Regex to find stylesheet link tags
+$Pattern = '<link\b(?:(?!>)[\s\S])*?\brel=["'']stylesheet["''](?:(?!>)[\s\S])*?>'
 
-  $integrity = ([regex]::Match($attrs,'(?is)\bintegrity\s*=\s*["'']([^"'']+)["'']')).Groups[1].Value
-  $cross     = ([regex]::Match($attrs,'(?is)\bcrossorigin\s*=\s*["'']([^"'']+)["'']')).Groups[1].Value
-  $refpol    = ([regex]::Match($attrs,'(?is)\breferrerpolicy\s*=\s*["'']([^"'']+)["'']')).Groups[1].Value
-
-  $ia = ""; if($integrity){ $ia = " integrity=""$integrity""" }
-  $ca = ""; if($cross){ $ca = " crossorigin=""$cross""" }
-  $ra = ""; if($refpol){ $ra = " referrerpolicy=""$refpol""" }
-
-  $pre = "<link rel=""preload"" as=""style"" href=""$href""$ia$ca$ra data-nm-deferred=""1"">"
-  $def = "<link rel=""stylesheet"" href=""$href"" media=""print"" onload=""this.media='all'""$ia$ca$ra data-nm-deferred=""1"">"
-  $nos = "<noscript><link rel=""stylesheet"" href=""$href""$ia$ca$ra></noscript>"
-  return "$pre`r`n$def`r`n$nos"
+function Should-SkipLink([string]$tag, [string]$href) {
+  foreach ($s in $SkipList) {
+    if ($tag -like ("*" + $s + "*")) { return $true }
+    if ($href -and $href -like ("*" + $s + "*")) { return $true }
+  }
+  return $false
 }
 
-$rootPath = Resolve-Path $Root
-Write-Host ">>> ONECLICK CSS Defer -- $rootPath"
+function Convert-Link([string]$tag) {
+  # Already deferred? leave it alone
+  if ($tag -match 'media\s*=\s*["'']print["'']' -and $tag -match 'onload\s*=\s*["''][^"'']*this\.media\s*=\s*[\'']all[\'']') { return $tag }
+  if ($tag -match 'data-deferred\s*=\s*["'']1["'']') { return $tag }
 
-$files = Get-ChildItem -Path $rootPath -Recurse -Include $extensions -File | Sort-Object FullName
-if(-not $files){
-  Write-Host "No HTML files found."
-  exit 0
+  # Extract href
+  $href = $null
+  $m = [regex]::Match($tag, 'href\s*=\s*["'']([^"'']+)["'']', 'IgnoreCase')
+  if ($m.Success) { $href = $m.Groups[1].Value }
+
+  if (Should-SkipLink $tag $href) { return $tag }
+
+  # Ensure media="print"
+  if ($tag -match '\bmedia\s*=\s*["''][^"'']*["'']') {
+    $tag = [regex]::Replace($tag, '\bmedia\s*=\s*["''][^"'']*["'']', 'media="print"', 'IgnoreCase')
+  } else {
+    $tag = $tag -replace '>$', ' media="print">'
+  }
+
+  # Append or add onload to flip to all
+  if ($tag -notmatch '\bonload\s*=') {
+    $tag = $tag -replace '>$', ' onload="this.media=''all''">'
+  } elseif ($tag -notmatch 'this\.media\s*=\s*[\'']all[\'']') {
+    $tag = [regex]::Replace($tag, '\bonload\s*=\s*["'']([^"'']*)["'']', {
+      param($m2)
+      $code = $m2.Groups[1].Value
+      $new = $code.TrimEnd(';') + ';this.media=''all'''
+      'onload="' + $new + '"'
+    }, 'IgnoreCase')
+  }
+
+  # Mark
+  if ($tag -notmatch 'data-deferred\s*=') {
+    $tag = $tag -replace '>$', ' data-deferred="1">'
+  }
+
+  # Build noscript fallback
+  $noscript = ''
+  if ($href) {
+    $escaped = $href -replace '"', '&quot;'
+    $noscript = "<noscript data-deferred-fallback=""1""><link rel=""stylesheet"" href=""$escaped""></noscript>"
+  }
+
+  return $tag + $noscript
 }
 
-[int]$changed=0
-[int]$converted=0
+# Process files
+$files = Get-ChildItem -Recurse -Include *.html, *.htm -File
+[int]$changed = 0
 
-foreach($f in $files){
-  $html = Get-Content -Raw -LiteralPath $f.FullName
+foreach ($f in $files) {
+  try {
+    $content = Get-Content -LiteralPath $f.FullName -Raw -Encoding UTF8
+  } catch {
+    $content = Get-Content -LiteralPath $f.FullName -Raw
+  }
 
-  $new = $re.Replace($html,{
-    param($m)
-    $attrs = $m.Groups[1].Value
+  $evaluator = [System.Text.RegularExpressions.MatchEvaluator]{
+    param($m3)
+    $orig = $m3.Value
+    return (Convert-Link $orig)
+  }
 
-    # --- START FOUC FIX: EXCLUDE CRITICAL BLOCKS (MINIMALIST LCP-FRIENDLY) ---
-    # EXCLUDE only theme-specific critical files to maintain high LCP score and fix menu flash.
-    if ($attrs -match '(?is)blocksy|ct-main|style\.css') {
-        Write-Host "Skipping critical Blocksy theme CSS." -ForegroundColor Yellow
-        return $m.Value 
+  try {
+    $updated = [regex]::Replace($content, $Pattern, $evaluator, 'IgnoreCase')
+  } catch {
+    Write-Error ("Regex failure in file: " + $f.FullName + " :: " + $_.Exception.Message)
+    exit 2
+  }
+
+  if ($updated -ne $content) {
+    try {
+      $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+      [System.IO.File]::WriteAllText($f.FullName, $updated, $utf8NoBom)
+      $changed++
+    } catch {
+      Write-Error ("Write failure in file: " + $f.FullName + " :: " + $_.Exception.Message)
+      exit 3
     }
-    # --- END FOUC FIX ---
-
-    if ($attrs -match '(?is)\bdata-nm-deferred\b' -or $attrs -match '(?is)\bmedia\s*=\s*["'']print["'']') { return $m.Value }
-    $t = MakeTrio $attrs
-    if($null -eq $t){ return $m.Value }
-    $script:converted++
-    return $t
-  })
-
-  if($new -ne $html){
-    Set-Content -LiteralPath $f.FullName -Value $new -Encoding UTF8
-    $changed++
   }
 }
 
-Write-Host ">>> Done. Files changed: $changed; Stylesheets converted: $converted"
+Write-Host ("Deferred CSS in " + $changed + " file(s). Skipped critical CSS. Added noscript fallbacks.")
+exit 0
