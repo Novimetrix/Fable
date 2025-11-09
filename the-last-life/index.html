@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Nov 2025 09:25:47 GMT -->
+<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Nov 2025 18:11:55 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -151,7 +151,7 @@
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; The Last Life Comments Feed" href="/the-last-life/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global97c7.css?ver=15469' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global3b35.css?ver=10326' media='all' />
 <link rel="preload" as="style" href="../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2"><link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -187,7 +187,50 @@
 <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%3A10016%2Fthe-last-life%2F&amp;format=xml" />
 <noscript><link rel="preload" as="style" href="../wp-content/themes/blocksy/static/bundle/no-scripts.min.css"><link rel='stylesheet' href='../wp-content/themes/blocksy/static/bundle/no-scripts.min.css' type='text/css'></noscript>
 
-<style class="stk-block-styles">.stk-260904a{height:200px !important;}</style><style class="wpcode-css-snippet">/* Meta strip capitalization fix */
+<style class="stk-block-styles">.stk-260904a{height:200px !important;}</style><script>
+document.addEventListener('DOMContentLoaded', () => {
+  const footer = document.querySelector('#ct-footer, .ct-footer, footer#colophon, footer.site-footer, footer[role="contentinfo"]');
+  if (!footer) return;
+
+  // 1) Fix footer at bottom (visible layer)
+  Object.assign(footer.style, {
+    position: 'fixed',
+    left: '0',
+    bottom: '0',
+    width: '100%',
+    zIndex: '1' // footer layer
+  });
+
+  // 2) Ensure main content stacks ABOVE the footer while scrolling
+  const contentCandidates = document.querySelectorAll('#page, .site, #content, .ct-main, .site-main, #main, #main-container, .ct-container');
+  contentCandidates.forEach(el => {
+    const cs = getComputedStyle(el);
+    if (cs.position === 'static') el.style.position = 'relative';
+    el.style.zIndex = '2'; // content above footer
+  });
+
+  // 3) Add bottom padding equal to footer height so the footer is fully revealed at page end
+  function padForFooter() {
+    const h = footer.offsetHeight || 120;
+    document.body.style.paddingBottom = h + 'px';
+  }
+  padForFooter();
+
+  // Recalculate if footer height changes or on resize
+  new ResizeObserver(padForFooter).observe(footer);
+  window.addEventListener('resize', padForFooter);
+
+  // If WP admin bar is present, avoid overlap
+  const adminBar = document.querySelector('#wpadminbar');
+  if (adminBar) {
+    const barH = adminBar.offsetHeight || 32;
+    footer.style.bottom = '0';
+    footer.style.marginBottom = '0';
+    // Admin bar already sits at top; no change needed unless you pinned header too
+  }
+});
+</script>
+<style class="wpcode-css-snippet">/* Meta strip capitalization fix */
 .entry-meta,
 .entry-meta a,
 .post-meta,
@@ -1330,7 +1373,14 @@ form.addEventListener("submit", async e=>{
 
 	</main>
 
-	<footer id="footer" class="ct-footer" data-id="type-1" itemscope="" itemtype="https://schema.org/WPFooter"><div data-row="bottom"><div class="ct-container" data-columns-divider="md:sm"><div data-column="copyright">
+	<footer id="footer" class="ct-footer" data-id="type-1" itemscope="" itemtype="https://schema.org/WPFooter"><div data-row="middle"><div class="ct-container"><div data-column="menu">
+<nav
+	id="footer-menu"
+	class="footer-menu-inline menu-container "
+	data-id="menu"		itemscope="" itemtype="https://schema.org/SiteNavigationElement"	>
+
+	<ul class="menu"><li class="page_item page-item-768"><a href="../about/index.html" class="ct-menu-link">About</a></li><li class="page_item page-item-765"><a href="../contact/index.html" class="ct-menu-link">Contact</a></li><li class="page_item page-item-772"><a href="../index.html" class="ct-menu-link">Home</a></li><li class="page_item page-item-11 current_page_parent"><a href="../stories/index.html" class="ct-menu-link">Stories</a></li></ul></nav>
+</div><div data-column="ghost"></div><div data-column="ghost"></div><div data-column="ghost"></div></div></div><div data-row="bottom"><div class="ct-container" data-columns-divider="md:sm"><div data-column="copyright">
 <div
 	class="ct-footer-copyright"
 	data-id="copyright">
@@ -1912,6 +1962,6 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Nov 2025 09:25:47 GMT -->
+<!-- Mirrored from localhost:10016/the-last-life/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Nov 2025 18:11:55 GMT -->
 </html>
 
