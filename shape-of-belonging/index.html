@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 
-<!-- Mirrored from localhost:10016/shape-of-belonging/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 11 Nov 2025 15:55:05 GMT -->
+<!-- Mirrored from localhost:10016/shape-of-belonging/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 11 Nov 2025 16:28:31 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	
@@ -151,7 +151,7 @@
   <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Feed" href="/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Comments Feed" href="/comments/feed/" />
 <link rel="alternate" type="application/rss+xml" title="Fable Odyssey &raquo; Shape of Belonging Comments Feed" href="/shape-of-belonging/feed/" />
-<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global629d.css?ver=22574' media='all' />
+<link rel='stylesheet' id='blocksy-dynamic-global-css' href='../wp-content/uploads/blocksy/css/global94cb.css?ver=78408' media='all' />
 <link rel="preload" as="style" href="../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2"><link rel='stylesheet' id='ugb-style-css-css' href='../wp-content/plugins/stackable-ultimate-gutenberg-blocks/dist/frontend_blocks34a7.css?ver=3.19.2' media='all' />
 <style id='ugb-style-css-inline-css'>
 :root {--stk-block-width-default-detected: 1290px;}
@@ -716,6 +716,30 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.nm2-panel a[href]').forEach(function(a){
     var link = norm(a.getAttribute('href'));
     if(link===here || (here==='/' && (link===''||link==='/'))){ a.setAttribute('aria-current','page'); }
+  });
+})();
+</script>
+<script>
+(function () {
+  var toggle  = document.getElementById('nm2-toggle');
+  var panel   = document.querySelector('.nm2-panel');
+  var openBtn = document.querySelector('label[for="nm2-toggle"]');
+  if (!toggle || !panel) return;
+
+  function insideDrawer(t) {
+    return panel.contains(t) || (openBtn && openBtn.contains(t)) || t === toggle;
+  }
+
+  // Close when tapping/clicking outside the drawer
+  document.addEventListener('pointerdown', function (e) {
+    if (!toggle.checked) return;        // only act when drawer is open
+    if (insideDrawer(e.target)) return; // ignore taps inside or on the burger
+    toggle.checked = false;             // close
+  });
+
+  // Close on Esc
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && toggle.checked) toggle.checked = false;
   });
 })();
 </script>
@@ -1982,6 +2006,6 @@ var ct_localizations = {"ajax_url":"http:\/\/localhost:10016\/wp-admin\/admin-aj
 
 </body>
 
-<!-- Mirrored from localhost:10016/shape-of-belonging/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 11 Nov 2025 15:55:05 GMT -->
+<!-- Mirrored from localhost:10016/shape-of-belonging/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 11 Nov 2025 16:28:31 GMT -->
 </html>
 
