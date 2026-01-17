@@ -5,9 +5,25 @@
 # - Adds src when only srcset exists (uses smallest candidate if descriptors present, else first)
 # - Normalizes relative src ("wp-content/...") to "/wp-content/..."
 # - Removes invalid sizes="auto, ..." token
+# - Strips responsive attrs (srcset/sizes) from <img>/<source>
 param()
 
-Write-Host "Running ONECLICK FINAL v5 (PS5-safe)..."
+Write-Host "Running ONECLICK FINAL v5 (PS5-safe) + srcset strip..."
+
+function Strip-ResponsiveAttrs([string]$html) {
+  # Remove srcset/sizes from <img> and <source>.
+  # This prevents desktop-only "image appears after click" paint bugs on static exports.
+  $prev = $null
+  while ($html -ne $prev) {
+    $prev = $html
+    $html = [regex]::Replace(
+      $html,
+      '(?i)(<\s*(?:img|source)\b[^>]*?)\s+(?:srcset|sizes)\s*=\s*("[^"]*"|''[^'']*'')',
+      '$1'
+    )
+  }
+  return $html
+}
 
 $files = Get-ChildItem -Recurse -File -Include *.html
 
@@ -82,6 +98,9 @@ foreach ($f in $files) {
   # 4) Remove invalid sizes="auto, ..." token
   $html = $html -replace '\ssizes=["'']\s*auto,\s*', ' sizes="'
 
+  # 5) Strip responsive attrs (srcset/sizes) from <img>/<source>
+  $html = Strip-ResponsiveAttrs $html
+
   if ($html -ne $orig) {
     Set-Content $path $html  -Encoding UTF8
     Write-Host ("Changed: {0}" -f $path)
@@ -91,10 +110,12 @@ foreach ($f in $files) {
 # Summary
 $left_lazy = ($files | % { (Get-Content -LiteralPath $_.FullName -Raw -Encoding UTF8) } | Select-String -Pattern 'data-src|data-lazy-src|data-original|data-echo' -AllMatches | Measure-Object).Count
 $missing_src = ($files | % { (Get-Content -LiteralPath $_.FullName -Raw -Encoding UTF8) } | Select-String -Pattern '<img(?![^>]*\ssrc=)[^>]*>' -AllMatches | Measure-Object).Count
+$left_srcset = ($files | % { (Get-Content -LiteralPath $_.FullName -Raw -Encoding UTF8) } | Select-String -Pattern '\ssrcset\s*=' -AllMatches | Measure-Object).Count
 
 Write-Host ""
 Write-Host "ONECLICK FINAL v5 Summary:"
 Write-Host ("  remaining lazy attrs: {0}" -f $left_lazy)
 Write-Host ("  <img> without src:   {0}" -f $missing_src)
+Write-Host ("  remaining srcset=:    {0}" -f $left_srcset)
 Write-Host ""
 Write-Host "Done. Review, Commit, and Push."
