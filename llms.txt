@@ -1,6 +1,6 @@
 # Fable Odyssey
 
-Official website: https://fableodyssey.com
+Official website: <https://fableodyssey.com>
 
 Fable Odyssey is a collection of original literary fiction, essays, and creative writing by the author Fluke.
 
